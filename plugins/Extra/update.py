@@ -162,7 +162,7 @@ async def up(bot, message):
             buttons = [[
                 InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE)
             ], [
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=https://t.me/nasrani_update)
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url="https://t.me/nasrani_update")
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
