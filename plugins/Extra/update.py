@@ -129,7 +129,7 @@ async def up(bot, message):
                 InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            k = await message.reply_photo(photo=imdb.get('poster'), caption=f"𝐇𝐞𝐲 {lg_cd} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩...\n\n🏷𝐓𝐢𝐭𝐥𝐞 :  {imdb.get('title')}\n\n🎭 Genres: {imdb.get('genres')}\n\n🌟 𝐑𝐚𝐭𝐢𝐧𝐠 : {imdb.get('rating')}\n\n☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')}\n\n📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')}\n\n📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')}\n\n🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : {imdb.get('countries')}\n\n{imdb.get('title')} എന്ന സിനിമ വേണമെങ്കിൽ ഇപ്പോൾ തന്നെ കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ ജോയിൻ ജോയിൻ ചെയ്യൂ..\n\n𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©𝐍𝐚𝐬𝐫𝐚𝐧𝐢 𝐔𝐩𝐝𝐚𝐭𝐞",
+            k = await message.reply_photo(photo=imdb.get('poster'),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -160,8 +160,9 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}")
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE)
+            ], [
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=https://t.me/nasrani_update)
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
@@ -170,7 +171,7 @@ async def up(bot, message):
             reply_markup=reply_markup,                       
             )
                         
-            await message.delete()
+            await message.edit_text(text=f"<b>Link :-</b> <code>https://telegra.ph{response[0]}</code>\n\n<b>")
             os.remove(sticker)
             os.remove(image)
 
