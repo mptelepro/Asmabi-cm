@@ -967,7 +967,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
                     imdb = await get_poster(content) if IMDB else None
                     file_send=await client.send_cached_media(
-                        
                         chat_id=FILE_CHANNEL,
                         file_id=file_id,
                         caption=script.CHANNEL_CAP.format(query.from_user.mention, title, query.message.chat.title),
@@ -975,17 +974,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                              [
                                 [
-                                     InlineKeyboardButton('𝐑𝐞 𝐒𝐞𝐧𝐝 𝐘𝐨𝐮𝐫 𝐏𝐦', callback_data=f'delfile#{file_id}')
+                                     InlineKeyboardButton('📤𝐉𝐨𝐢𝐧 𝐂𝐡𝐚𝐧𝐧𝐞𝐥📤', url="https://t.me/+7oxSIxY4X0c2ZGVl")
                                  ],
                                  [
-                                 InlineKeyboardButton('𝐅𝐢𝐥𝐦 𝐆𝐫𝐨𝐮𝐩', url="https://t.me/NasraniSeries")                              
+                                 InlineKeyboardButton('🧩𝐔𝐩𝐝𝐚𝐭𝐞🧩', url="https://t.me/bigmoviesworld"),
+                                 InlineKeyboardButton('☘𝐒𝐮𝐩𝐩𝐨𝐫𝐭☘', url="https://t.me/NasraniChatGroup")
                                  ]                            
                              ]
                          )
                      )
-                    Joel_tgx = await query.message.reply_photo(
-                        photo=imdb.get('poster'),
-                        caption=script.FILE_MSG.format(query.from_user.mention, title, size),
+                
+                    Joel_tgx = await query.message.reply_text(
+                        
+                        script.FILE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
@@ -996,14 +997,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                              ]
                             ]
                         )
-                    )                
-
+                    )
                     if settings['auto_delete']:
-                        await asyncio.sleep(10)
+                        await asyncio.sleep(600)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                        
-
+               
                     k = await client.send_message(
                         chat_id=FILE_CHANNEL,                        
                         text=script.DONE_MSG.format(query.from_user.mention, title, size),
@@ -1011,9 +1010,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
-                                    InlineKeyboardButton("📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-                                ], [
-                                    InlineKeyboardButton("💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
+                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
                                 ]
                             ]
                         )
