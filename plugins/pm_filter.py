@@ -1009,7 +1009,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
-                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
+                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=f"https://t.me/share/url?{ident}_{file_id}")
                                 ]
                             ]
                         )
