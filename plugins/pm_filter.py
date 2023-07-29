@@ -2211,10 +2211,10 @@ async def auto_filter(client, msg, spoll=False):
             im = Image.open(image).convert("RGB")
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
-            await message.reply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
+            await message.reply_sticker(sticker)
+                       
+                                   
+            
             os.remove(sticker)
             os.remove(image)
             try:
@@ -2273,7 +2273,18 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(10)
             await fuk.delete()
             await message.delete()
+            image = await fuk.download(file_name=f"{name_format}.jpg")
             
+        
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            await message.reply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
+            os.remove(sticker)
+            os.remove(image)
             
 
     # if spoll:
