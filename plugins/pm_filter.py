@@ -1003,18 +1003,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
                
-                    k = await client.send_message(
-                        chat_id=FILE_CHANNEL,                        
-                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
-                                ]
-                            ]
-                        )
-                    )                                                                                    
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
+            
+                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
+                    buttons = [[
+                        InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
+                    ], [
+                        InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+                    await bot.send_sticker(
+                    chat_id=FILE_CHANNEL,
+                    sticker=sticker,                    
+                    reply_markup=reply_markup,                       
+                    )
+                        
+                   os.remove(sticker)
+                   os.remove(image)                                                                                    
                     
 
                     
