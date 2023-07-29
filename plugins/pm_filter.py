@@ -1,4 +1,10 @@
 # Kanged From @TroJanZheX
+import os
+from PIL import Image
+from pyrogram.types import Message
+from pyrogram import Client, filters, enums
+
+
 
 
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid, ChatAdminRequired
