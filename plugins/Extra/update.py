@@ -144,7 +144,7 @@ async def up(bot, message):
             await bot.edit_message_sticker(
                 sticker=sticker,
                 chat_id=message.chat.id,                           
-                InputMediaSticker(sticker))
+                InputMediaSticker({sticker})
             )
             await message.edit_text(
             text=okda
