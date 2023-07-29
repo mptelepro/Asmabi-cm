@@ -113,7 +113,7 @@ async def up(bot, message):
     lgcd = message.text.split("/up")
     lg_cd = lgcd[1].lower().replace(" ", "")
     content = message.text
-    user = message.from_user.mention
+#    user = message.from_user.mention
     user_id = message.from_user.id
     imdb = await get_poster(lg_cd) if IMDB else None
     message_id = message.id
