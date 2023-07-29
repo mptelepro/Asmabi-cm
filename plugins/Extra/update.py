@@ -26,7 +26,14 @@ from pyrogram import Client, filters, enums
 
 
 
+import os
+import shutil
+from pyrogram import Client, filters, enums
+from telegraph import upload_file
+from plugins.helpers.get_file_id import get_file_id
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+TMP_DOWNLOAD_DIRECTORY = "./DOWNLOADS/"
 
 
 
@@ -127,7 +134,30 @@ async def up(bot, message):
             parse_mode=enums.ParseMode.HTML
             )
         
-    
+            
+            file_info = get_file_id(k)
+            if not file_info:
+                await koshik.edit_text("Not supported!")
+                return
+            _t = os.path.join(
+                TMP_DOWNLOAD_DIRECTORY,
+                str(replied.id)
+            )
+            if not os.path.isdir(_t):
+                os.makedirs(_t)
+            _t += "/"
+            download_location = await replied.download(
+                _t
+            )
+        try:
+           response = upload_file(download_location)
+        except Exception as document:
+           
+       
+
+
+       
+
 
 #               message = await message.reply("Converting...")
             image = await k.download(file_name=f"{name_format}.jpg")
@@ -137,7 +167,8 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),                      
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}",
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
