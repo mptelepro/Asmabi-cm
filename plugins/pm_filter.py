@@ -2216,13 +2216,13 @@ async def auto_filter(client, msg, spoll=False):
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
            
-            await message.reply_sticker(
+            k = await message.reply_sticker(
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
             os.remove(sticker)
             os.remove(image)
-            await m.delete()
+            
             
             try:
                 if settings['auto_delete']:
@@ -2280,7 +2280,8 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(10)
             await fuk.delete()
             await message.delete()
-            
+                await asyncio.sleep(10)
+                await k.delete()
             
 
     # if spoll:
