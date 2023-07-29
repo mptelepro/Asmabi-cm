@@ -2238,26 +2238,7 @@ async def auto_filter(client, msg, spoll=False):
                 await asyncio.sleep(180)
                 await hehe.delete()
                 await message.delete()
-                image = await hehe.download(file_name=f"{name_format}.jpg")
-            
-        
-                im = Image.open(image).convert("RGB")
-                im.save(f"{name_format}.webp", "webp")
-                sticker = f"{name_format}.webp"
-                buttons = [[
-                    InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
                 
-                ]]
-                reply_markup = InlineKeyboardMarkup(buttons)
-           
-                k = await message.reply_sticker(
-                sticker=sticker,            
-                reply_markup=reply_markup,                       
-                )
-                os.remove(sticker)
-                os.remove(image)
-                await asyncio.sleep(300)
-                await k.delete()
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg") 
