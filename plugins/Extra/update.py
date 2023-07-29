@@ -141,7 +141,7 @@ async def up(bot, message):
                 InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await bot.send_sticker(
+            m=await message.reply_sticker(
             sticker=sticker,
             caption=f"{lg_cd}",
             chat_id=message.chat.id,                           
