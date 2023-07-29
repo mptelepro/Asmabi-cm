@@ -134,7 +134,7 @@ async def find(bot, message):
 async def document(bot, message):  
     documentid= message.reply_to_message.text
     chat_id = message.chat.id
-    await txt.delete()
+#    await txt.delete()
     m = await message.reply_text("**♻ 𝙲𝚘𝚗𝚟𝚎𝚛𝚝 𝚈𝚘𝚞𝚛 𝙵𝚒𝚕𝚎. ♻**......\n\n[░░░░░░░░░░] 00%")
     await m.edit("**♻ 𝙲𝚘𝚗𝚟𝚎𝚛𝚝  𝙵𝚒𝚕𝚎... ♻**......\n\n[▇▇░░░░░░░░] 20%")
     await m.edit("**♻ 𝙲𝚘𝚗𝚟𝚎𝚛𝚝  𝙵𝚒𝚕𝚎... ♻**......\n\n[▇▇▇▇░░░░░░] 40%")
