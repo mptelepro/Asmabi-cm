@@ -966,6 +966,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
                     name_format = f"okda"
+                    image = await content.download(file_name=f"{name_format}.jpg")
+                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
+                    
                     file_send=await client.send_cached_media(
                         
                         chat_id=FILE_CHANNEL,
@@ -1002,26 +1008,25 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                    image = await content.download(file_name=f"{name_format}.jpg")
                     
-                    im = Image.open(image).convert("RGB")
-                    im.save(f"{name_format}.webp", "webp")
-                    sticker = f"{name_format}.webp"
-                    buttons = [[
-                        InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")  
-                    ], [
-                        InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
-           
-                    m = await client.send_sticker(
-                    chat_id=FILE_CHANNEL,
-                    sticker=sticker,            
-                    reply_markup=reply_markup,                       
+                   
+                    k = await client.send_sticker(
+                        chat_id=FILE_CHANNEL,
+                        sticker=sticker
+#                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+#                        parse_mode=enums.ParseMode.HTML,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton("📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
+                                ], [
+                                    InlineKeyboardButton("💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
+                                ]
+                            ]
+                        )
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    
 
                     
                 else:
