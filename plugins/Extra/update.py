@@ -151,7 +151,7 @@ async def up(bot, message):
             )
         try:
            response = upload_file(download_location)
-        except Exception as document:
+        
            
        
 
@@ -183,4 +183,4 @@ async def up(bot, message):
 
     except Exception as e:
         logger.exception(e)
-
+    except Exception as document:
