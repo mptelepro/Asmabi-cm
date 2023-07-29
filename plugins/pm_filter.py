@@ -1021,8 +1021,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=reply_markup,                       
                     )
                         
-                   os.remove(sticker)
-                   os.remove(image)                                                                                    
+                    os.remove(sticker)
+                    os.remove(image)                                                                                    
                     
 
                     
