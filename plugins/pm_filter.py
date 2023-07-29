@@ -974,7 +974,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                              [
                                 [
-                                     InlineKeyboardButton('𝐑𝐞 𝐒𝐞𝐧𝐝 𝐘𝐨𝐮𝐫 𝐏𝐦', f'delfile#{file_id}')
+                                     InlineKeyboardButton('𝐑𝐞 𝐒𝐞𝐧𝐝 𝐘𝐨𝐮𝐫 𝐏𝐦', callback_data=f'delfile#{file_id}')
                                  ],
                                  [
                                  InlineKeyboardButton('𝐅𝐢𝐥𝐦 𝐆𝐫𝐨𝐮𝐩', url="https://t.me/NasraniSeries")                              
