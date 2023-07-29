@@ -965,6 +965,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
                     content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
+                    name_format = f"okda"
                     file_send=await client.send_cached_media(
                         
                         chat_id=FILE_CHANNEL,
@@ -1001,7 +1002,25 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(120)
                         await Joel_tgx.delete()
                         await file_send.delete()
-               
+                    image = await content.download(file_name=f"{name_format}.jpg")
+                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
+                    buttons = [[
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
+                
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+           
+                    m = await client.send_sticker(
+                    chat_id=FILE_CHANNEL,
+                    sticker=sticker,            
+                    reply_markup=reply_markup,                       
+                    )
+                    os.remove(sticker)
+                    os.remove(image)
+                    
                     k = await client.send_message(
                         chat_id=FILE_CHANNEL,                        
                         text=script.DONE_MSG.format(query.from_user.mention, title, size),
