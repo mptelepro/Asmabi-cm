@@ -2205,18 +2205,7 @@ async def auto_filter(client, msg, spoll=False):
             
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await m.delete()
-            image = await hehe.download(file_name=f"{name_format}.jpg")
             
-            name_format = f"okda"
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            await message.reply_sticker(sticker)
-                       
-                                   
-            
-            os.remove(sticker)
-            os.remove(image)
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(10)
@@ -2279,6 +2268,13 @@ async def auto_filter(client, msg, spoll=False):
             im = Image.open(image).convert("RGB")
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
+            buttons = [[
+                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
+            ], [
+                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+           
             await message.reply_sticker(
             sticker=sticker,            
             reply_markup=reply_markup,                       
