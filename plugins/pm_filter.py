@@ -1010,8 +1010,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
                         
-                    k = await query.message.reply_sticker(
-                                            
+                                                                
                     
 
                     
