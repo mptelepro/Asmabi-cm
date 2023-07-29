@@ -123,13 +123,7 @@ async def up(bot, message):
     
     try:  
             message = await message.reply("Converting...")
-            buttons = [[
-                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update'),
-                InlineKeyboardButton("𝐒𝐮𝐫𝐩𝐫𝐢𝐬𝐞", url=f"https://telegram.me/{temp.U_NAME}?start"),
-                InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            k = await message.reply_photo(photo=imdb.get('poster'),
+            k = await message.reply_photo(photo=imdb.get('poster'), caption=f"𝐇𝐞𝐲 {lg_cd} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩...\n\n🏷𝐓𝐢𝐭𝐥𝐞 :  {imdb.get('title')}\n\n🎭 Genres: {imdb.get('genres')}\n\n🌟 𝐑𝐚𝐭𝐢𝐧𝐠 : {imdb.get('rating')}\n\n☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')}\n\n📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')}\n\n📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')}\n\n🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : {imdb.get('countries')}\n\n{imdb.get('title')} എന്ന സിനിമ വേണമെങ്കിൽ ഇപ്പോൾ തന്നെ കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ ജോയിൻ ജോയിൻ ചെയ്യൂ..\n\n𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©𝐍𝐚𝐬𝐫𝐚𝐧𝐢 𝐔𝐩𝐝𝐚𝐭𝐞",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -154,7 +148,7 @@ async def up(bot, message):
 
 #               message = await message.reply("Converting...")
             image = await k.download(file_name=f"{name_format}.jpg")
-            await k.delete()
+            
             await message.edit("Sending...")
             im = Image.open(image).convert("RGB")
             im.save(f"{name_format}.webp", "webp")
