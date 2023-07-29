@@ -44,9 +44,7 @@ ALL_PIC = [
  "https://telegra.ph/file/65a9972e351b02640d0f4.jpg"
  ]
 
-UPDATE = """
-https://t.me/nasrani_update
-"""
+UPDATE = "https://t.me/nasrani_update"
 
 
 START_MESSAGE = """
