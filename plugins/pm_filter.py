@@ -2206,6 +2206,22 @@ async def auto_filter(client, msg, spoll=False):
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             image = await hehe.download(file_name=f"{name_format}.jpg")
             
+        
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            buttons = [[
+                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
+                
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+           
+            await message.reply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
+            os.remove(sticker)
+            os.remove(image)
             await m.delete()
             
             try:
@@ -2267,25 +2283,7 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(10)
             await fuk.delete()
             await message.delete()
-            image = await fuk.download(file_name=f"{name_format}.jpg")
             
-        
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            buttons = [[
-                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
-            ], [
-                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-           
-            await message.reply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
-            os.remove(sticker)
-            os.remove(image)
             
 
     # if spoll:
