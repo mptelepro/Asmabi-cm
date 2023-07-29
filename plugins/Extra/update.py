@@ -137,7 +137,7 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"{lg_cd}", url=UPDATE),                      
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('poster')} ", url=UPDATE),                      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
