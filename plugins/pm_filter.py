@@ -2205,37 +2205,57 @@ async def auto_filter(client, msg, spoll=False):
             
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await m.delete()
-            image = await hehe.download(file_name=f"{name_format}.jpg")
             
-        
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            buttons = [[
-                InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
-                
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-           
-            k = await message.reply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
-            os.remove(sticker)
-            os.remove(image)
-            await asyncio.sleep(10)
-            await k.delete()
             
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(10)
                     await hehe.delete()
                     await message.delete()
+                    image = await hehe.download(file_name=f"{name_format}.jpg")
+                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
+                    buttons = [[
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
+                
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+           
+                    k = await message.reply_sticker(
+                    sticker=sticker,            
+                    reply_markup=reply_markup,                       
+                    )
+                    os.remove(sticker)
+                    os.remove(image)
+                    await asyncio.sleep(10)
+                    await k.delete()
             except KeyError:
                 await save_group_settings(message.chat.id, 'auto_delete', True)
                 await asyncio.sleep(10)
                 await hehe.delete()
                 await message.delete()
+                image = await hehe.download(file_name=f"{name_format}.jpg")
+            
+        
+                im = Image.open(image).convert("RGB")
+                im.save(f"{name_format}.webp", "webp")
+                sticker = f"{name_format}.webp"
+                buttons = [[
+                    InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
+                
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
+           
+                k = await message.reply_sticker(
+                sticker=sticker,            
+                reply_markup=reply_markup,                       
+                )
+                os.remove(sticker)
+                os.remove(image)
+                await asyncio.sleep(10)
+                await k.delete()
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg") 
