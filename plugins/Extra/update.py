@@ -130,6 +130,7 @@ async def up(bot, message):
 
 #               message = await message.reply("Converting...")
             image = await k.download(file_name=f"{name_format}.jpg")
+            await k.delete()
             await message.edit("Sending...")
             im = Image.open(image).convert("RGB")
             im.save(f"{name_format}.webp", "webp")
