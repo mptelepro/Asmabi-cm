@@ -118,7 +118,7 @@ async def up(bot, message):
     imdb = await get_poster(lg_cd) if IMDB else None
 #    message_id = message.id
     name_format = f"okda"
-    user_id = message.from_user.id
+#    user_id = message.from_user.id
     
     
     try:  
