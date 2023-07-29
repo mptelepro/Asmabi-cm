@@ -13,7 +13,7 @@ from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_
 from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files
 import time
 from datetime import datetime
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaSticker
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
