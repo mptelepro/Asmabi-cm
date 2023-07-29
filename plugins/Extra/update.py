@@ -183,4 +183,4 @@ async def up(bot, message):
 
             except Exception as e:
                 logger.exception(e)
-            except Exception as document:
+        except Exception as document:
