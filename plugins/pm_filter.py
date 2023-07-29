@@ -1012,7 +1012,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                    
                     k = await client.send_sticker(
                         chat_id=FILE_CHANNEL,
-                        sticker=sticker
+                        sticker=sticker,
 #                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
 #                        parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
