@@ -962,7 +962,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 if clicked == typed:
                     await query.answer(f"𝐇𝐞𝐥𝐥𝐨 {query.from_user.first_name}, 𝐆𝐨𝐢𝐧𝐠 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐒𝐞𝐜𝐭𝐢𝐨𝐧...📥", show_alert=True)
-                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
                     content = query.message.reply_to_message.text
                     name_format = f"okda"
                     imdb = await get_poster(content) if IMDB else None
@@ -1003,17 +1005,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
                
-                        image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
-            
-                    
-                        im = Image.open(image).convert("RGB")
-                        im.save(f"{name_format}.webp", "webp")
-                        sticker = f"{name_format}.webp"
-                    buttons = [[
-                    InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
-                    ], [
-                        InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
-                    ]]
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")                                                        
+                        buttons = [[
+                            InlineKeyboardButton(f"📥", url="https://t.me/nasrani_update")
+                        ], [
+                            InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
+                        ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
                     k = await client.send_sticker(
                         chat_id=FILE_CHANNEL,
