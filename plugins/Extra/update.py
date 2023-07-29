@@ -108,7 +108,7 @@ UP_MESSAGE = """
 
 
 
-@Client.on_message(filters.command("up") & filters.text)
+@Client.on_message(filters.command("up") & filters.text & (filters.channel | filters.group | filters.private))
 async def up(bot, message):
     lgcd = message.text.split("/up")
     lg_cd = lgcd[1].lower().replace(" ", "")
