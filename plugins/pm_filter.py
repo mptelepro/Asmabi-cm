@@ -1004,10 +1004,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                    if settings['auto_delete']:
-                        await asyncio.sleep(10)
-                        await Joel_tgx.delete()
-                        await file_send.delete()
+                    
                
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")                                                        
                     buttons = [[
