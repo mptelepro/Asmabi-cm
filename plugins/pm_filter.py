@@ -986,7 +986,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                          )
                      )
                 
-e                    Joel_tgx = await query.message.reply_photo(
+                    Joel_tgx = await query.message.reply_photo(
                         photo=imdb.get('poster'),
                         caption=script.FILE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
