@@ -2147,12 +2147,7 @@ async def auto_filter(client, msg, spoll=False):
         btn.append(
             [InlineKeyboardButton(text="𝐍𝐎 𝐌𝐎𝐑𝐄 𝐏𝐀𝐆𝐄𝐒 𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄",callback_data="pages")]
         )
-    image = await k.download(file_name=f"{name_format}.jpg")
-            
     
-    im = Image.open(image).convert("RGB")
-    im.save(f"{name_format}.webp", "webp")
-    sticker = f"{name_format}.webp"
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     cur_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     time_difference = timedelta(hours=cur_time.hour, minutes=cur_time.minute, seconds=(cur_time.second+(cur_time.microsecond/1000000))) - timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000)))
@@ -2207,8 +2202,19 @@ async def auto_filter(client, msg, spoll=False):
 
     if imdb and imdb.get('poster'):
         try:
+            
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await m.delete()
+            image = await hehe.download(file_name=f"{name_format}.jpg")
+            
+    
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            await message.rply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(10)
@@ -2223,6 +2229,16 @@ async def auto_filter(client, msg, spoll=False):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg") 
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            image = await hmm.download(file_name=f"{name_format}.jpg")
+            
+    
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            await message.rply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
             await m.delete()
             try:
                if settings['auto_delete']:
@@ -2239,6 +2255,16 @@ async def auto_filter(client, msg, spoll=False):
             logger.exception(e)
             m=await message.reply_text("🔎") 
             fek = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
+            image = await fek.download(file_name=f"{name_format}.jpg")
+            
+    
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            await message.rply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
             await m.delete()
             try:
                 if settings['auto_delete']:
@@ -2252,6 +2278,16 @@ async def auto_filter(client, msg, spoll=False):
                 await message.delete()
     else:
         fuk = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
+        image = await fuk.download(file_name=f"{name_format}.jpg")
+            
+    
+        im = Image.open(image).convert("RGB")
+        im.save(f"{name_format}.webp", "webp")
+        sticker = f"{name_format}.webp"
+        await message.rply_sticker(
+        sticker=sticker,            
+        reply_markup=reply_markup,                       
+        )
         try:
             if settings['auto_delete']:
                 await asyncio.sleep(10)
@@ -2262,17 +2298,7 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(10)
             await fuk.delete()
             await message.delete()
-            buttons = [[
-                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
-            ], [
-                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await message.rply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
-                        
+            
             os.remove(sticker)
             os.remove(image)
 
