@@ -13,7 +13,7 @@ from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_
 from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files
 import time
 from datetime import datetime
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaSticker
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
@@ -141,15 +141,15 @@ async def up(bot, message):
                 InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            m=await bot.edit_message_sticker(
+            await bot.edit_message_sticker(
             sticker=sticker,
             chat_id=message.chat.id,                           
-            reply_markup=reply_markup
+            InputMediaSticker(sticker)
             )
-            await bot.edit_message_sticker(
-            message.chat.id, 
-            message.id, 
-            InputMediaPhoto(sticker)
+            await message.edit_text(
+            text=okda
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
             )
             await message.delete()
             os.remove(sticker)
