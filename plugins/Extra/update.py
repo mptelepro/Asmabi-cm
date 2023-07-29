@@ -142,9 +142,9 @@ async def up(bot, message):
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.edit_message_sticker(
-            sticker=sticker,
-            chat_id=message.chat.id,                           
-            InputMediaSticker(sticker)
+                sticker=sticker,
+                chat_id=message.chat.id,                           
+                InputMediaSticker(sticker)
             )
             await message.edit_text(
             text=okda
