@@ -174,8 +174,8 @@ async def up(bot, message):
             os.remove(sticker)
             os.remove(image)
 
-except Exception as e:            
-    logger.exception(e)
+    except Exception as e:            
+        logger.exception(e)
                 
        
 
