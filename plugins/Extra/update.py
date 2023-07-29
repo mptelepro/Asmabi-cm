@@ -139,15 +139,11 @@ async def up(bot, message):
             _t = os.path.join(
                 TMP_DOWNLOAD_DIRECTORY,
                 str(replied.id)
-            )
-            if not os.path.isdir(_t):
-                os.makedirs(_t)
-            _t += "/"
+            )            
             download_location = await k.download(
                 _t
             )
-            try:
-                response = upload_file(download_location)
+            response = upload_file(download_location)
         
            
        
@@ -157,30 +153,30 @@ async def up(bot, message):
 
 
 #               message = await message.reply("Converting...")
-                image = await k.download(file_name=f"{name_format}.jpg")
-                await k.delete()
-                await message.edit("Sending...")
-                im = Image.open(image).convert("RGB")
-                im.save(f"{name_format}.webp", "webp")
-                sticker = f"{name_format}.webp"
-                buttons = [[
-                    InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),
-                    InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}")
-                ]]
-                reply_markup = InlineKeyboardMarkup(buttons)
-                await bot.send_sticker(
-                sticker=sticker,
-                chat_id=message.chat.id,
-                reply_markup=reply_markup,                       
-                )
+            image = await k.download(file_name=f"{name_format}.jpg")
+            await k.delete()
+            await message.edit("Sending...")
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            buttons = [[
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),
+                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await bot.send_sticker(
+            sticker=sticker,
+            chat_id=message.chat.id,
+            reply_markup=reply_markup,                       
+            )
                         
-                await message.delete()
-                os.remove(sticker)
-                os.remove(image)
+            await message.delete()
+            os.remove(sticker)
+            os.remove(image)
 
+        except Exception as e:
             
-            except Exception as document:
-                logger.exception(e)
+            logger.exception(e)
                 
        
 
