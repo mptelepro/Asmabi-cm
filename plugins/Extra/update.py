@@ -133,7 +133,7 @@ async def up(bot, message):
             await k.delete()
             await message.edit("Sending...")
             im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
+            im.save(f"https://t.me/{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
                 InlineKeyboardButton(f"{lg_cd}", url=f'http://t.me/nasrani_update'),
@@ -143,6 +143,7 @@ async def up(bot, message):
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
             sticker=sticker,
+            caption=f"{lg_cd}"},
             chat_id=message.chat.id,                           
             reply_markup=reply_markup
             )
