@@ -964,7 +964,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(f"𝐇𝐞𝐥𝐥𝐨 {query.from_user.first_name}, 𝐆𝐨𝐢𝐧𝐠 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐒𝐞𝐜𝐭𝐢𝐨𝐧...📥", show_alert=True)
                     
                     content = query.message.reply_to_message.text
+                    imdb = await get_poster(content) if IMDB else None
                     file_send=await client.send_cached_media(
+                        
                         chat_id=FILE_CHANNEL,
                         file_id=file_id,
                         caption=script.CHANNEL_CAP.format(query.from_user.mention, title, query.message.chat.title),
@@ -982,9 +984,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                          )
                      )
                 
-                    Joel_tgx = await query.message.reply_text(
-                        
-                        script.FILE_MSG.format(query.from_user.mention, title, size),
+                    Joel_tgx = await query.message.reply_photo(
+                        photo=imdb.get('poster'),
+                        caption=script.FILE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
