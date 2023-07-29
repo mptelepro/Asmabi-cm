@@ -987,8 +987,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                      )
                 
                     Joel_tgx = await query.message.reply_photo(
-                        photo =imdb.get('poster'),
-                        script.FILE_MSG.format(query.from_user.mention, title, size),
+                        photo=imdb.get('poster'),
+                        caption=script.FILE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
@@ -1000,6 +1000,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
+                    if settings['auto_delete']:
+                        await asyncio.sleep(10)
+                        await Joel_tgx.delete()
+                        await file_send.delete()
+                    if settings['auto_delete']:
+                        await asyncio.sleep(10)
+                        await Joel_tgx.delete()
+                        await file_send.delete()
                     if settings['auto_delete']:
                         await asyncio.sleep(600)
                         await Joel_tgx.delete()
