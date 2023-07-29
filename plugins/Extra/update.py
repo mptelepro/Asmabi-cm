@@ -125,7 +125,10 @@ async def up(bot, message):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
-                                      
+        
+    
+    except Exception as e:
+        logger.exception(e)                                      
 
 #            message = await message.reply("Converting...")
             image = await k.download(file_name=f"{name_format}.jpg")
