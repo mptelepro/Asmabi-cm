@@ -2152,7 +2152,7 @@ async def auto_filter(client, msg, spoll=False):
     cur_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     time_difference = timedelta(hours=cur_time.hour, minutes=cur_time.minute, seconds=(cur_time.second+(cur_time.microsecond/1000000))) - timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000)))
     remaining_seconds = "{:.2f}".format(time_difference.total_seconds())
-
+    name_format = f"okda"
     TEMPLATE = script.IMDB_TEMPLATE_TXT
     if imdb:
         cap = TEMPLATE.format(
@@ -2215,6 +2215,8 @@ async def auto_filter(client, msg, spoll=False):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
+            os.remove(sticker)
+            os.remove(image)
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(10)
@@ -2229,16 +2231,7 @@ async def auto_filter(client, msg, spoll=False):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg") 
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            image = await hmm.download(file_name=f"{name_format}.jpg")
             
-            name_format = f"okda"
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            await message.rply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
             await m.delete()
             try:
                if settings['auto_delete']:
@@ -2255,16 +2248,7 @@ async def auto_filter(client, msg, spoll=False):
             logger.exception(e)
             m=await message.reply_text("🔎") 
             fek = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
-            image = await fek.download(file_name=f"{name_format}.jpg")
             
-            name_format = f"okda"
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            await message.rply_sticker(
-            sticker=sticker,            
-            reply_markup=reply_markup,                       
-            )
             await m.delete()
             try:
                 if settings['auto_delete']:
@@ -2280,7 +2264,7 @@ async def auto_filter(client, msg, spoll=False):
         fuk = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
         image = await fuk.download(file_name=f"{name_format}.jpg")
             
-        name_format = f"okda"
+        
         im = Image.open(image).convert("RGB")
         im.save(f"{name_format}.webp", "webp")
         sticker = f"{name_format}.webp"
@@ -2288,6 +2272,8 @@ async def auto_filter(client, msg, spoll=False):
         sticker=sticker,            
         reply_markup=reply_markup,                       
         )
+        os.remove(sticker)
+        os.remove(image)
         try:
             if settings['auto_delete']:
                 await asyncio.sleep(10)
@@ -2299,8 +2285,7 @@ async def auto_filter(client, msg, spoll=False):
             await fuk.delete()
             await message.delete()
             
-            os.remove(sticker)
-            os.remove(image)
+            
 
     # if spoll:
     #     await msg.message.delete()
