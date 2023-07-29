@@ -999,7 +999,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                     )
                     if settings['auto_delete']:
-                        await asyncio.sleep(120)
+                        await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
                     image = await content.download(file_name=f"{name_format}.jpg")
@@ -1008,8 +1008,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/+r_y-yTPhXkQwMzdl")            
-                
+                        InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")  
+                    ], [
+                        InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
            
@@ -1021,20 +1022,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     os.remove(sticker)
                     os.remove(image)
                     
-                    k = await client.send_message(
-                        chat_id=FILE_CHANNEL,                        
-                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-                                ], [
-                                    InlineKeyboardButton("💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
-                                ]
-                            ]
-                        )
-                    )
 
                     
                 else:
