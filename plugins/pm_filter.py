@@ -1002,21 +1002,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
-                    im = Image.open(image).convert("RGB")
-                    im.save(f"{content}.webp", "webp")
-                    sticker = f"{name_format}.webp"
-                    buttons = [[
-                        InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")  
-                    ], [
-                        InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
+                        image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
+                        im = Image.open(image).convert("RGB")
+                        im.save(f"{content}.webp", "webp")
+                        sticker = f"{name_format}.webp"
+                        buttons = [[
+                            InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")  
+                        ], [
+                            InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
+                        ]]
+                        reply_markup = InlineKeyboardMarkup(buttons)
            
-                    kkkk = await client.send_sticker(
-                    chat_id=FILE_CHANNEL,
-                    sticker=sticker,            
-                    reply_markup=reply_markup,                       
+                    kkkk = await message.reply_sticker(
+                        chat_id=FILE_CHANNEL,
+                        sticker=sticker,            
+                        reply_markup=reply_markup,                       
                     )
                     os.remove(sticker)
                     os.remove(image)
