@@ -101,6 +101,9 @@ FILE_CHANNEL = int(environ.get('FILE_CHANNEL', 0))
 
 BR_IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", f"{script.BR_TEMPLATE_TXT}")
 BATCH_LINK = environ.get('BATCH_LINK',"https://t.me/nasrani_update")
+# heroku
+HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
+HRK_API = environ.get('HRK_API', '0')
 
 
 
