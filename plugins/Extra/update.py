@@ -168,7 +168,7 @@ async def up(bot, message):
                 sticker = f"{name_format}.webp"
                 buttons = [[
                     InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE),
-                    InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}",
+                    InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=f"https://telegra.ph{response[0]}")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 await bot.send_sticker(
