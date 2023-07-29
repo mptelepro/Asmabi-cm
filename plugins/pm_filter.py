@@ -1024,7 +1024,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-                    
+                    os.remove(sticker)
+                    os.remove(image)
 
                     
                 else:
@@ -1036,8 +1037,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-            os.remove(sticker)
-            os.remove(image)
+            
            
 
     elif query.data.startswith("sendfiles"):
