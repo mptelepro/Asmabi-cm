@@ -109,7 +109,7 @@ async def up(bot, message):
     user_id = message.from_user.id
     imdb = await get_poster(lg_cd) if IMDB else None
     message_id = message.id
-    name_format = f"StarkBots_{user_id}_{message_id}"
+    name_format = f"https/t.me/KOCHU_KALLAN_RoBOT_{user_id}_{message_id}"
     user_id = message.from_user.id
     
     
