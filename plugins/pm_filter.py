@@ -974,11 +974,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                              [
                                 [
-                                     InlineKeyboardButton('📤𝐉𝐨𝐢𝐧 𝐂𝐡𝐚𝐧𝐧𝐞𝐥📤', url="https://t.me/+7oxSIxY4X0c2ZGVl")
+                                     InlineKeyboardButton('𝐑𝐞 𝐒𝐞𝐧𝐝 𝐘𝐨𝐮𝐫 𝐏𝐦', f'delfile#{file_id}')
                                  ],
                                  [
-                                 InlineKeyboardButton('🧩𝐔𝐩𝐝𝐚𝐭𝐞🧩', url="https://t.me/bigmoviesworld"),
-                                 InlineKeyboardButton('☘𝐒𝐮𝐩𝐩𝐨𝐫𝐭☘', f'delfile#{file_id}')
+                                 InlineKeyboardButton('𝐅𝐢𝐥𝐦 𝐆𝐫𝐨𝐮𝐩', url="https://t.me/NasraniSeries")                              
                                  ]                            
                              ]
                          )
