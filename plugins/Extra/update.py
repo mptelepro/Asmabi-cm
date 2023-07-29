@@ -149,8 +149,8 @@ async def up(bot, message):
             download_location = await replied.download(
                 _t
             )
-        try:
-           response = upload_file(download_location)
+            try:
+                response = upload_file(download_location)
         
            
        
