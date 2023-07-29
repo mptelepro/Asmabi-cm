@@ -44,6 +44,9 @@ ALL_PIC = [
  "https://telegra.ph/file/65a9972e351b02640d0f4.jpg"
  ]
 
+UPDATE = """
+https://t.me/nasrani_update
+"""
 
 
 START_MESSAGE = """
@@ -136,21 +139,15 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"{lg_cd}", url=f'http://t.me/nasrani_update'),
-                InlineKeyboardButton("𝐒𝐮𝐫𝐩𝐫𝐢𝐬𝐞", url=f"https://telegram.me/{temp.U_NAME}?start"),
-                InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
+                InlineKeyboardButton(f"{lg_cd}", url=UPDATE),                      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await bot.edit_message_sticker(
-                sticker=sticker,
-                chat_id=message.chat.id,                           
-                InputMediaSticker(f"{sticker}"))
-            
-            await message.edit_text(
-            text=okda
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
+            await bot.send_sticker(
+            sticker=sticker,
+            chat_id=message.chat.id,
+            reply_markup=reply_markup,                       
             )
+                        
             await message.delete()
             os.remove(sticker)
             os.remove(image)
