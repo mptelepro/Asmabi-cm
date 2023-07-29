@@ -138,7 +138,7 @@ async def up(bot, message):
             file_info = get_file_id(k)
             _t = os.path.join(
                 TMP_DOWNLOAD_DIRECTORY,
-                str(replied.id)
+                str(k.id)
             )            
             download_location = await k.download(
                 _t
