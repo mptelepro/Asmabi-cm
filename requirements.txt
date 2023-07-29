@@ -1,4 +1,4 @@
-pyrogram>=2.0.30
+pyrogram>=2.0.30 
 tgcrypto
 pymongo[srv]==3.12.3
 motor==2.5.1
@@ -11,3 +11,19 @@ shortzy
 datetime
 pytz
 aiohttp
+wget
+
+youtube_search
+youtube-search-python==1.4.6
+yt-dlp
+youtube-dl
+aiofiles
+dnspython==2.3.0
+
+Pillow>=10.0.0
+async-lru==1.0.2
+pyaes==1.6.1
+PySocks==1.7.1
+telegraph
+python-decouple
+python-telegram-bot==12.8
