@@ -986,9 +986,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                          )
                      )
                 
-                    Joel_tgx = await query.message.reply_photo(
-                        photo=imdb.get('poster'),
-                        caption=script.FILE_MSG.format(query.from_user.mention, title, size),
+                    Joel_tgx = await query.message.reply_text(
+                        
+                        script.FILE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
@@ -1001,26 +1001,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                     )
                     if settings['auto_delete']:
-                        await asyncio.sleep(10)
+                        await asyncio.sleep(600)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                    
                
-                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")                                                        
-                    buttons = [[
-                        InlineKeyboardButton(f"📥", url="https://t.me/nasrani_update")
-                    ], [
-                        InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
-                    k = await client.send_sticker(
-                        chat_id=FILE_CHANNEL,
-                        sticker=sticker,                    
-                        reply_markup=reply_markup,                       
+                    k = await client.send_message(
+                        chat_id=FILE_CHANNEL,                        
+                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+                        parse_mode=enums.ParseMode.HTML,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
+                                ]
+                            ]
+                        )
                     )
-                        
-                    os.remove(sticker)
-                    os.remove(image)                                                                                    
+                                                                                                        
                     
 
                     
