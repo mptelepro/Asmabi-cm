@@ -2211,7 +2211,7 @@ async def auto_filter(client, msg, spoll=False):
             im = Image.open(image).convert("RGB")
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
-            await message.rply_sticker(
+            await message.reply_sticker(
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
@@ -2262,18 +2262,7 @@ async def auto_filter(client, msg, spoll=False):
                 await message.delete()
     else:
         fuk = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-        image = await fuk.download(file_name=f"{name_format}.jpg")
-            
         
-        im = Image.open(image).convert("RGB")
-        im.save(f"{name_format}.webp", "webp")
-        sticker = f"{name_format}.webp"
-        await message.rply_sticker(
-        sticker=sticker,            
-        reply_markup=reply_markup,                       
-        )
-        os.remove(sticker)
-        os.remove(image)
         try:
             if settings['auto_delete']:
                 await asyncio.sleep(10)
