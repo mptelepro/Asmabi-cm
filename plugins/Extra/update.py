@@ -102,7 +102,7 @@ UP_MESSAGE = """
 
 @Client.on_message(filters.command("up") & filters.text)
 async def up(bot, message):
-    lgcd = message.text.split("/update")
+    lgcd = message.text.split("/up")
     lg_cd = lgcd[1].lower().replace(" ", "")
     content = message.text
     user = message.from_user.first_name
