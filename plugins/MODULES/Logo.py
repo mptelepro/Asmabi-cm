@@ -5,7 +5,7 @@ from pyrogram import Client, filters, enums
 
 
 
-@Client.on_message(filters.command(["pack"]) & filters.photo & filters.reply)
+@Client.on_message(filters.command(["pack"]) & filters.photo)
 async def sticker_image(_, msg: Message):
     
     user_id = msg.from_user.id
