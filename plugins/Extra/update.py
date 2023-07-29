@@ -147,6 +147,7 @@ async def up(bot, message):
             chat_id=message.chat.id,                           
             reply_markup=reply_markup
             )
+            await m.edit("❤️❤️❤️")
             await message.delete()
             os.remove(sticker)
             os.remove(image)
