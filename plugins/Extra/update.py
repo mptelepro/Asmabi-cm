@@ -141,12 +141,12 @@ async def up(bot, message):
                 InlineKeyboardButton('𝐋𝐞𝐭𝐞𝐬𝐭 𝐓𝐫𝐲', url=(BATCH_LINK))      
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            m=await bot.edit_message_media(
+            m=await bot.edit_message_sticker(
             sticker=sticker,
             chat_id=message.chat.id,                           
             reply_markup=reply_markup
             )
-            await bot.edit_message_media(
+            await bot.edit_message_sticker(
             message.chat.id, 
             message.id, 
             InputMediaPhoto(sticker)
