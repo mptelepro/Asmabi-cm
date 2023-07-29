@@ -962,7 +962,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 if clicked == typed:
                     await query.answer(f"𝐇𝐞𝐥𝐥𝐨 {query.from_user.first_name}, 𝐆𝐨𝐢𝐧𝐠 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐒𝐞𝐜𝐭𝐢𝐨𝐧...📥", show_alert=True)
-                    
+                    content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
                     file_send=await client.send_cached_media(
                         chat_id=FILE_CHANNEL,
