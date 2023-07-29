@@ -143,7 +143,7 @@ async def up(bot, message):
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
             sticker=sticker,
-            caption=f"{lg_cd}"},
+            caption=f"{lg_cd}",
             chat_id=message.chat.id,                           
             reply_markup=reply_markup
             )
