@@ -966,11 +966,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
                     name_format = f"okda"
-                    image = await content.download(file_name=f"{name_format}.jpg")
                     
-                    im = Image.open(image).convert("RGB")
-                    im.save(f"{name_format}.webp", "webp")
-                    sticker = f"{name_format}.webp"
                     
                     file_send=await client.send_cached_media(
                         
@@ -1009,7 +1005,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
                     
-                   
+                    image = await content.download(file_name=f"{name_format}.jpg")            
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
                     k = await client.send_sticker(
                         chat_id=FILE_CHANNEL,
                         sticker=sticker,
@@ -1025,8 +1024,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-                    os.remove(sticker)
-                    os.remove(image)
+                    
 
                     
                 else:
@@ -1038,7 +1036,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-            
+            os.remove(sticker)
+            os.remove(image)
+           
+
     elif query.data.startswith("sendfiles"):
         clicked = query.from_user.id
         ident, key = query.data.split("#")
