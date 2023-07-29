@@ -127,19 +127,18 @@ async def up(bot, message):
             )
         
     
-    except Exception as e:
-        logger.exception(e)                                      
 
 #               message = await message.reply("Converting...")
-        image = await k.download(file_name=f"{name_format}.jpg")
-        await message.edit("Sending...")
-        im = Image.open(image).convert("RGB")
-        im.save(f"{name_format}.webp", "webp")
-        sticker = f"{name_format}.webp"
-        await message.reply_sticker(sticker)
-        await message.delete()
-        os.remove(sticker)
-        os.remove(image)
+            image = await k.download(file_name=f"{name_format}.jpg")
+            await message.edit("Sending...")
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            await message.reply_sticker(sticker)
+            await message.delete()
+            os.remove(sticker)
+            os.remove(image)
 
-
+    except Exception as e:
+        logger.exception(e)
 
