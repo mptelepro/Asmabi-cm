@@ -965,9 +965,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
                     content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
-
+                    name_format = f"okda"
+                    image = await content.download(file_name=f"{name_format}.jpg")            
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp" 
                     
-a                    file_send=await client.send_cached_media(
+                    file_send=await client.send_cached_media(
                         
                         chat_id=FILE_CHANNEL,
                         file_id=sticker,
@@ -975,17 +979,17 @@ a                    file_send=await client.send_cached_media(
 #                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
 #                        parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
-                            [
+                             [
                                 [
-                                    InlineKeyboardButton("📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-                                ], [
-                                    InlineKeyboardButton("💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
-                                ]
-                            ]
-                        )
-                    )
-                    os.remove(sticker)
-                    os.remove(image)
+                                     InlineKeyboardButton('𝐑𝐞 𝐒𝐞𝐧𝐝 𝐘𝐨𝐮𝐫 𝐏𝐦', callback_data=f'delfile#{file_id}')
+                                 ],
+                                [
+                                 InlineKeyboardButton('𝐅𝐢𝐥𝐦 𝐆𝐫𝐨𝐮𝐩', url="https://t.me/NasraniSeries")                              
+                                 ]                            
+                             ]
+                         )
+                     )
+                    
                     Joel_tgx = await query.message.reply_photo(
                         photo=imdb.get('poster'),
                         caption=script.FILE_MSG.format(query.from_user.mention, title, size),
@@ -1005,11 +1009,7 @@ a                    file_send=await client.send_cached_media(
                         await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                        name_format = f"okda"
-                        image = await content.download(file_name=f"{name_format}.jpg")            
-                        im = Image.open(image).convert("RGB")
-                        im.save(f"{name_format}.webp", "webp")
-                        sticker = f"{name_format}.webp"
+                        
                     k = await query.message.reply_sticker(
                                             
                     
