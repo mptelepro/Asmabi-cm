@@ -964,7 +964,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(f"𝐇𝐞𝐥𝐥𝐨 {query.from_user.first_name}, 𝐆𝐨𝐢𝐧𝐠 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐒𝐞𝐜𝐭𝐢𝐨𝐧...📥", show_alert=True)
                     
                     content = query.message.reply_to_message.text
-                    name_format = f"okda"
+                    
                     imdb = await get_poster(content) if IMDB else None
                     file_send=await client.send_cached_media(
                         
@@ -1004,7 +1004,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await file_send.delete()
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     im = Image.open(image).convert("RGB")
-                    im.save(f"{name_format}.webp", "webp")
+                    im.save(f"{content}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
                         InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")  
@@ -1013,27 +1013,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
            
-                    m = await client.send_sticker(
+                    kkkk = await client.send_sticker(
                     chat_id=FILE_CHANNEL,
                     sticker=sticker,            
                     reply_markup=reply_markup,                       
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    k = await client.send_message(
-                        chat_id=FILE_CHANNEL,                        
-                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-                                ], [
-                                    InlineKeyboardButton("💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=f"https://t.me/share/url?url={file_id}")
-                                ]
-                            ]
-                        )
-                    )                                                                
+                                                                                    
                     
 
                     
