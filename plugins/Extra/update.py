@@ -160,9 +160,9 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url=UPDATE)
+                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=UPDATE)
             ], [
-                InlineKeyboardButton(f"{lg_cd} {imdb.get('year')} ", url="https://t.me/nasrani_update")
+                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
