@@ -136,9 +136,6 @@ async def up(bot, message):
         
             
             file_info = get_file_id(k)
-            if not file_info:
-                await koshik.edit_text("Not supported!")
-                return
             _t = os.path.join(
                 TMP_DOWNLOAD_DIRECTORY,
                 str(replied.id)
@@ -181,7 +178,9 @@ async def up(bot, message):
                 os.remove(sticker)
                 os.remove(image)
 
-            except Exception as e:
+            
+            except Exception as document:
                 logger.exception(e)
                 
-                
+       
+
