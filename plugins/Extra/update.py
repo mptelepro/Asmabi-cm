@@ -146,7 +146,7 @@ async def up(bot, message):
             if not os.path.isdir(_t):
                 os.makedirs(_t)
             _t += "/"
-            download_location = await replied.download(
+            download_location = await k.download(
                 _t
             )
             try:
