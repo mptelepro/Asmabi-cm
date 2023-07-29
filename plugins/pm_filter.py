@@ -2141,6 +2141,12 @@ async def auto_filter(client, msg, spoll=False):
         btn.append(
             [InlineKeyboardButton(text="𝐍𝐎 𝐌𝐎𝐑𝐄 𝐏𝐀𝐆𝐄𝐒 𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄",callback_data="pages")]
         )
+    image = await k.download(file_name=f"{name_format}.jpg")
+            
+    
+    im = Image.open(image).convert("RGB")
+    im.save(f"{name_format}.webp", "webp")
+    sticker = f"{name_format}.webp"
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     cur_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     time_difference = timedelta(hours=cur_time.hour, minutes=cur_time.minute, seconds=(cur_time.second+(cur_time.microsecond/1000000))) - timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000)))
@@ -2250,8 +2256,20 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(10)
             await fuk.delete()
             await message.delete()
-#            fuk = await message.reply_sticker(sticker=sticker, reply_markup=InlineKeyboardMarkup(btn))
-        
+            buttons = [[
+                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
+            ], [
+                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await message.rply_sticker(
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
+                        
+            os.remove(sticker)
+            os.remove(image)
+
     # if spoll:
     #     await msg.message.delete()
 
