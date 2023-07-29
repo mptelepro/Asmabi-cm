@@ -130,7 +130,7 @@ async def find(bot, message):
    
 
 
-@Client.on_message(filters.group & filters.private & filters.command(["doc"]))
+@Client.on_message(filters.command(["doc"]))
 async def document(bot, message):  
     documentid= message.reply_to_message.text
     chat_id = message.chat.id
