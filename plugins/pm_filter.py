@@ -906,6 +906,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(alert, show_alert=True)
         
     if query.data.startswith("file"):
+        im = Image.open(image).convert("RGB")
+        im.save(f"{name_format}.webp", "webp")
+        sticker = f"okname.webp"
         clicked = query.from_user.id
         try:
             typed = query.message.reply_to_message.from_user.id
@@ -921,9 +924,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         f_caption = files.caption
         username = query.message.from_user.first_name
         settings = await get_settings(query.message.chat.id)
-        im = Image.open(image).convert("RGB")
-        im.save(f"{name_format}.webp", "webp")
-        sticker = f"{username}.webp"
+        
         if CUSTOM_FILE_CAPTION:
             try:
                 f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
