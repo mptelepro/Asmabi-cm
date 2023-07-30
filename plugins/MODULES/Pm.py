@@ -32,7 +32,7 @@ async def pm_text(client: Client, message):
         k = await client.send_photo(
             chat_id=int(reference_id),
             photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
-            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, {message.chat.title}),
+            caption=script.PM_TXT_ATT.format(reference_id, info.first_name),
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
