@@ -961,7 +961,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             else:
                 if clicked == typed:
-                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")            
+                                
                     im = Image.open(image).convert("RGB")
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{content}.webp"
@@ -1007,7 +1007,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
 
                    
-                    
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     k = await client.send_sticker(
                         sticker=sticker,
                         chat_id=FILE_CHANNEL,                        
