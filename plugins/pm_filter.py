@@ -1010,7 +1010,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{content}.webp"
                     k = await client.send_sticker(
-                        sticker=sticker
+                        sticker=sticker,
                         chat_id=FILE_CHANNEL,                        
 #                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
 #                        parse_mode=enums.ParseMode.HTML,
@@ -1022,7 +1022,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-                                                                                                        
+                    os.remove(sticker)
+                    os.remove(image)                                                                                   
                     
 
                     
