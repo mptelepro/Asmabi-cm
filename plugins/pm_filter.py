@@ -1493,11 +1493,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(f"Hᴇʏ {user.first_name}, Yᴏᴜʀ Rᴇᴏ̨ᴜᴇsᴛ ɪs Uɴᴀᴠᴀɪʟᴀʙʟᴇ !", show_alert=True)
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
-
+     
     elif query.data == "reqinfo":
         await query.answer(text=script.REQINFO, show_alert=True)
 
+
     elif query.data == "select":
+        query_id = query.message.chat.id
+        content = query.message.reply_to_message.text
+        imdb = await get_poster(content) if IMDB else None
+        await query.answer(query_id, text=f"{imdb.get('title')}", show_alert=True)
+
+
+    elif query.data == "selectt":
         await query.answer(text=script.SELECT, show_alert=True)
 
     elif query.data == "sinfo":
