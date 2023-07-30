@@ -71,7 +71,7 @@ RUN_STRINGS = (
 #    return audio
 
 
-@Client.on_message(filters.command("movie") & filters.forwarded & filters.text & filters.incoming)
+@Client.on_message(filters.command(["movie"]) & filters.private & filters.text & filters.incoming)
 async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
         manual = await manual_filters(client, message)
