@@ -1502,7 +1502,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         query_id = query.message.chat.id
         content = query.message.reply_to_message.text
         imdb = await get_poster(content) if IMDB else None
-        await query.answer(query_id, text=f"{imdb.get('title')}", show_alert=True)
+        await query.answer(f"{imdb.get('title')}", show_alert=True)
 
 
     elif query.data == "selectt":
