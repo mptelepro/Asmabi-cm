@@ -20,7 +20,7 @@ async def pm_media(bot, message):
         await replay_media(bot, message)
         return
     info = await bot.get_users(user_ids=message.from_user.id)
-    reference_id = int(message.chat.id)
+    reference_id = message.chat.id
     await bot.copy_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
