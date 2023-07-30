@@ -2232,7 +2232,7 @@ async def auto_filter(client, msg, spoll=False):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"languages#{key}")            
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{key}")            
                 
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
