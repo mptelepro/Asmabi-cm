@@ -1000,19 +1000,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
-                    if settings['auto_delete']:
-                        await asyncio.sleep(10)
-                        await Joel_tgx.delete()
-                        await file_send.delete()
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await Joel_tgx.delete()
-                        await file_send.delete()
-               
-                    k = await client.send_message(
+                    
+
+                   
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
+            
+                    await message.edit("Sending...")
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{content}.webp"
+                    k = await client.send_sticker(
+                        sticker=sticker
                         chat_id=FILE_CHANNEL,                        
-                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
+#                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+#                        parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
