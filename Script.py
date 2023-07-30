@@ -723,7 +723,7 @@ Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙ�
 #    PM_TXT_ATT = "<b>𝐌𝐞𝐬𝐬𝐚𝐠𝐞 𝐅𝐫𝐨𝐦 :</b> {}\n<b>𝐍𝐚𝐦𝐞 :</b> {}"
 #    PM_MED_ATT = "<b>𝐌𝐞𝐬𝐬𝐚𝐠𝐞 𝐅𝐫𝐨𝐦 :</b> {} \n<b>𝐍𝐚𝐦𝐞 :</b> {}"
     USER_DETAILS = "<b>PM FROM:</b>\nName: {} {}\nId: {}\nUname: @{}\nScam: {}\nRestricted: {}\nStatus: {}\nDc Id: {}"
-    PM_TXT_ATT = "<b>Message from:</b> {}\n<b>Name:</b> {}"
+    PM_TXT_ATT = "<b>Message from:</b> {}\n<b>Name:</b> {}\n\n{}"
     PM_MED_ATT = "<b>Message from:</b> {} \n<b>Name:</b> {}"
 
     
