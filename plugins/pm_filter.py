@@ -906,9 +906,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(alert, show_alert=True)
         
     if query.data.startswith("file"):
-        im = Image.open(image).convert("RGB")
-        im.save(f"{name_format}.webp", "webp")
-        sticker = f"okname.webp"
+        
         clicked = query.from_user.id
         try:
             typed = query.message.reply_to_message.from_user.id
@@ -1008,7 +1006,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await file_send.delete()
                     
 
-                   
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"okname.webp"
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     k = await client.send_sticker(
                         sticker=sticker,
