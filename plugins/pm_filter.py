@@ -961,6 +961,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             else:
                 if clicked == typed:
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")            
+                    await message.edit("Sending...")
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{content}.webp"
                     await query.answer(f"𝐇𝐞𝐥𝐥𝐨 {query.from_user.first_name}, 𝐆𝐨𝐢𝐧𝐠 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐒𝐞𝐜𝐭𝐢𝐨𝐧...📥", show_alert=True)
                     content = query.message.reply_to_message.text
                     imdb = await get_poster(content) if IMDB else None
@@ -1003,12 +1008,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
 
                    
-                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
-            
-                    await message.edit("Sending...")
-                    im = Image.open(image).convert("RGB")
-                    im.save(f"{name_format}.webp", "webp")
-                    sticker = f"{content}.webp"
+                    
                     k = await client.send_sticker(
                         sticker=sticker,
                         chat_id=FILE_CHANNEL,                        
