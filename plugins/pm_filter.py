@@ -81,7 +81,7 @@ async def give_filter(client, message):
     userid = message.from_user.id
     content = message.reply_to_message
     search = message.text                                  
-    imdb = await get_poster(movie) if IMDB else None    
+    imdb = await get_poster(content) if IMDB else None    
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))          
