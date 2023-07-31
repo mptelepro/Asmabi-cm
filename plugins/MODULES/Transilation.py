@@ -11,6 +11,8 @@ from googletrans import Translator, constants
 ADMINS = int(os.environ.get("ADMINS"))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+db = Database(DATABASE_URL)
 
 @Client.on_message(filters.command(["set", "settings"]))
 async def settings(bot, update):
