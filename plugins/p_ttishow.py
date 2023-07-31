@@ -30,6 +30,7 @@ async def save_group(bot, message):
                 text='<b>CHAT NOT ALLOWED 🐞\n\nMy admins has restricted me from working here ! If you want to know more about it contact support..</b>',
                 reply_markup=reply_markup,
             )
+            await message.delete()
 
             try:
                 await k.pin()
@@ -47,6 +48,7 @@ async def save_group(bot, message):
         await message.reply_text(
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
+        await message.delete()
     else:
         count = await bot.get_chat_members_count(message.chat.id)
         settings = await get_settings(message.chat.id)
