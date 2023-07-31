@@ -400,8 +400,7 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
 @Client.on_callback_query(filters.regex(r"^f2#"))
 async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     _, lang, key = query.data.split("#")
-    content = query.message.reply_to_message.text
-    imdb = await get_poster(search) if IMDB else None
+    
     search = FRESH.get(key)
     search = search.replace("_", " ")
     baal = lang in search
@@ -422,7 +421,9 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         pass
     searchagain = search
     if lang != "homepage":
-        search = f"{search} {lang}" 
+        search = f"{search} {lang}"
+#    content = query.message.reply_to_message.text
+    imdb = await get_poster(BUTTONS[key]) if IMDB else None
     BUTTONS[key] = search
     if not search:
         await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
@@ -437,6 +438,8 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
     temp.GETALL[key] = files
+#    content = query.message.reply_to_message.text
+    imdb = await get_poster(temp.GETALL[key]) if IMDB else None
     settings = await get_settings(message.chat.id)
     # if 'is_shortlink' in settings.keys():
     #     ENABLE_SHORTLINK = settings['is_shortlink']
