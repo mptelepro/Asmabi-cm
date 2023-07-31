@@ -5,7 +5,7 @@ from googletrans import Translator, constants
 import os
 
 
-DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
+DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
 
 @Client.on_message(filters.group & filters.command(["tr", "translate"]))
 async def command_filter(bot, update):
