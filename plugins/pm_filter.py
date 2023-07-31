@@ -2543,16 +2543,16 @@ async def auto_filter(client, msg, spoll=False):
         try:
             if settings['max_btn']:
                 btn.append(
-                    [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="check_delete"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="check_delete"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
                 )
             else:
                 btn.append(
-                    [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="check_delete"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="check_delete"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
                 )
         except KeyError:
             await save_group_settings(message.chat.id, 'max_btn', True)
             btn.append(
-                [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
+                [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="check_delete"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="check_delete"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
             )
     else:
         btn.append(
@@ -2620,7 +2620,7 @@ async def auto_filter(client, msg, spoll=False):
             
             try:
                 if settings['auto_delete']:
-                    await asyncio.sleep(10)
+                    await asyncio.sleep(180)
                     await hehe.delete()
 #                    await message.delete()
                     image = await hehe.download(file_name=f"{name_format}.jpg")
@@ -2629,7 +2629,8 @@ async def auto_filter(client, msg, spoll=False):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}")            
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}"),
+                        InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
                 
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
@@ -2640,7 +2641,7 @@ async def auto_filter(client, msg, spoll=False):
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    await asyncio.sleep(300)
+                    await asyncio.sleep(300)            
                     await k.delete()
             except KeyError:
                 await save_group_settings(message.chat.id, 'auto_delete', True)
