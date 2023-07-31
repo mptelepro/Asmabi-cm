@@ -2528,7 +2528,7 @@ async def auto_filter(client, msg, spoll=False):
             
             try:
                 if settings['auto_delete']:
-                    await asyncio.sleep(180)
+                    await asyncio.sleep(10)
                     await hehe.delete()
                     await message.delete()
                     image = await hehe.download(file_name=f"{name_format}.jpg")
