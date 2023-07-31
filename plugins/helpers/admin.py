@@ -18,7 +18,7 @@ from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 
 
 ADMINS = int(os.environ.get("ADMINS"))
-DATABASE = os.environ.get("DATABASE_URL")
+DATABASE_URL = os.environ.get("DATABASE_URL")
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 
 class Database:
