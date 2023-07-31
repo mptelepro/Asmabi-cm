@@ -427,7 +427,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     #     await save_group_settings(message.chat.id, 'is_shortlink', False)
     #     ENABLE_SHORTLINK = False
     pre = 'filep' if settings['file_secure'] else 'file'
-    if settings["button"]:
+    for file in files
         btn = [
             [
                 InlineKeyboardButton(
