@@ -61,7 +61,8 @@ async def command_filter(bot, update):
 
 @Client.on_message(filters.command(["mll"]) & (filters.text | filters.caption))
 async def get_message(_, message):
-    text = message.text if message.text else message.caption
+    text = message.reply_to_message.text
+#    text = message.text if message.text else message.caption
     await translate(message, text)
 
 
