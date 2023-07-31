@@ -10,6 +10,8 @@ from pyrogram import Client, filters, enums
 from database.users_chats_db import db
 from Script import script
 from utils import temp
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
+
 #=====================================================
 BOT_START_TIME = time.time()
 CMD = ['.']
