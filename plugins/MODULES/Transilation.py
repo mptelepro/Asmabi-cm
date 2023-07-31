@@ -12,9 +12,23 @@ ADMINS = int(os.environ.get("ADMINS"))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 DATABASE_URL = os.environ.get("DATABASE_URL")
+SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
+
+BUTTONS = [InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]
+
+db = Database(DATABASE)
+
+LANGUAGES = constants.LANGUAGES
+
+LANGUAGES_TEXT = "**Languages**\n"
+for language in LANGUAGES:
+    LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
+
 db = Database(DATABASE_URL)
 
-@Client.on_message(filters.command(["set", "settings"]))
+
+
+@Client.on_message(filters.command(["set"]))
 async def settings(bot, update):
     if update.chat.type != enums.ChatType.PRIVATE:
         reply_markup = InlineKeyboardMarkup(
@@ -75,10 +89,6 @@ async def command_filter(bot, update):
     await translate(bot, update, text)
 
 
-@Client.on_message(filters.private & (filters.text | filters.caption))
-async def get_message(_, message):
-    text = message.text if message.text else message.caption
-    await translate(message, text)
 
 
 
