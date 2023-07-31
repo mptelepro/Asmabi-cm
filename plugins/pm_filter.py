@@ -1,12 +1,12 @@
 # Kanged From @TroJanZheX
 
 import os
-from plugins.helpers.admin import Database
+from plugins.helpers.admin import Katabase
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
-from plugins.helpers.vars import ADMINS, DATABASE_URL, DEFAULT_LANGUAGE
+from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
 
 
 import os
@@ -70,8 +70,8 @@ RUN_STRINGS = (
     "📀",
     "🎭",    
 )
-DATABASE_URL = os.environ.get("DATABASE_URL")
-db = Database(DATABASE_URL)
+DATABASE = os.environ.get("DATABASE_URL")
+db = Katabase(DATABASE)
 
 SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
 
