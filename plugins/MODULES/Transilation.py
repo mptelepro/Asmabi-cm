@@ -37,16 +37,6 @@ for language in LANGUAGES:
 
 
 
-@Client.on_message(filters.private & filters.command(["unset"]))
-async def unset(bot, update):
-    if not await db.is_user_exist(update.from_user.id):
-        await db.add_user(update.from_user.id)
-    await db.update_lang(update.from_user.id, DEFAULT_LANGUAGE)
-    await update.reply_text(
-        text="Language unset successfully",
-        disable_web_page_preview=True,
-        quote=True
-    )
 
 
 
@@ -69,6 +59,10 @@ async def command_filter(bot, update):
     await translate(bot, update, text)
 
 
+@Client.on_message(filters.command(["mll"]) & (filters.text | filters.caption))
+async def get_message(_, message):
+    text = message.text if message.text else message.caption
+    await translate(message, text)
 
 
 async def translate(update, text):
