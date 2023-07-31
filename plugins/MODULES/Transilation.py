@@ -1,8 +1,11 @@
+import os
+from plugins.helpers.vars import DATABASE, DEFAULT_LANGUAGE
+from plugins.helpers.admin import Database
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
-import os
+
 
 
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
