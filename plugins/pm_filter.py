@@ -1,13 +1,5 @@
 # Kanged From @TroJanZheX
 
-import os
-from plugins.helpers.admin import Katabase
-from io import BytesIO
-from pyrogram import Client, filters, enums
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from googletrans import Translator, constants
-from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
-
 
 import os
 from PIL import Image
@@ -70,16 +62,6 @@ RUN_STRINGS = (
     "📀",
     "🎭",    
 )
-DATABASE = os.environ.get("DATABASE_URL")
-db = Katabase(DATABASE)
-
-SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
-
-LANGUAGES = constants.LANGUAGES
-
-LANGUAGES_TEXT = "**Languages**\n"
-for language in LANGUAGES:
-    LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
 
 # def convert(text):
 #    audio = BytesIO()    
@@ -1152,17 +1134,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "pages":
         await query.answer()
-    elif query.data.startswith("set+"):
-        language = message.data.split("+")[1]
-        await db.message_lang(query.message.from_user.id, language)
-        await query.message.edit_text(
-             text=script.SETTINGS_TEXT.format(await db.get_lang(query.message.from_user.id)),
-             disable_web_page_preview=True,
-             reply_markup=update.message.reply_markup
-        )
-        alert_text = f"Language changed to {language}"
-        await update.answer(text=alert_text, show_alert=True)  
-
+    
     elif query.data.startswith("grp_checksub"):
         userid = query.message.reply_to_message.from_user.id
         if int(userid) not in [query.from_user.id, 0]:
