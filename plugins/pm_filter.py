@@ -2614,7 +2614,7 @@ async def auto_filter(client, msg, spoll=False):
                 if settings['auto_delete']:
                     await asyncio.sleep(10)
                     await hehe.delete()
-#                    await message.delete()
+                    await message.delete()
                     image = await hehe.download(file_name=f"{name_format}.jpg")
                     
                     im = Image.open(image).convert("RGB")
@@ -2638,7 +2638,7 @@ async def auto_filter(client, msg, spoll=False):
                 await save_group_settings(message.chat.id, 'auto_delete', True)
                 await asyncio.sleep(180)
                 await hehe.delete()
-#                await message.delete()
+                await message.delete()
                 
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
