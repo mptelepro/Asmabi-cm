@@ -25,4 +25,4 @@ telegraph
 python-decouple
 python-telegram-bot==12.8
 heroku3
-googletrans==3.1.0a0
+googletrans==4.0.0-rc1
