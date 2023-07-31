@@ -429,10 +429,14 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     pre = 'filep' if settings['file_secure'] else 'file'
     if settings["button"]:
         
-        btn.insert(0, [
-            InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-            InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
-        ])
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"send_fall#{pre}#{key}#{offset}'
+                ),
+            ]
+            for file in files
+        ]
     # else:
     #     btn.insert(0, [
     #         InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
