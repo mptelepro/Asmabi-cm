@@ -391,6 +391,8 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
 @Client.on_callback_query(filters.regex(r"^f2#"))
 async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     _, lang, key = query.data.split("#")
+    content = query.message.reply_to_message.text
+    imdb = await get_poster(content) if IMDB else None
     search = FRESH.get(key)
     search = search.replace("_", " ")
     baal = lang in search
@@ -431,7 +433,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                    text=f"📥{imdb.get('title')} {total_results} 𝐅𝐢𝐥𝐞𝐬 📥", 'select''
                 ),
             ]
             
@@ -440,12 +442,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}",
-                    callback_data=f'{pre}#{file.file_id}',
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'{pre}#{file.file_id}',
+                    text=f"📥{imdb.get('title')} {total_results} 𝐅𝐢𝐥𝐞𝐬 📥", 'select'
                 ),
             ]
             
@@ -454,31 +451,25 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     try:
         if settings['auto_delete']:
             btn.insert(0, 
-                [
-                    InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
-                    InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-                    InlineKeyboardButton("Sᴇᴀsᴏɴs",  callback_data=f"seasons#{key}")
+                [                                        
+                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
                 ]
             )
 
         else:
             btn.insert(0, 
-                [
-                    InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
-                    InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-                    InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
+                [                                        
+                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
                 ]
             )
                 
     except KeyError:
         await save_group_settings(query.message.chat.id, 'auto_delete', True)
         btn.insert(0, 
-            [
-                InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
-                InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-                InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
-            ]
-        )
+                [                                        
+                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
+                ]
+            )
 
     # btn.insert(0, [
     #     InlineKeyboardButton("Hᴏᴡ ᴛᴏ Dᴏᴡɴʟᴏᴀᴅ⚡", url=await get_tutorial(query.message.chat.id))
@@ -505,7 +496,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         )
     # if ENABLE_SHORTLINK == True:
     btn.insert(0, [
-        InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
+    
         InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
     ])
     # else:
