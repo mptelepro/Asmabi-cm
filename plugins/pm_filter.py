@@ -77,10 +77,10 @@ RUN_STRINGS = (
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    movie = message.reply_to_message.text
+#    movie = message.reply_to_message.text
     userid = message.from_user.id
     content = message.reply_to_message
-    search = message.text                                  
+#    search = message.text                                  
     imdb = await get_poster(content) if IMDB else None    
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
