@@ -1,5 +1,5 @@
 import os
-from plugins.helpers.vars import ADMINS, DATABASE_URL, DEFAULT_LANGUAGE
+from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
 from plugins.helpers.admin import Database
 from io import BytesIO
 from pyrogram import Client, filters, enums
@@ -12,7 +12,7 @@ SETTINGS_TEXT = "Select your language for translating. Current default language 
 
 BUTTONS = [InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]
 
-db = Database(DATABASE_URL)
+db = Katabase(DATABASE)
 
 LANGUAGES = constants.LANGUAGES
 
@@ -20,7 +20,6 @@ LANGUAGES_TEXT = "**Languages**\n"
 for language in LANGUAGES:
     LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
 
-db = Database(DATABASE_URL)
 
 
 
