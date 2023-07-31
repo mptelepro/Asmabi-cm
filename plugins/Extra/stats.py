@@ -124,9 +124,9 @@ async def ping(bot, message):
         InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', callback_data=f"setting")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_photo(
-        photo=(SP),
-        caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+    await message.reply_text(
+#        photo=(SP),
+        text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
 #        reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML
     )
