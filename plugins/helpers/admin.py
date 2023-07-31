@@ -15,13 +15,11 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 # from plugins.helpers.vars import DEFAULT_LANGUAGE, ADMINS, DATABASE_URL
+from plugins.helpers.vars import DEFAULT_LANGUAGE, ADMINS, DATABASE
 
 
-ADMINS = int(os.environ.get("ADMINS"))
-DATABASE_URL = os.environ.get("DATABASE_URL")
-DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 
-class Database:
+class Katabase:
     def __init__(self, uri, database_name="Translator-Bot"):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
