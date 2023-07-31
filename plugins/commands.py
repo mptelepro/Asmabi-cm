@@ -41,7 +41,7 @@ async def start(client, message):
                     InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_sticker("CAACAgUAAxkBAAIBYmOkbpQ0brb4z4ggbPv4peTgcDb-AAIlBQACSr5ZVk64AdT0N9vYHgQ") 
+        m=await message.reply_sticker("CAACAgUAAxkBAAEBEDhkyBBP_ei4cBYN5vwYZ7Ca7W-oSgAC0gcAArwmiVSTwrq-v5Wohx4E") 
         await asyncio.sleep(1)
         await m.delete()
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
