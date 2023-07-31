@@ -1,4 +1,13 @@
 # Kanged From @TroJanZheX
+
+import os
+from plugins.helpers.admin import Database
+from io import BytesIO
+from pyrogram import Client, filters, enums
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from googletrans import Translator, constants
+db = Database(DATABASE_URL)
+
 import os
 from PIL import Image
 from pyrogram.types import Message
@@ -60,6 +69,14 @@ RUN_STRINGS = (
     "📀",
     "🎭",    
 )
+
+SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
+
+LANGUAGES = constants.LANGUAGES
+
+LANGUAGES_TEXT = "**Languages**\n"
+for language in LANGUAGES:
+    LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
 
 # def convert(text):
 #    audio = BytesIO()    
