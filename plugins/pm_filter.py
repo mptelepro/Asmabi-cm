@@ -6,6 +6,8 @@ from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
+from plugins.helpers.vars import ADMINS, DATABASE_URL, DEFAULT_LANGUAGE
+
 
 import os
 from PIL import Image
