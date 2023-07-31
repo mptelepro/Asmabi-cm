@@ -362,6 +362,7 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
     search = search.replace(' ', '_')
     btn = []
     for i in range(0, len(LANGUAGES)-1, 2):
+        await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞", show_alert=True)
         btn.append([
             InlineKeyboardButton(
                 text=LANGUAGES[i].title(),
@@ -415,6 +416,12 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     if lang != "homepage":
         search = f"{search} {lang}" 
     BUTTONS[key] = search
+    if not search:
+        await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
+        return
+    else:      
+        await query.answer(f"⚠️𝐇𝐞𝐲 {query.from_user.first_name}, {search}𝐅𝐢𝐥𝐞𝐬 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠.. \n\n ⏳️𝐅𝐢𝐥𝐞𝐬 {offset}", show_alert=True)
+    
 
     files, offset, total_results = await get_search_results(chat_id, search, offset=0, filter=True)
     # files = [file for file in files if re.search(lang, file.file_name, re.IGNORECASE)]
@@ -452,14 +459,14 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         if settings['auto_delete']:
             btn.insert(0, 
                 [                                        
-                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
+                    InlineKeyboardButton(f"𝐒𝐞𝐚𝐬𝐨𝐧",  callback_data=f"seasons#{key}")
                 ]
             )
 
         else:
             btn.insert(0, 
                 [                                        
-                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
+                    InlineKeyboardButton(f"𝐒𝐞𝐚𝐬𝐨𝐧",  callback_data=f"seasons#{key}")
                 ]
             )
                 
@@ -467,7 +474,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         await save_group_settings(query.message.chat.id, 'auto_delete', True)
         btn.insert(0, 
                 [                                        
-                    InlineKeyboardButton(f"𝐈𝐦𝐝𝐛 𝐢𝐧𝐟𝐨",  callback_data=f"seasons#{key}")
+                    InlineKeyboardButton(f"𝐒𝐞𝐚𝐬𝐨𝐧",  callback_data=f"seasons#{key}")
                 ]
             )
 
@@ -510,9 +517,10 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         )
         await asyncio.sleep(20)
         await k.delete()
+        await query.message.delete()
     except MessageNotModified:
         pass
-    await query.answer()
+    await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
 
 
 # ❤️❤️❤️❤️❤️❤️❤️
