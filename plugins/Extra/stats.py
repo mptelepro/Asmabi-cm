@@ -109,25 +109,21 @@ async def bot_status_cmd(client,message):
 
 @Client.on_message(filters.private & filters.user(ADMINS) & filters.command("start", CMD))         
 async def ping(bot, message):
-    buttons = [[
-        InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-    ], [                    
-        InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
-        InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
-    ], [
-        InlineKeyboardButton('𝐃𝐞𝐭𝐚𝐢𝐥𝐬', url='http://telegra.ph/Minnal-murali-03-06-12'),        
-        InlineKeyboardButton('𝐇𝐞𝐥𝐩', callback_data='special')          
-    ], [
-        InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
-    ], [
-        InlineKeyboardButton('𝐈𝐧𝐥𝐢𝐧𝐞', switch_inline_query_current_chat=''),
-        InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', callback_data=f"setting")
-    ]]
-    reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_text(
-#        photo=(SP),
-        text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-        reply_markup=reply_markup,
-        parse_mode=enums.ParseMode.HTML
-    )
+
+    k = await client.send_message(
+        chat_id=message.chat.id,
+        caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        parse_mode=enums.ParseMode.HTML,
+        reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                        ],
+                        [
+                            InlineKeyboardButton('📩𝐇𝐞𝐥𝐩📩', callback_data='start'),
+                            InlineKeyboardButton('☘𝐀𝐛𝐨𝐮𝐭☘', url="https://t.me/NasraniMovies")
+                        ]                            
+                    ]
+                )
+            )        
     
