@@ -1888,7 +1888,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "sinfo":
         await query.answer(text=script.SINFO, show_alert=True)
-        
+       
+
+    
+    elif query.data.startswith("check_delete"):
+        userid = query.message.reply_to_message.from_user.id                        
+        await query.message.delete()
+        await query.message.reply_to_message.delete()
+  
     elif query.data == "start":
         grp_id = query.message.chat.id
         title = query.message.chat.title
