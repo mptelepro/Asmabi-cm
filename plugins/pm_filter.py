@@ -6,7 +6,6 @@ from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
-db = Database(DATABASE_URL)
 
 import os
 from PIL import Image
@@ -69,6 +68,8 @@ RUN_STRINGS = (
     "📀",
     "🎭",    
 )
+DATABASE_URL = os.environ.get("DATABASE_URL")
+db = Database(DATABASE_URL)
 
 SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
 
