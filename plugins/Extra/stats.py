@@ -11,7 +11,7 @@ from database.users_chats_db import db
 from Script import script
 from utils import temp
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
-
+from info import SP
 #=====================================================
 BOT_START_TIME = time.time()
 CMD = ['.']
@@ -66,7 +66,7 @@ async def bot_status_cmd(client,message):
 💠 𝗧𝗼𝗧𝗮𝗹 𝗗𝘆𝗻𝗼 ➪ {total}hr 𝖿𝗋𝖾𝖾 𝖽𝗒𝗇𝗈!
  
 💠 𝗗𝘆𝗻𝗼 𝘂𝘀𝗲𝗱 ➪ {used} 𝖧𝗈𝗎𝗋𝗌 ( {usedperc}% )
-        
+      
 💠 𝗗𝘆𝗻𝗼 𝗿𝗲𝗺𝗮𝗶𝗻𝗶𝗻𝗴 ➪ {hours} 𝖧𝗈𝗎𝗋𝗌 ( {leftperc}% )
         
 💠 𝗔𝗽𝗽𝗿𝗼𝘅𝗶𝗺𝗮𝘁𝗲 𝗱𝗮𝘆𝘀 ➪ {days} days left!"""
@@ -124,8 +124,9 @@ async def ping(bot, message):
         InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', callback_data=f"setting")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_document(
-        text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
+    await message.reply_video(
+        video=(SP),
+        text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
 #        reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML
     )
