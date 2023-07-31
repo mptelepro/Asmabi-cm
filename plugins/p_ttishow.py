@@ -77,7 +77,7 @@ async def save_group(bot, message):
         if settings["auto_delete"]:
             await asyncio.sleep(600)
             await (temp.MELCOW['welcome']).delete()
-            await.message.delete()
+            await message.delete()
                 
 @Client.on_message(filters.left_chat_member)
 async def end(bot, message):
@@ -85,7 +85,7 @@ async def end(bot, message):
     settings = await get_settings(message.chat.id)
     if settings["welcome"]:    
         await bot.send_message(chat_id=message.chat.id, text=f"𝐇𝐞𝐥𝐥𝐨: {message.from_user.mention}😞 \n 𝐁𝐲 𝐁𝐲... {message.chat.title} \n𝐘𝐨𝐮𝐫 𝐈𝐝: {message.from_user.id} \n𝐓𝐨𝐭𝐚𝐥 𝐆𝐫𝐨𝐮𝐩 𝐌𝐞𝐦𝐛𝐞𝐫𝐬: {count}")
-        await.message.delete()     
+        await message.delete()     
 
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
