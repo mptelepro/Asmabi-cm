@@ -392,8 +392,9 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
     offset = 0
     btn.append([InlineKeyboardButton(text="↭ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↭", callback_data=f"fl#homepage#{key}")])
 
-    await query.edit_message_reply_markup(InlineKeyboardMarkup(btn))
-    
+    k = await query.edit_message_reply_markup(InlineKeyboardMarkup(btn))
+    await asyncio.sleep(20)
+    await k.delete()
 
 @Client.on_callback_query(filters.regex(r"^f2#"))
 async def filter_language_cb_handler(client: Client, query: CallbackQuery):
@@ -523,10 +524,10 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         )
         await asyncio.sleep(20)
         await k.delete()
-        await query.message.delete()
+        await query.message.reply_to_message.text.delete()
     except MessageNotModified:
         pass
-    await query.answer()
+#    await query.answer()
 
 # ❤️❤️❤️❤️❤️❤️❤️
 #languages
