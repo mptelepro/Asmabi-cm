@@ -400,7 +400,7 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
 async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     _, lang, key = query.data.split("#")
     content = query.message.reply_to_message.text
-    imdb = await get_poster(content) if IMDB else None
+    imdb = await get_poster(search) if IMDB else None
     search = FRESH.get(key)
     search = search.replace("_", " ")
     baal = lang in search
