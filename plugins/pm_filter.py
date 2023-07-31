@@ -364,7 +364,7 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
     
     search = FRESH.get(key)
     search = search.replace(' ', '_')
-    content = query.message.reply_to_message.text
+#    content = query.message.reply_to_message.text
     imdb = await get_poster(search) if IMDB else None
     btn = []
     for i in range(0, len(LANGUAGES)-1, 2):
