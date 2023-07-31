@@ -524,7 +524,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         )
         await asyncio.sleep(20)
         await k.delete()
-        await query.message.reply_to_message.text.delete()
+        await query.message.delete()
     except MessageNotModified:
         pass
 #    await query.answer()
