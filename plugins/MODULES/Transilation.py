@@ -100,37 +100,28 @@ async def translate(update, text):
 
 
 
-@Client.on_message(filters.command(["tr"]))
+@Client.on_message(filters.group & filters.command(["tr"]))
 async def left(client,message):
 	if (message.reply_to_message):
 		try:
 			lgcd = message.text.split("/tr")
 			lg_cd = lgcd[1].lower().replace(" ", "")
-			tr_text = message.text
+			tr_text = message.reply_to_message.text
 			translator = Translator()
 			translation = translator.translate(tr_text,dest = lg_cd)
-			hehek = InlineKeyboardMarkup(
-                                [
-                                    [
-                                        InlineKeyboardButton(
-                                            "Update Channel", url='https://t.me/nasrani_update'
-                                        ),
-                                    ],
-				    [
-                                        InlineKeyboardButton(
-                                            "𝘊𝘭𝘰𝘴𝘦", callback_data="close_data"
-                                        )
-                                    ],
-                                ]
-                            )
 			try:
 				for i in list:
 					if list[i]==translation.src:
 						fromt = i
 					if list[i] == translation.dest:
 						to = i 
-				await message.reply_text(f"translated from {fromt.capitalize()} to {to.capitalize()}\n\n```{translation.text}```", reply_markup=hehek, quote=True)
+				await message.reply_text(f"Translated from **{fromt.capitalize()}** To **{to.capitalize()}**\n\n```{translation.text}```")
 			except:
+			   	await message.reply_text(f"Translated from **{translation.src}** To **{translation.dest}**\n\n```{translation.text}```")
+      			
+				
+			
+		except :
 			   	await message.reply_text(f"Translated from **{translation.src}** To **{translation.dest}**\n\n```{translation.text}```", reply_markup=hehek, quote=True)
 			
 
