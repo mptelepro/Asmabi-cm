@@ -1,12 +1,14 @@
 import os
-from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
+# from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
 from plugins.helpers.admin import Katabase
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
 
-
+ADMINS = int(os.environ.get("ADMINS"))
+DATABASE = os.environ.get("DATABASE_URL")
+DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
 
 SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
 
@@ -20,34 +22,6 @@ LANGUAGES_TEXT = "**Languages**\n"
 for language in LANGUAGES:
     LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
 
-@Client.on_message(filters.command(["set", "settings"]))
-async def settings(bot, update):
-    if update.chat.type != enums.ChatType.PRIVATE:
-        reply_markup = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="Click here",
-                        url=f"https://telegram.me/{(await bot.get_me()).username}?start=set"
-                    )
-                ]
-            ]
-        )
-        await update.reply_text(
-            text="Set your language via private",
-            disable_web_page_preview=True,
-            reply_markup=reply_markup,
-            quote=True
-        )
-        return
-    if not await db.is_user_exist(update.from_user.id):
-        await db.add_user(update.from_user.id)
-    await update.reply_text(
-        text=SETTINGS_TEXT.format(await db.get_lang(update.from_user.id)),
-        disable_web_page_preview=True,
-        reply_markup=SETTINGS_BUTTONS,
-        quote=True
-    )
 
 
 @Client.on_message(filters.private & filters.command(["unset"]))
@@ -63,7 +37,7 @@ async def unset(bot, update):
 
 
 
-@Client.on_message(filters.group & filters.command(["tr", "translate"]))
+@Client.on_message(filters.group & filters.command(["ml"]))
 async def command_filter(bot, update):
     if update.reply_to_message:
         if update.reply_to_message.text:
@@ -82,10 +56,6 @@ async def command_filter(bot, update):
     await translate(bot, update, text)
 
 
-@Client.on_message(filters.private & (filters.text | filters.caption))
-async def get_message(_, message):
-    text = message.text if message.text else message.caption
-    await translate(message, text)
 
 
 async def translate(update, text):
