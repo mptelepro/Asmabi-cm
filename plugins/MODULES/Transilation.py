@@ -1,6 +1,6 @@
 import os
 from plugins.helpers.vars import ADMINS, DATABASE, DEFAULT_LANGUAGE
-from plugins.helpers.admin import Database
+from plugins.helpers.admin import Katabase
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
