@@ -505,9 +505,11 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
     #         InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"send_fall#{pre}#{key}#{offset}")
     #     ])
     try:
-        await query.edit_message_reply_markup(
+        k = await query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(btn)
         )
+        await asyncio.sleep(20)
+        await k.delete()
     except MessageNotModified:
         pass
     await query.answer()
