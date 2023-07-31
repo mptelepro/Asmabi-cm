@@ -19,6 +19,7 @@ async def welcome(bot, message):
 #    await message.delete()
 #return:
     await message.reply("Oops !! Not a sticker file")
+    await message.delete()
 
 	
 # @Client.on_message(filters.left_chat_member)
