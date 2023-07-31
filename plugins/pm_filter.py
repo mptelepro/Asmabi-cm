@@ -80,7 +80,7 @@ async def give_filter(client, message):
 #    movie = message.reply_to_message.text
     userid = message.from_user.id
     content = message.reply_to_message
-#    search = message.text                                  
+    search = message.text                                  
 #    imdb = await get_poster(content) if IMDB else None    
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
@@ -95,9 +95,9 @@ async def give_filter(client, message):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         
-        k = await message.reply_photo(
-            photo=(SP),
-            caption=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
+        k = await message.reply_text(
+#            photo=(SP),
+            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{search} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
