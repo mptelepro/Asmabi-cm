@@ -110,9 +110,10 @@ async def bot_status_cmd(client,message):
 @Client.on_message(filters.private & filters.user(ADMINS) & filters.command("start", CMD))         
 async def ping(bot, message):
 
-    k = await bot.send_message(
+    k = await bot.send_photo(
+        photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
         chat_id=message.chat.id,
-        text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
                     [
