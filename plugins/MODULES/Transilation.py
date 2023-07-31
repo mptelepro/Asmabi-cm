@@ -7,6 +7,48 @@ import os
 
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
 
+@Client.on_message(filters.command(["set", "settings"]))
+async def settings(bot, update):
+    if update.chat.type != enums.ChatType.PRIVATE:
+        reply_markup = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="Click here",
+                        url=f"https://telegram.me/{(await bot.get_me()).username}?start=set"
+                    )
+                ]
+            ]
+        )
+        await update.reply_text(
+            text="Set your language via private",
+            disable_web_page_preview=True,
+            reply_markup=reply_markup,
+            quote=True
+        )
+        return
+    if not await db.is_user_exist(update.from_user.id):
+        await db.add_user(update.from_user.id)
+    await update.reply_text(
+        text=SETTINGS_TEXT.format(await db.get_lang(update.from_user.id)),
+        disable_web_page_preview=True,
+        reply_markup=SETTINGS_BUTTONS,
+        quote=True
+    )
+
+
+@Client.on_message(filters.private & filters.command(["unset"]))
+async def unset(bot, update):
+    if not await db.is_user_exist(update.from_user.id):
+        await db.add_user(update.from_user.id)
+    await db.update_lang(update.from_user.id, DEFAULT_LANGUAGE)
+    await update.reply_text(
+        text="Language unset successfully",
+        disable_web_page_preview=True,
+        quote=True
+    )
+
+
 @Client.on_message(filters.group & filters.command(["tr", "translate"]))
 async def command_filter(bot, update):
     if update.reply_to_message:
