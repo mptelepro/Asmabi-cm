@@ -17,14 +17,10 @@ bot = Client(
 @Client.on_message(filters.new_chat_members)
 async def welcome(bot, message):
     await message.delete()
-    try:
-	await message.reply.text(
-        text=(f"okda")
+    await message.reply.text(
+    text=(f"okda")
 	
-@Client.on_message(filters.left_chat_member)
-async def goodbye(bot, message):
-    await message.delete()
-    try:
-	
-        await message.reply.text(
-        text=(f"okda")
+# @Client.on_message(filters.left_chat_member)
+# async def goodbye(bot, message):
+#     await message.delete()
+    
