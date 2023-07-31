@@ -116,7 +116,7 @@ async def ping(bot, message):
         InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
     ], [
         InlineKeyboardButton('𝐃𝐞𝐭𝐚𝐢𝐥𝐬', url='http://telegra.ph/Minnal-murali-03-06-12'),        
-        lnlineKeyboardButton('𝐇𝐞𝐥𝐩', callback_data='help')          
+        InlineKeyboardButton('𝐇𝐞𝐥𝐩', callback_data='help')          
     ], [
         InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
     ], [
