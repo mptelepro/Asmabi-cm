@@ -1542,21 +1542,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
             reply_markup = InlineKeyboardMarkup(buttons)
             if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-                await query.message.reply_text(script.RULES_MESSAGE.format(query.message.from_user.mention, query.message.chat.title),
+                k=await query.message.reply_text(script.RULES_MESSAGE.format(query.message.from_user.mention, query.message.chat.title),
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn),
                     disable_web_page_preview=True,
                     parse_mode=enums.ParseMode.HTML,
                     reply_to_message_id=query.message.id
                 )
+                await asyncio.sleep(60)
+                await k.delete()
             else:
-                await query.message.reply_text(
+                m=await query.message.reply_text(
                     text=f"<b>Cʜᴀɴɢᴇ Yᴏᴜʀ Sᴇᴛᴛɪɴɢs Fᴏʀ {title} As Yᴏᴜʀ Wɪsʜ ⚙</b>",
                     reply_markup=reply_markup,
                     disable_web_page_preview=True,
                     parse_mode=enums.ParseMode.HTML,
                 )
-   
+                await asyncio.sleep(60)
+                await m.delete()
 
     elif query.data.startswith("show_option"):
         ident, from_user = query.data.split("#")
@@ -1709,17 +1712,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', callback_data=f"setting")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await client.edit_message_media(
+        m=await client.edit_message_media(
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS))
         )
-        await query.message.edit_text(
+        k=await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
         await query.answer(MSG_ALRT)
+        await asyncio.sleep(60)
+        await m.delete()
+        await k.delete()
 
 
     elif query.data == "helps":
