@@ -1,5 +1,5 @@
 import os
-from plugins.helpers.vars import DATABASE, DEFAULT_LANGUAGE
+# from plugins.helpers.vars import DATABASE, DEFAULT_LANGUAGE
 from plugins.helpers.admin import Database
 from io import BytesIO
 from pyrogram import Client, filters, enums
@@ -8,7 +8,9 @@ from googletrans import Translator, constants
 
 
 
-DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
+ADMINS = int(os.environ.get("ADMINS"))
+DATABASE_URL = os.environ.get("DATABASE_URL")
+DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 
 @Client.on_message(filters.command(["set", "settings"]))
 async def settings(bot, update):
