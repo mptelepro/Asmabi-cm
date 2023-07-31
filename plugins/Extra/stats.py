@@ -110,9 +110,9 @@ async def bot_status_cmd(client,message):
 @Client.on_message(filters.private & filters.user(ADMINS) & filters.command("start", CMD))         
 async def ping(bot, message):
 
-    k = await client.send_message(
+    k = await bot.send_message(
         chat_id=message.chat.id,
-        caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
                     [
