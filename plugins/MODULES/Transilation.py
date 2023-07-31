@@ -20,10 +20,7 @@ LANGUAGES_TEXT = "**Languages**\n"
 for language in LANGUAGES:
     LANGUAGES_TEXT += f"\n`{LANGUAGES[language].capitalize()}` -> `{language}`"
 
-
-
-
-@Client.on_message(filters.command(["set"]))
+@Client.on_message(filters.command(["set", "settings"]))
 async def settings(bot, update):
     if update.chat.type != enums.ChatType.PRIVATE:
         reply_markup = InlineKeyboardMarkup(
@@ -65,6 +62,7 @@ async def unset(bot, update):
     )
 
 
+
 @Client.on_message(filters.group & filters.command(["tr", "translate"]))
 async def command_filter(bot, update):
     if update.reply_to_message:
@@ -84,7 +82,10 @@ async def command_filter(bot, update):
     await translate(bot, update, text)
 
 
-
+@Client.on_message(filters.private & (filters.text | filters.caption))
+async def get_message(_, message):
+    text = message.text if message.text else message.caption
+    await translate(message, text)
 
 
 async def translate(update, text):
