@@ -75,11 +75,11 @@ async def save_group(bot, message):
                                                  ),
 #                                                 parse_mode=enums.ParseMode.MARKDOWN
                 )
-                
+        await message.delete()       
         if settings["auto_delete"]:
             await asyncio.sleep(600)
             await (temp.MELCOW['welcome']).delete()
-            await message.delete()
+            
                 
 @Client.on_message(filters.left_chat_member)
 async def end(bot, message):
