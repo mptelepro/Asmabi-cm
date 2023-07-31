@@ -434,7 +434,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
             [
                 InlineKeyboardButton(
                     text=f"📥{imdb.get('title')} {total_results} 𝐅𝐢𝐥𝐞𝐬 📥", 'select'
-                ),
+                )
             ]
             
         ]
@@ -443,7 +443,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
             [
                 InlineKeyboardButton(
                     text=f"📥{imdb.get('title')} {total_results} 𝐅𝐢𝐥𝐞𝐬 📥", 'select'
-                ),
+                )
             ]
             
         ]
