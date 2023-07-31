@@ -432,7 +432,7 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"send_fall#{pre}#{key}#{offset}"
+                    text=f"𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"send_fall#{key}"
                 ),
             ]
             for file in files
