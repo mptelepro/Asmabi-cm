@@ -16,8 +16,8 @@ bot = Client(
 
 @Client.on_message(filters.new_chat_members)
 async def welcome(bot, message):
-    await message.delete()
-return:
+#    await message.delete()
+#return:
     await message.reply("Oops !! Not a sticker file")
 
 	
