@@ -441,12 +441,13 @@ async def filter_language_cb_handler(client: Client, query: CallbackQuery):
 #    content = query.message.reply_to_message.text
     imdb = await get_poster(search) if IMDB else None
     settings = await get_settings(message.chat.id)
+    if imdb and imdb.get('poster'):
     # if 'is_shortlink' in settings.keys():
     #     ENABLE_SHORTLINK = settings['is_shortlink']
     # else:
     #     await save_group_settings(message.chat.id, 'is_shortlink', False)
     #     ENABLE_SHORTLINK = False
-    pre = 'filep' if settings['file_secure'] else 'file'
+        pre = 'filep' if settings['file_secure'] else 'file'
     for file in files:
         btn = [
             [
