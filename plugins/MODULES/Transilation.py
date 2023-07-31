@@ -1,5 +1,5 @@
 import os
-# from plugins.helpers.vars import DATABASE, DEFAULT_LANGUAGE
+from plugins.helpers.vars import ADMINS, DATABASE_URL, DEFAULT_LANGUAGE
 from plugins.helpers.admin import Database
 from io import BytesIO
 from pyrogram import Client, filters, enums
@@ -8,15 +8,11 @@ from googletrans import Translator, constants
 
 
 
-ADMINS = int(os.environ.get("ADMINS"))
-DATABASE_URL = os.environ.get("DATABASE_URL")
-DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
-DATABASE_URL = os.environ.get("DATABASE_URL")
 SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
 
 BUTTONS = [InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]
 
-db = Database(DATABASE)
+db = Database(DATABASE_URL)
 
 LANGUAGES = constants.LANGUAGES
 
