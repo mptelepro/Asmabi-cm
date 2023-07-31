@@ -15,8 +15,11 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 # from plugins.helpers.vars import DEFAULT_LANGUAGE, ADMINS, DATABASE_URL
-from plugins.helpers.vars import DEFAULT_LANGUAGE, ADMINS, DATABASE
+# from plugins.helpers.vars import DEFAULT_LANGUAGE, ADMINS, DATABASE
 
+ADMINS = int(os.environ.get("ADMINS"))
+DATABASE = os.environ.get("DATABASE_URL")
+DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "ml")
 
 
 class Katabase:
