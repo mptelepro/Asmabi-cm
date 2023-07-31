@@ -38,27 +38,6 @@ for language in LANGUAGES:
 
 
 
-
-
-@Client.on_message(filters.group & filters.command(["ml"]))
-async def command_filter(bot, update):
-    if update.reply_to_message:
-        if update.reply_to_message.text:
-            text = update.reply_to_message.text
-        elif update.reply_to_message.caption:
-            text = update.reply_to_message.caption
-        else:
-            return 
-    else:
-        if update.text:
-            text = update.text.split(" ", 1)[1]
-        elif update.caption:
-            text = update.caption.split(" ", 1)[1]
-        else:
-            return
-    await translate(bot, update, text)
-
-
 @Client.on_message(filters.command(["mll"]) & (filters.text | filters.caption))
 async def get_message(_, message):
     text = message.reply_to_message.text
