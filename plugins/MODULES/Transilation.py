@@ -80,7 +80,7 @@ async def translate(update, text):
 
 
 
-@Client.on_message(filters.group & filters.command(["tr"]))
+@Client.on_message(filters.command(["tr"]))
 async def left(client,message):
 	if (message.reply_to_message):
 		try:
