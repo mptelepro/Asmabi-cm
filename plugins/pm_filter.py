@@ -341,7 +341,7 @@ async def advantage_spoll_choker(bot, query):
 
 # ❤️❤️❤️❤️
 
-@Client.on_callback_query(filters.regex(r"^language#"))
+@Client.on_callback_query(filters.regex(r"^languages#"))
 async def languages_cb_handler(client: Client, query: CallbackQuery):
 
     try:
@@ -2537,7 +2537,7 @@ async def auto_filter(client, msg, spoll=False):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}")            
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"languages#{key}")            
                 
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
