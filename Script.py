@@ -1020,15 +1020,18 @@ Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙ�
 # 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 {message.chat.title}</b>"""
 
     IMDB_TEMPLATE_TXT = """
-<b>Query: {qurey}
+<b>𝐇𝐞𝐲 {message.from_user.mention}, 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐭𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 {qurey}
 
-IMDb Data:
+🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
 
-🏷 Title: <a href={url}>{title}</a>
-🎭 Genres: {genres}
-📆 Year: <a href={url}/releaseinfo>{year}</a>
-⏱️ Result Shown in: {remaining_seconds} <i>seconds</i> 🔥
-🌟 Rating: <a href={url}/ratings>{rating}</a> / 10</b>"""
+🎭 𝐆𝐞𝐧𝐫𝐞𝐬 : {genres}
+
+📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {year}
+
+📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : <a href={url}/ratings>{rating}</a> / 10
+
+⏱️ 𝐑𝐞𝐬𝐮𝐥𝐭 𝐒𝐡𝐨𝐰𝐧 𝐢𝐧: {remaining_seconds} <i>seconds</i> </b>"""
+
     
     
     ALL_FILTERS = """
