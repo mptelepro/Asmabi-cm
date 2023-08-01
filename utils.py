@@ -625,16 +625,12 @@ async def get_shortlink(chat_id, link, second=False):
     
 async def get_tutorial(chat_id):
     settings = await get_settings(chat_id) #fetching settings for group
-    if 'tutorial' in settings.keys():
-        if settings['is_tutorial']:
-            TUTORIAL_URL = settings['tutorial']
-        else:
-            TUTORIAL_URL = TUTORIAL
-
-
-
-
-
+    if settings['is_tutorial']:
+        TUTORIAL_URL = settings['tutorial']
+    else:
+        TUTORIAL_URL = TUTORIAL
+    return TUTORIAL_URL
+        
 async def get_verify_shorted_link(link):
     API = SHORTLINK_API
     URL = SHORTLINK_URL
