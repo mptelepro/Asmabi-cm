@@ -402,6 +402,7 @@ async def start(client, message):
     title = '@TeamHMT ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
+    chat_id = temp.SHORT.get(user)
     if CUSTOM_FILE_CAPTION:
         try:
             f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
@@ -420,7 +421,7 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
-     chat_id = temp.SHORT.get(user)
+     
      msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
