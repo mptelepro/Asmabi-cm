@@ -1000,25 +1000,36 @@ Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙ�
    
 
      
+#    IMDB_TEMPLATE_TXT = """
+# <b>𝐇𝐞𝐲 {message.from_user.mention}, 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐭𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 {qurey}
+
+# 🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
+
+# 🎭 𝐆𝐞𝐧𝐫𝐞𝐬 : {genres}
+
+# 🌟 𝐑𝐚𝐭𝐢𝐧𝐠 : {rating}
+
+# ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {languages}
+
+# 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime}
+
+# 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {year}
+
+# 🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : {countries}
+
+# 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 {message.chat.title}</b>"""
+
     IMDB_TEMPLATE_TXT = """
-<b>𝐇𝐞𝐲 {message.from_user.mention}, 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐭𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 {qurey}
+<b>Query: {qurey}
 
-🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
+IMDb Data:
 
-🎭 𝐆𝐞𝐧𝐫𝐞𝐬 : {genres}
-
-🌟 𝐑𝐚𝐭𝐢𝐧𝐠 : {rating}
-
-☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {languages}
-
-📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime}
-
-📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {year}
-
-🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : {countries}
-
-𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 {message.chat.title}</b>"""
-
+🏷 Title: <a href={url}>{title}</a>
+🎭 Genres: {genres}
+📆 Year: <a href={url}/releaseinfo>{year}</a>
+⏱️ Result Shown in: {remaining_seconds} <i>seconds</i> 🔥
+🌟 Rating: <a href={url}/ratings>{rating}</a> / 10</b>"""
+    
     
     ALL_FILTERS = """
 <b>Hᴇʏ {}, Tʜᴇsᴇ ᴀʀᴇ ᴍʏ ᴛʜʀᴇᴇ ᴛʏᴘᴇs ᴏғ ғɪʟᴛᴇʀs.</b>"""
