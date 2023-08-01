@@ -294,7 +294,10 @@ async def next_page(bot, query):
     cur_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     time_difference = timedelta(hours=cur_time.hour, minutes=cur_time.minute, seconds=(cur_time.second+(cur_time.microsecond/1000000))) - timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000)))
     remaining_seconds = "{:.2f}".format(time_difference.total_seconds())
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
+    content = query.message.reply_to_message.text
+    imdb = await get_poster(content) if IMDB else None
+
+#    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     if not settings["button"]:
         if settings["imdb"]:
             TEMPLATE = script.IMDB_TEMPLATE_TXT
