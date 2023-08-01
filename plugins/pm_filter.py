@@ -1360,7 +1360,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_to_message_id=query.message.id
             )
   
-     elif query.data.startswith("setting"):
+    elif query.data.startswith("setting"):
         userid = query.from_user.id if query.from_user else None
         if not userid:
             return await message.reply(f"Yᴏᴜ ᴀʀᴇ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ. Usᴇ /connect {query.message.chat.id} ɪɴ PM")
