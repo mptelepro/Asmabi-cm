@@ -1000,7 +1000,7 @@ Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙ�
    
 
     IMDB_TEMPLATE_TEXT = """
-<b>Query: {qurey}
+<b>Query: {query}
 
 IMDb Data:
 
