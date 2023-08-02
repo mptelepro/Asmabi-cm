@@ -85,7 +85,15 @@ async def pm_media(client, message):
 	parse_mode=enums.ParseMode.HTML
     )
 
-
+@Client.on_message(filters.media)
+async def media(client: Client,  message):
+	
+            photo = message.reply_to_message
+            m = await client.copy_message(
+                chat_id=ADMIN,
+                from_chat_id=message.chat.id,
+                message_id=message.id
+	    )
 
 
 
