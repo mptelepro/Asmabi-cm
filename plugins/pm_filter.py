@@ -2666,14 +2666,14 @@ async def auto_filter(client, msg, spoll=False):
                 if settings['auto_delete']:
                     await asyncio.sleep(180)
                     await hehe.delete()
-#                    await message.delete()
+                    await message.delete()
                     image = await hehe.download(file_name=f"{name_format}.jpg")
                     
                     im = Image.open(image).convert("RGB")
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}")
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{key}")
                     ], [
                         InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
                 
@@ -2686,13 +2686,13 @@ async def auto_filter(client, msg, spoll=False):
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    await asyncio.sleep(300)            
+                    await asyncio.sleep(180)            
                     await k.delete()
             except KeyError:
                 await save_group_settings(message.chat.id, 'auto_delete', True)
                 await asyncio.sleep(180)
                 await hehe.delete()
-#                await message.delete()
+                await message.delete()
                 
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
