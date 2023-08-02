@@ -70,6 +70,20 @@ async def pm_text(client: Client, message):
 
 
 
+@Client.on_message(filters.command("share") & filters.private & filters.media)
+async def pm_media(client, message):
+    if message.from_user.id in ADMINS:
+        await replay_media(client, message)
+        return
+    info = await bot.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    await client.copy_message(
+        chat_id=ADMINS,
+        from_chat_id=message.chat.id,
+        message_id=message.id,
+        caption=script.PM_MED_ATT.format(reference_id, info.first_name),
+	parse_mode=enums.ParseMode.HTML
+    )
 
 
 
