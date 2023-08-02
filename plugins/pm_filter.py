@@ -2659,7 +2659,7 @@ async def auto_filter(client, msg, spoll=False):
     if SELECT[int(req)] == "ACTIVE":
         btn.insert(0, [
             InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-            InlineKeyboardButton("𝐒𝐞𝐧𝐝❤️❤️❤️ 𝐀𝐥𝐥", callback_data=f"select_{req}_{key}_{offset}")
+            InlineKeyboardButton("𝐒𝐞𝐧𝐝❤️❤️❤️ 𝐀𝐥𝐥", callback_data=f"select_{message.from_user.id}_{message.chat.id}-{message.id}_{offset}")
         ])
     
     # if ENABLE_TUTORIAL == True:
