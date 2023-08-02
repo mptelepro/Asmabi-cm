@@ -329,12 +329,12 @@ async def next_page(bot, query):
                 url=imdb['url'],
                 **locals()
             )
-            cap+="<b>\n\n<u>random.choice(RUN_STRINGS)} Requested Files 👇</u></b>\n\n"
+            cap+="<b>\n\n<u>Requested Files 👇</u></b>\n\n"
             for file in files:
                 cap += f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
         else:
             cap = f"<b>Hᴇʏ {query.from_user.mention}, Fᴏᴜɴᴅ {total} Rᴇsᴜʟᴛs ғᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}\n\n</b>"
-            cap+="<b><u>random.choice(RUN_STRINGS)} Requested Files 👇</u></b>\n\n"
+            cap+="<b><u>Requested Files 👇</u></b>\n\n"
             for file in files:
                 cap += f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
         try:
@@ -408,8 +408,8 @@ async def language_cb_handler(client: Client, query: CallbackQuery):
     
     search = FRESH.get(key)
     search = search.replace(' ', '_')
-#    content = query.message.reply_to_message.text
-    imdb = await get_poster(search) if IMDB else None
+    content = query.message.reply_to_message.text
+    imdb = await get_poster(content) if IMDB else None
     btn = []
     for i in range(0, len(LANGUAGES)-1, 2):
         await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
@@ -2611,7 +2611,7 @@ async def auto_filter(client, msg, spoll=False):
     TEMPLATE = script.IMDB_TEMPLATE_TXT
     if imdb:
         cap = TEMPLATE.format(
-            query=search,
+            qurey=search,
             title=imdb['title'],
             votes=imdb['votes'],
             aka=imdb["aka"],
@@ -2673,7 +2673,8 @@ async def auto_filter(client, msg, spoll=False):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}"),
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"language#{key}")
+                    ], [
                         InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
                 
                     ]]
