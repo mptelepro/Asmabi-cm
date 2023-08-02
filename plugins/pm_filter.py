@@ -418,10 +418,7 @@ async def select_files(bot, query):
     except:
         offset = 0
     search = BUTTONS.get(key)
-    if not search:
-        await query.answer("You Are Using One Of My Old Messages, Please Send The Request Again.", show_alert=True)
-        return
-
+    
     i = 3
     lines = []
     sublines = []
