@@ -10,7 +10,7 @@ import asyncio
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-@Client.on_message(filters.command("chat") & filters.text & filters.media)
+@Client.on_message(filters.command("chat") & filters.text)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
