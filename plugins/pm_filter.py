@@ -48,6 +48,14 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
+
+FILE_PROTECT = {}
+IMPORTED = {}
+HELPABLE = {}
+SELECT = {}
+FILES = {}
+dispatcher = None
+
 BUTTON = {}
 BUTTONS = {}
 FRESH = {}
