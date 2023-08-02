@@ -1,5 +1,6 @@
 # Kanged From @TroJanZheX
 
+from database.settings_db import sett_db
 
 import os
 from PIL import Image
