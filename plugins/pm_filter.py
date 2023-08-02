@@ -479,6 +479,93 @@ async def select_files(bot, query):
     await query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
 
 
+@Client.on_callback_query(filters.regex(r"^send"))
+async def send_files(bot, query):
+    ident, req, key, offset = query.data.split("_")
+    ad_user = query.from_user.id
+
+    settings = await sett_db.get_settings(str(query.message.chat.id))
+
+    if settings is not None:
+        SINGLE_BUTTON = settings["button"]
+        SPELL_CHECK_REPLY = settings["spell_check"]
+        P_TTI_SHOW_OFF = settings["botpm"]
+        IMDB = settings["imdb"]
+
+    if FILE_PROTECT.get(query.from_user.id):
+        del FILE_PROTECT[query.from_user.id]
+    FILE_PROTECT[query.from_user.id] = str(query.message.chat.id)
+    if int(ad_user) in ADMINS:
+        pass
+    elif int(ad_user) in ADMINS:
+        pass
+    elif int(req) not in [query.from_user.id, 0]:
+        return await query.answer(
+            "കാര്യമൊക്കെ കൊള്ളാം, പക്ഷേ, ഇത്‌ നിങ്ങളുടേതല്ല.;\n"
+            "Nice Try! But, This Was Not Your Request, Request Yourself;",
+            show_alert=True)
+
+    for file_id in FILES[int(req)]:
+        files_ = await get_file_details(file_id)
+
+        if not files_:
+            return await query.answer('No such file exist.')
+        files = files_[0]
+        title = files.file_name
+        size = get_size(files.file_size)
+        f_caption = files.caption
+        if CUSTOM_FILE_CAPTION:
+            try:
+                f_caption = CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+            except Exception as e:
+                logger.exception(e)
+            f_caption = f_caption
+        if f_caption is None:
+            f_caption = f"{files.file_name}"
+
+        f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
+                        f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
+                        f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                        f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n" \
+                        f"🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+
+        f_caption = f_caption + f"\n\n{f_sub_caption}"
+
+        await bot.send_cached_media(
+            chat_id=query.from_user.id,
+            file_id=file_id,
+            caption=f_caption,
+            protect_content=settings["file_secure"] if settings["file_secure"] else False,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            '🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"
+                        ),
+                        InlineKeyboardButton(
+                            '🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0"
+                        )
+                    ]
+                ]
+            )
+        )
+
+    await query.answer('Check My PM, I Have Sent Selected Files In Your PM', show_alert=True)
+    if SELECT[int(req)]:
+        del SELECT[int(req)]
+
+    if FILES[int(req)]:
+        del FILES[int(req)]
+
+    SELECT[int(req)] = "DE-ACTIVE"
+    await auto_filter(bot, query.message.reply_to_message, cb=query)
+
+
                                                              
 
 # ❤️❤️❤️❤️
