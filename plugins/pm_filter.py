@@ -385,6 +385,96 @@ async def advantage_spoll_choker(bot, query):
                 await k.delete()
                 
 
+# 🥺🥺🥺
+@Client.on_callback_query(filters.regex(r"^select"))
+async def select_files(bot, query):
+    ident, req, key, offset = query.data.split("_")
+    ad_user = query.from_user.id
+    if int(ad_user) in ADMINS:
+        pass
+    elif int(req) not in [query.from_user.id, 0]:
+        return await query.answer(
+            "കാര്യമൊക്കെ കൊള്ളാം, പക്ഷേ, ഇത്‌ നിങ്ങളുടേതല്ല.;\n"
+            "Nice Try! But, This Was Not Your Request, Request Yourself;",
+            show_alert=True)
+
+    if SELECT.get(int(req)):
+        del SELECT[int(req)]
+
+    if FILES.get(int(req)):
+        del FILES[int(req)]
+
+    SELECT[int(req)] = "ACTIVE"
+    try:
+        offset = int(offset)
+    except:
+        offset = 0
+    search = BUTTONS.get(key)
+    if not search:
+        await query.answer("You Are Using One Of My Old Messages, Please Send The Request Again.", show_alert=True)
+        return
+
+    i = 3
+    lines = []
+    sublines = []
+    btn = []
+    btn1 = []
+    try:
+        while True:
+            j = 0
+            lines = query.message.reply_markup.inline_keyboard[i]
+            if len(lines) == 1:
+                fs = json.loads(str(lines[0]))
+                if fs['text'] not in ["De-Select", "Select", "Send"]:
+                    btn.append([InlineKeyboardButton(text=fs['text'], callback_data=fs['callback_data'])])
+            else:
+                while True:
+                    sublines = lines[j]
+                    fs1 = json.loads(str(sublines))
+                    if fs1['text'] not in ["De-Select", "Select", "Send"]:
+                        btn1.append([fs1['text'], fs1['callback_data'], True])
+
+                    j = j + 1
+                    sublines = []
+                    if j > len(lines) - 1:
+                        keyboard = build_keyboard(btn1)
+                        btn.insert(i, keyboard[0])
+                        btn1 = []
+                        break
+            i = i + 1
+            lines = []
+            if i > len(query.message.reply_markup.inline_keyboard) - 1:
+                break
+
+    except Exception as e:
+        print(str(e))
+
+    if SELECT.get(int(req)) == "ACTIVE":
+        btn.append(
+            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
+             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
+        )
+    else:
+        btn.append(
+            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
+        )
+
+    btn.insert(0, [
+        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+    ])
+    btn.insert(0, [
+        InlineKeyboardButton("ᴘᴍ ᴍᴇ", url="https://t.me/UFSChatBot"),
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+    ])
+
+    btn.insert(0, [
+        InlineKeyboardButton("🔄 Nᴇᴡ Uᴘᴅᴀᴛᴇs", url="https://t.me/UFSFilmUpdate")
+    ])
+
+    await query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
+
+
+                                                             
 
 # ❤️❤️❤️❤️
 
@@ -2570,7 +2660,7 @@ async def auto_filter(client, msg, spoll=False):
     #     ])
         btn.insert(0, [
             InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-            InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
+            InlineKeyboardButton("𝐒𝐞𝐧𝐝❤️❤️❤️ 𝐀𝐥𝐥", callback_data=f"select_{req}_{key}_{offset}")
         ])
     # if ENABLE_TUTORIAL == True:
     #     btn.insert(0, [
