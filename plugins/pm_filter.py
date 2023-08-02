@@ -84,69 +84,86 @@ RUN_STRINGS = (
 
 
 
-@Client.on_message(filters.group & filters.text & filters.incoming)
+@Client.on_message(filters.group & filters.text & filters.incoming)  # & ~filters.edited
 async def give_filter(client, message):
-#    movie = message.reply_to_message.text
-    userid = message.from_user.id
-    content = message.reply_to_message
-    search = message.text                                  
-#    imdb = await get_poster(content) if IMDB else None    
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))          
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            return
-        buttons = [[
-            InlineKeyboardButton("📢 𝐉𝐨𝐢𝐧 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 📢", url=invite_link.invite_link)
-        ],[
-            InlineKeyboardButton("🔁 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧 🔁", callback_data="grp_checksub")
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        
-        k = await message.reply_text(
-#            photo=(SP),
-            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{search} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await asyncio.sleep(90)
-        await k.delete()               
-        try:
-            await message.delete()
-        except:
-            pass
+    group_id = message.chat.id
+    chat_type = message.sender_chat.type if message.sender_chat else message.chat.type
+    name = message.text
+
+    if chat_type.name in ["CHANNEL"]:
+        text = f"""
+#DETECT_SENDER_AS_CHANNEL
+
+**CHANNEL: {message.sender_chat.title} ({message.sender_chat.id})** 
+`CHAT: {message.chat.title} ({message.chat.id})`
+**MESSAGE: You Cannot Request Via Channel**"""
+        chat_channel = await message.reply_text(text, quote=True)
+        await asyncio.sleep(5)
+        await chat_channel.delete()
+        await message.delete()
         return
-    if message.chat.id != SUPPORT_CHAT_ID:
-        glob = await global_filters(client, message)
-        if glob == False:
-            manual = await manual_filters(client, message)
-            if manual == False:
-                settings = await get_settings(message.chat.id)
-                try:
-                    if settings['auto_ffilter']:
-                        await auto_filter(client, message)
-                    else:
-                        k = await message.reply_text(f"𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!! \n\n❌️𝐀𝐮𝐭𝐨 𝐅𝐢𝐥𝐭𝐞𝐫 𝐎𝐟𝐟..!!!❌️ \n𝐏𝐥𝐞𝐚𝐬𝐞 𝐖𝐚𝐢𝐭..")
-                        await asyncio.sleep(5)
-                        await k.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_ffilter', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_ffilter']:
-                        await auto_filter(client, message)
-                else:
-                    buttons = [[                    
-                    InlineKeyboardButton("⚠️ 𝐃𝐞𝐥𝐞𝐭𝐞 ⚠️", callback_data="check_delete")
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
-                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {content} \n𝐋𝐚𝐬𝐭 𝐖𝐚𝐫𝐧𝐢𝐧𝐠...⚠️",
-                    reply_markup=reply_markup,
-                    parse_mode=enums.ParseMode.HTML)
-                    await asyncio.sleep(5)
-                    await k.delete()  
-                    await message.delete()
+
+    if len(message.text) < 1:
+        try:
+            msg = await message.reply_text(
+                f"**Nice Try! But, I Need Minimum --__3__-- Character To Find Your Requesting Details,\n"
+                f"Please Edit Your Request** `{message.text}`", quote=True)
+            req = message.from_user.id if message.from_user else 0
+            if temp.TEMP_USER.get(req):
+                del temp.TEMP_USER[req]
+            temp.TEMP_USER[req] = "edit"
+            await asyncio.sleep(10)
+            await msg.delete()
+            return
+        except Exception as e:
+            logging.info(f"Error: \n{str(e)}")
+            return
+
+    keywords = await get_filters(group_id)
+    for keyword in reversed(sorted(keywords, key=len)):
+        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
+        if re.search(pattern, name, flags=re.IGNORECASE):
+            await check_manual_filter(client, group_id, keyword, message, 0)
+            return
+            # reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
+      
+    else:
+        await auto_filter(client, message)
+
+
+@Client.on_edited_message(filters.group & filters.text & filters.incoming)  # & filters.edited
+async def give_filter_edited(client, message):
+    group_id = message.chat.id
+    chat_type = message.sender_chat.type if message.sender_chat else message.chat.type
+    name = message.text
+
+    if chat_type.name in ["CHANNEL"]:
+        text = f"""
+#DETECT_SENDER_AS_CHANNEL
+
+**CHANNEL: {message.sender_chat.title} ({message.sender_chat.id})** 
+`CHAT: {message.chat.title} ({message.chat.id})`
+**MESSAGE: You Cannot Request Via Channel**"""
+        chat_channel = await message.reply_text(text, quote=True)
+        await asyncio.sleep(5)
+        await chat_channel.delete()
+        await message.delete()
+        return
+
+    if temp.TEMP_USER.get(message.from_user.id) == "edit":
+        del temp.TEMP_USER[message.from_user.id]
+    else:
+        return
+
+    keywords = await get_filters(group_id)
+    for keyword in reversed(sorted(keywords, key=len)):
+        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
+        if re.search(pattern, name, flags=re.IGNORECASE):
+            await check_manual_filter(client, group_id, keyword, message, 0)
+            return
+
+    else:
+        await auto_filter(client, message)
 
 
 
