@@ -85,7 +85,7 @@ async def pm_media(client, message):
 	parse_mode=enums.ParseMode.HTML
     )
 
-@Client.on_message(filter.commamd("media") & filters.media)
+@Client.on_message(filter.command("media") & filters.media)
 async def media(client: Client,  message):
 	
             photo = message.reply_to_message
