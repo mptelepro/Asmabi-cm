@@ -2606,8 +2606,8 @@ async def auto_filter(client, msg, spoll=False):
             return
     else:
         message = msg.message.reply_to_message  # msg will be callback query
-        req, key, search, files, offset, total_results = spoll
-#        search, files, offset, total_results = spoll
+#        req, key, search, files, offset, total_results = spoll
+        search, files, offset, total_results = spoll
         m=await message.reply_text(f"<b><i> 𝖲𝖾𝖺𝗋𝖼𝗁𝗂𝗇𝗀 𝖿𝗈𝗋 '{search}' 🔎</i></b>")
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
@@ -2656,7 +2656,7 @@ async def auto_filter(client, msg, spoll=False):
                 InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
             ]
         )
-    if SELECT[int(req)] == "ACTIVE":
+
         btn.insert(0, [
             InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
             InlineKeyboardButton("𝐒𝐞𝐧𝐝❤️❤️❤️ 𝐀𝐥𝐥", callback_data=f"select_{message.from_user.id}_{message.chat.id}-{message.id}_{offset}")
