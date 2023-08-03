@@ -398,9 +398,7 @@ async def advantage_spoll_choker(bot, query):
                     text=script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.text),
                     parse_mode=enums.ParseMode.HTML,
                 )
-            except Exception as e:
-                logger.exception(e)
-
+            
                 
 
 
