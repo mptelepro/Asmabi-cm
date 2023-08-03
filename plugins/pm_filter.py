@@ -2320,10 +2320,9 @@ async def auto_filter(client, msg, spoll=False):
         if len(message.text) < 100:
             
             search = message.text
-            imdb = await get_poster(search) if IMDB else None
+            
+            m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 \n {total_results} 𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲.. </i></b>")
         
-            m=await message.reply_text(f"<b><i> 📥{imdb.get('title')} {imdb.get('year')}📥 </i></b>")
-            await m.delete()
             search = search.lower()
             find = search.split(" ")
             search = ""
@@ -2354,10 +2353,9 @@ async def auto_filter(client, msg, spoll=False):
     else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        imdb = await get_poster(search) if IMDB else None
         
-        m=await message.reply_text(f"<b><i> 📥{imdb.get('title')} {imdb.get('year')}📥 </i></b>")
-        await m.delete()
+        m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 \n {total_results} 𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲.. </i></b>")
+        
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
     # if 'is_shortlink' in settings.keys():
