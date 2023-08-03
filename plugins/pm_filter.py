@@ -2322,7 +2322,7 @@ async def auto_filter(client, msg, spoll=False):
             search = message.text
             search, files, offset, total_results = spoll
         
-            m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 \n {total_results} 𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲.. </i></b>")
+            m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
         
             search = search.lower()
             find = search.split(" ")
@@ -2355,7 +2355,7 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         
-        m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 \n {total_results} 𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲.. </i></b>")
+        m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
         
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
