@@ -394,7 +394,7 @@ async def advantage_spoll_choker(bot, query):
                         reply_markup=reply_markup,
                         parse_mode=enums.ParseMode.HTML
                     )
-		    k = await query.message.edit(script.MVE_NT_FND)
+		    k = await bot.send_message(script.MVE_NT_FND)
                     await asyncio.sleep(190)
                     await m.delete()
                 
