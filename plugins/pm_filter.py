@@ -2532,7 +2532,7 @@ async def auto_filter(client, msg, spoll=False):
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    await asyncio.sleep(180)            
+                    await asyncio.sleep(600)            
                     await k.delete()
             except KeyError:
                 await save_group_settings(message.chat.id, 'auto_delete', True)
