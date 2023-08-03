@@ -395,7 +395,7 @@ async def advantage_spoll_choker(bot, query):
                 reference_id = int(query.message.chat.id)
                 await bot.send_message(
                     chat_id=ADMIN,
-                    text=script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.text),
+                    text=(script.MVE_NT_FND),
                     parse_mode=enums.ParseMode.HTML,
                 )
             
