@@ -2320,7 +2320,8 @@ async def auto_filter(client, msg, spoll=False):
         if len(message.text) < 100:
             
             search = message.text
-            
+            search, files, offset, total_results = spoll
+        
             m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 \n {total_results} 𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲.. </i></b>")
         
             search = search.lower()
