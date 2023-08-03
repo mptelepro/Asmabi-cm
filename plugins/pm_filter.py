@@ -382,6 +382,7 @@ async def advantage_spoll_choker(bot, query):
             else:
                 reqstr1 = query.from_user.id if query.from_user else 0
                 reqstr = await bot.get_users(reqstr1)
+                chat_id = query.message.chat.title
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 k = await query.message.edit(script.MVE_NT_FND)
@@ -393,10 +394,17 @@ async def advantage_spoll_choker(bot, query):
                     return
                 info = await bot.get_users(user_ids=query.message.from_user.id)
                 reference_id = int(query.message.chat.id)
+                buttons = [[
+                    InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
+                ],[
+                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="grp_checksub")
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
                 await bot.send_message(
                     chat_id=ADMIN,
                     text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
-                    parse_mode=enums.ParseMode.HTML,
+                    reply_markup=reply_markup,
+                    parse_mode=enums.ParseMode.HTML
                 )
             
                 
