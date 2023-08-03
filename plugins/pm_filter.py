@@ -2858,7 +2858,7 @@ async def advantage_spell_chok(client, msg):
     reqstr = await bot.get_users(reqstr1)
     if NO_RESULTS_MSG:
 #        await bot.send_message(chat_id=msg.chat.id, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-        k = await .msg.edit(script.MVE_NT_FND)
+#        k = await .msg.edit(script.MVE_NT_FND)
         buttons = [[
             InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
         ],[
