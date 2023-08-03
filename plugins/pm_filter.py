@@ -387,19 +387,19 @@ async def advantage_spoll_choker(bot, query):
                 k = await query.message.edit(script.MVE_NT_FND)
                 await asyncio.sleep(10)
                 await k.delete()
-		    try:
-                        if query.message.from_user.id == ADMIN:
-                            await reply_text(bot, query, k)
-                            return
-                        info = await bot.get_users(user_ids=query.message.from_user.id)
-                        reference_id = int(query.message.chat.id)
-                        await bot.send_message(
-                            chat_id=ADMIN,
-                            text=script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.text),
-                            parse_mode=enums.ParseMode.HTML,
-                        )
-                    except Exception as e:
-                        logger.exception(e)
+ 
+                if query.message.from_user.id == ADMIN:
+                    await reply_text(bot, query, k)
+                    return
+                info = await bot.get_users(user_ids=query.message.from_user.id)
+                reference_id = int(query.message.chat.id)
+                await bot.send_message(
+                    chat_id=ADMIN,
+                    text=script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.text),
+                    parse_mode=enums.ParseMode.HTML,
+                )
+            except Exception as e:
+                logger.exception(e)
 
                 
 
