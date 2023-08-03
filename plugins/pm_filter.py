@@ -380,14 +380,14 @@ async def advantage_spoll_choker(bot, query):
                 k = (movie, files, offset, total_results)
                 await auto_filter(bot, query, k)
             else:
-		
+		info = await bot.get_users(user_ids=query.message.from_user.id)
+                reference_id = int(query.message.chat.id)
 #                reqstr1 = query.from_user.id if query.from_user else 0
 #                reqstr = await bot.get_users(reqstr1)
                 if NO_RESULTS_MSG:
 #                    await bot.send_message(chat_id=ADMIN, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
 #                    k = await query.message.edit(script.MVE_NT_FND)
-		    info = await bot.get_users(user_ids=query.message.from_user.id)
-                    reference_id = int(query.message.chat.id)
+		    
                     buttons = [[
                         InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
                     ],[
