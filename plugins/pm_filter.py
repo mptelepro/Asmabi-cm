@@ -26,7 +26,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, SPELL_IMG, MAX_B_TN, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, TUTORIAL, REQST_CHANNEL, IS_TUTORIAL, LANGUAGES, SEASONS, SUPPORT_CHAT, PREMIUM_USER, FILE_FORWARD, FILE_CHANNEL, CUSTOM_QUERY_CAPTION, SP, MAIN_CHANNEL, BATCH_LINK
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, TUTORIAL, REQST_CHANNEL, IS_TUTORIAL, LANGUAGES, SEASONS, SUPPORT_CHAT, PREMIUM_USER, FILE_FORWARD, FILE_CHANNEL, CUSTOM_QUERY_CAPTION, SP, MAIN_CHANNEL, BATCH_LINK, ADMIN
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -379,7 +379,7 @@ async def advantage_spoll_choker(bot, query):
                 reqstr1 = query.from_user.id if query.from_user else 0
                 reqstr = await bot.get_users(reqstr1)
                 if NO_RESULTS_MSG:
-                    await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                    await bot.send_message(chat_id=ADMIN, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 k = await query.message.edit(script.MVE_NT_FND)
                 await asyncio.sleep(10)
                 await k.delete()
