@@ -333,12 +333,12 @@ async def next_page(bot, query):
                 url=imdb['url'],
                 **locals()
             )
-            cap+="<b>\n\n<u>Requested Files 👇</u></b>\n\n"
+            cap+="<b>\n\n<u> 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐅𝐢𝐥𝐞𝐬 </u></b>\n\n"
             for file in files:
                 cap += f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
         else:
             cap = f"<b>Hᴇʏ {query.from_user.mention}, Fᴏᴜɴᴅ {total} Rᴇsᴜʟᴛs ғᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}\n\n</b>"
-            cap+="<b><u>Requested Files 👇</u></b>\n\n"
+            cap+="<b><u> 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐅𝐢𝐥𝐞𝐬 </u></b>\n\n"
             for file in files:
                 cap += f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
         try:
@@ -2489,7 +2489,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
         if not settings["button"]:
-            cap+="<b>\n\n<u>📚 Requested Files 👇</u></b>\n"
+            cap+="<b>\n\n<u> 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐅𝐢𝐥𝐞𝐬 </u></b>\n"
             for file in files:
                 cap += f"<b>\n{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n</a></b>"
     else:
@@ -2498,7 +2498,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             # cap = f"<b>Hᴇʏ {message.from_user.mention}, Hᴇʀᴇ ɪs ᴛʜᴇ ʀᴇsᴜʟᴛ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search} \n\n</b>"
             cap = f"<b>Hᴇʏ {message.from_user.mention}, Fᴏᴜɴᴅ {total_results} Rᴇsᴜʟᴛs ғᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}\n\n</b>"
-            cap+="<b><u>☘️ Requested Files 👇</u></b>\n\n"
+            cap+="<b><u> 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐅𝐢𝐥𝐞𝐬 </u></b>\n\n"
             for file in files:
                 cap += f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
 
@@ -2621,7 +2621,7 @@ async def advantage_spell_chok(client, msg):
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await msg.reply_photo(
-            photo=SPELL_IMG, 
+            photo=SP, 
             caption=script.I_CUDNT.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(button)
         )
@@ -2659,7 +2659,7 @@ async def advantage_spell_chok(client, msg):
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await msg.reply_photo(
-            photo=SPELL_IMG, 
+            photo=SP, 
             caption=script.I_CUDNT.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(button)
         )
@@ -2681,7 +2681,7 @@ async def advantage_spell_chok(client, msg):
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     spell_check_del = await msg.reply_photo(
-        photo=(SPELL_IMG),
+        photo=(SP),
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn)
     )
