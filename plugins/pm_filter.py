@@ -2320,7 +2320,10 @@ async def auto_filter(client, msg, spoll=False):
         if len(message.text) < 100:
             
             search = message.text
-            m=await message.reply_text(f"<b><i> 𝖲𝖾𝖺𝗋𝖼𝗁𝗂𝗇𝗀 𝖿𝗈𝗋 '{search}' 🔎</i></b>")
+            imdb = await get_poster(search) if IMDB else None
+        
+            m=await message.reply_text(f"<b><i> 📥{imdb.get('title')} {imdb.get('year')}📥 </i></b>")
+            await m.delete()
             search = search.lower()
             find = search.split(" ")
             search = ""
