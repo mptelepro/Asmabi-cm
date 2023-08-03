@@ -380,7 +380,7 @@ async def advantage_spoll_choker(bot, query):
                 reqstr = await bot.get_users(reqstr1)
                 if NO_RESULTS_MSG:
 #                    await bot.send_message(chat_id=ADMIN, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-                    k = await query.message.edit(script.MVE_NT_FND)
+#                    k = await query.message.edit(script.MVE_NT_FND)
                     buttons = [[
                         InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
                     ],[
@@ -392,7 +392,7 @@ async def advantage_spoll_choker(bot, query):
                         photo=random.choice(PICS),
                         caption=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention}, {movie} {message.chat.title}\n\n..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
                         reply_markup=reply_markup,
-                    parse_mode=enums.ParseMode.HTML
+                        parse_mode=enums.ParseMode.HTML
                     )
                     await asyncio.sleep(10)
                     await k.delete()
