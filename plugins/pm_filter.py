@@ -2872,8 +2872,8 @@ async def advantage_spell_chok(client, msg):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
-            await asyncio.sleep(10)
-            await k.delete()
+        await asyncio.sleep(10)
+        await k.delete()
 #    except Exception as e:
 #        await m.edit(e)        
 #        e = traceback.format_exc()
