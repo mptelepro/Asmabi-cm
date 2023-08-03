@@ -2855,7 +2855,7 @@ async def advantage_spell_chok(client, msg):
     await spell_check_del.delete()
     await msg.delete()
     reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await bot.get_users(reqstr1)
+    reqstr = await client.get_users(reqstr1)
     if NO_RESULTS_MSG:
 #        await bot.send_message(chat_id=msg.chat.id, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
 #        k = await .msg.edit(script.MVE_NT_FND)
