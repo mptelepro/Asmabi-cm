@@ -48,6 +48,10 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+
 BUTTON = {}
 BUTTONS = {}
 FRESH = {}
@@ -397,7 +401,9 @@ async def advantage_spoll_choker(bot, query):
 #		    k = await query.message.reply_text(script.MVE_NT_FND)
                     await asyncio.sleep(190)
                     await m.delete()
-                
+                except Exception as e:
+                    logger.exception(e)
+
 
 
 # ❤️❤️❤️❤️
