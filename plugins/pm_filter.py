@@ -2373,29 +2373,19 @@ async def auto_filter(client, msg, spoll=False):
     FRESH[key] = search
     temp.GETALL[key] = files
     temp.SHORT[message.from_user.id] = message.chat.id
+    file in files
     if settings["button"]:
         btn = [
             [
                 InlineKeyboardButton(
                     text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                ),                                
+                InlineKeyboardButton(
+                    text=f"{pre}#{file.file_id}", callback_data=f'{pre}#{file.file_id}'
                 ),
             ]
-            for file in files
         ]
-    # else:
-    #     btn = [
-    #         [
-    #             InlineKeyboardButton(
-    #                 text=f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}",
-    #                 callback_data=f'{pre}#{file.file_id}',
-    #             ),
-    #             InlineKeyboardButton(
-    #                 text=f"{get_size(file.file_size)}",
-    #                 callback_data=f'{pre}#{file.file_id}',
-    #             ),
-    #         ]
-    #         for file in files
-    #     ]
+
         btn.insert(0, 
             [
                 InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
@@ -2403,29 +2393,12 @@ async def auto_filter(client, msg, spoll=False):
                 InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
             ]
         )
-    # if ENABLE_SHORTLINK == True:
-    #     btn.insert(0, [
-    #         InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-    #         InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=allfiles_{key}")
-    #         )
-    #     ])
-    # else:
-    #     btn.insert(0, [
-    #         InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-    #         InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"send_fall#{pre}#{message.chat.id}-{message.id}#{0}")
-    #     ])
+     
         btn.insert(0, [
             InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
             InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
         ])
-    # if ENABLE_TUTORIAL == True:
-    #     btn.insert(0, [
-    #     InlineKeyboardButton("Hᴏᴡ ᴛᴏ Dᴏᴡɴʟᴏᴀᴅ⚡", url=await get_tutorial(message.chat.id))
-    #     ])
-    # else:
-    #     btn.insert(0, [
-    #     InlineKeyboardButton("Hᴏᴡ ᴛᴏ Dᴏᴡɴʟᴏᴀᴅ⚡", url=TUTORIAL)
-    #     ])
+
     else:
         btn = []
     if offset != "":
