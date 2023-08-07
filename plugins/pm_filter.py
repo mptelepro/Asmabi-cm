@@ -2383,7 +2383,7 @@ async def auto_filter(client, msg, spoll=False):
                         f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}",
                         callback_data=f'{pre}#{file.file_id}'
                     ),
-                ],
+                ], for file in files
                 [
                         
                     InlineKeyboardButton(  # Opens the inline interface in the current chat
@@ -2392,7 +2392,7 @@ async def auto_filter(client, msg, spoll=False):
                     )
                 ]
 #                for file in files
-            ] for file in files
+            ] 
              
         
 
