@@ -124,7 +124,7 @@ async def pm_media(bot, message):
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
-    message = msg
+    message = message
     if message.text.startswith("/"): return  # ignore commands
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
