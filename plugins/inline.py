@@ -120,17 +120,11 @@ def get_reply_markup(query):
 
 @Client.on_message(filters.private & filters.text & filters.command("inline"))
 async def pm_media(bot, message):
-    results = []
-    
-    file_type = file_type.strip().lower()
-    chat_id = await active_connection(str(message.from_user.id))
-    file_type = None
-    files, next_offset, total = await get_search_results(
-                                                  chat_id,
-                                                  
-                                                  file_type=file_type,
-                                                  max_results=10,
-                                                  offset=offset)
-
-    await bot.send_inline_bot_result(chat_id=message.chat.id, result_id=files)
+    search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+            search = re.sub(r"\s+", " ", search).strip()
+            search = search.replace("-", " ")
+            search = search.replace(":","")
+            files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
+            settings = await get_settings(message.chat.id)
+    await bot.send_inline_bot_result(chat_id=message.chat.id, result_id=search)
         
