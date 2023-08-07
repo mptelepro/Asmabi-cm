@@ -132,5 +132,5 @@ async def pm_media(bot, message):
                                                   max_results=10,
                                                   offset=offset)
 
-    await bot.send_inline_bot_result(chat_id=query.message.chat.id, result_id=files)
+    await bot.send_inline_bot_result(chat_id=message.chat.id, result_id=files)
         
