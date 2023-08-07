@@ -181,3 +181,7 @@ async def inline_answer(bot, query):
             switch_pm_text += f" for {string}"
         try:
             await bot.send_inline_bot_result(chat_id=query.message.chat.id, result_id=results)
+        except QueryIdInvalid:
+            pass
+        except Exception as e:
+            logging.exception(str(e))
