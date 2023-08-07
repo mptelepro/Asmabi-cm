@@ -2376,16 +2376,42 @@ async def auto_filter(client, msg, spoll=False):
     
     if settings["button"]:
         for file in files:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}',
-                    )                                
-                    InlineKeyboardButton(
-                        f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                    )
+
+                  [
+                    [  # First row
+                        InlineKeyboardButton(  # Generates a callback query when pressed
+                            f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}",
+                            callback_data="data"
+                        ),
+                        InlineKeyboardButton(  # Opens a web URL
+                            "URL",
+                            callback_data=f'{pre}#{file.file_id}'
+                        ),
+                    ],
+                    [  # Second row
+                        InlineKeyboardButton(  # Opens the inline interface
+                            f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}]",
+                            switch_inline_query="pyrogram"
+                        ),
+                        InlineKeyboardButton(  # Opens the inline interface in the current chat
+                            f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}]",
+                            callback_data=f'{pre}#{file.file_id}'
+                        )
+                    ]
                 ]
-            ]
+            )
+        )
+
+#            btn = [
+#                [
+#                    InlineKeyboardButton(
+#                        f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+#                    )                                
+#                    InlineKeyboardButton(
+#                        f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+#                    ),
+#                ]
+#            ]
 
             btn.insert(0, 
                 [
