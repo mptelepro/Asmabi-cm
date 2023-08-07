@@ -115,3 +115,69 @@ def get_reply_markup(query):
 
 
 
+
+
+
+@Client.on_message(filters.private & filters.text & filters.command("inline"))
+async def inline_answer(bot, query):
+    """Show search results for given inline query"""
+    chat_id = await active_connection(str(query.from_user.id))
+    
+    if not await inline_users(query):
+        await query.answer(results=[],
+                           cache_time=0,
+                           switch_pm_text='okDa',
+                           switch_pm_parameter="hehe")
+        return
+
+    if AUTH_CHANNEL and not await is_subscribed(bot, query):
+        await query.answer(results=[],
+                           cache_time=0,
+                           switch_pm_text='You have to subscribe my channel to use the bot',
+                           switch_pm_parameter="subscribe")
+        return
+
+    results = []
+    if '|' in query.query:
+        string, file_type = query.query.split('|', maxsplit=1)
+        string = string.strip()
+        file_type = file_type.strip().lower()
+    else:
+        string = query.query.strip()
+        file_type = None
+
+    offset = int(query.offset or 0)
+    reply_markup = get_reply_markup(query=string)
+    files, next_offset, total = await get_search_results(
+                                                  chat_id,
+                                                  string,
+                                                  file_type=file_type,
+                                                  max_results=10,
+                                                  offset=offset)
+
+    for file in files:
+        title=file.file_name
+        size=get_size(file.file_size)
+        f_caption=file.caption
+        if CUSTOM_FILE_CAPTION:
+            try:
+                f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+            except Exception as e:
+                logger.exception(e)
+                f_caption=f_caption
+        if f_caption is None:
+            f_caption = f"{file.file_name}"
+        results.append(
+            InlineQueryResultCachedDocument(
+                title=file.file_name,
+                document_file_id=file.file_id,
+                caption=f_caption,
+                description=f'Size: {get_size(file.file_size)}\nType: {file.file_type}',
+                reply_markup=reply_markup))
+
+    if results:
+        switch_pm_text = f"{emoji.FILE_FOLDER} Results - {total}"
+        if string:
+            switch_pm_text += f" for {string}"
+        try:
+            await bot.send_inline_bot_result(chat_id=query.message.chat.id, result_id=results)
