@@ -124,28 +124,27 @@ async def pm_media(bot, message):
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
-    if not spoll:
-        message = msg
-        if message.text.startswith("/"): return  # ignore commands
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-        if len(message.text) < 100:
+    message = msg
+    if message.text.startswith("/"): return  # ignore commands
+    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        return
+    if len(message.text) < 100:
             
-            search = message.text
+        search = message.text
             
-            m=await message.reply_text(f"<b><i>📥𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
+        m=await message.reply_text(f"<b><i>📥𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
         
-            search = search.lower()
-            find = search.split(" ")
-            search = ""
-            removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
-            for x in find:
+        search = search.lower()
+        find = search.split(" ")
+        search = ""
+        removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
+        for x in find:
                 # if x == "in" or x == "upload" or x == "series" or x == "full" or x == "horror" or x == "thriller" or x == "mystery" or x == "print" or x == "subtitle" or x == "subtitles":
                 #     continue
-                if x in removes:
-                    continue
-                else:
-                    search = search + x + " "
+            if x in removes:
+                continue
+            else:
+                search = search + x + " "
             search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
             search = re.sub(r"\s+", " ", search).strip()
             search = search.replace("-", " ")
