@@ -2373,8 +2373,9 @@ async def auto_filter(client, msg, spoll=False):
     FRESH[key] = search
     temp.GETALL[key] = files
     temp.SHORT[message.from_user.id] = message.chat.id
+    
+    if settings["button"]:
     for file in files:
-#    if settings["button"]:
         btn = [
             [
                 InlineKeyboardButton(
