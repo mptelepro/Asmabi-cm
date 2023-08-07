@@ -2385,7 +2385,7 @@ async def auto_filter(client, msg, spoll=False):
                         ),
                     ],
                     [
-                        ),
+                        
                         InlineKeyboardButton(  # Opens the inline interface in the current chat
                             f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}]",
                             callback_data=f'{pre}#{file.file_id}'
