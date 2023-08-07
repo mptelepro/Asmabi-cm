@@ -2377,7 +2377,7 @@ async def auto_filter(client, msg, spoll=False):
     if settings["button"]:
         for file in files:
 
-                  [
+            btn = [
                     [  # First row
                         InlineKeyboardButton(  # Generates a callback query when pressed
                             f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}",
