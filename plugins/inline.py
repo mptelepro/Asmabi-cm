@@ -120,7 +120,7 @@ def get_reply_markup(query):
 
 @Client.on_message(filters.private & filters.text & filters.command("inline"))
 async def pm_media(bot, message):
-    curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
+#    curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
