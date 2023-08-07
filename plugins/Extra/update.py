@@ -153,7 +153,7 @@ async def up(bot, message):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             buttons = [[
-                InlineKeyboardButton(f"📥{lg_cd} {imdb.get('year')}📥", url=BATCH_LINK)
+                InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=BATCH_LINK)
             ], [
                 InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
             ]]
