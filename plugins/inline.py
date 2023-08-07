@@ -120,6 +120,15 @@ def get_reply_markup(query):
 
 @Client.on_message(filters.private & filters.text & filters.command("inline"))
 async def pm_media(bot, message):
+    results = []
+    if '|' in query.query:
+        string, file_type = query.query.split('|', maxsplit=1)
+        string = string.strip()
+        file_type = file_type.strip().lower()
+        chat_id = message.chat.id
+    else:
+        string = query.query.strip()
+        file_type = None
     files, next_offset, total = await get_search_results(
                                                   chat_id,
                                                   string,
@@ -127,5 +136,5 @@ async def pm_media(bot, message):
                                                   max_results=10,
                                                   offset=offset)
 
-    await bot.send_inline_bot_result(chat_id=query.message.chat.id, result_id=files)
+    await bot.send_inline_bot_result(chat_id=message.chat.id, result_id=files)
         
