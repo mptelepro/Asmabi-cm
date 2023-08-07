@@ -2428,10 +2428,10 @@ async def auto_filter(client, msg, spoll=False):
             btn.append(
                 [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="check_delete"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="check_delete"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
             )
-    else:
-        btn.append(
-            [InlineKeyboardButton(text="𝐍𝐎 𝐌𝐎𝐑𝐄 𝐏𝐀𝐆𝐄𝐒 𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄",callback_data="pages")]
-        )
+#    else:
+#        btn.append(
+#            [InlineKeyboardButton(text="𝐍𝐎 𝐌𝐎𝐑𝐄 𝐏𝐀𝐆𝐄𝐒 𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄",callback_data="pages")]
+#        )
     
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     cur_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
