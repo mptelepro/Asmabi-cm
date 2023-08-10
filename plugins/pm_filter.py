@@ -386,7 +386,7 @@ async def advantage_spoll_choker(bot, query):
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="option")
+                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="f'option#{reporter}'")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 k = await query.message.edit(script.MVE_NT_FND,
