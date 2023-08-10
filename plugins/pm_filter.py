@@ -1683,7 +1683,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn2 = [[
             InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
         ]]
-        if query.from_user.id in ADMINS:
+        if query.message.from_user.id == ADMIN:
             reply_markup = InlineKeyboardMarkup(btn)
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Hᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴs !")
