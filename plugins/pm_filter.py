@@ -397,7 +397,7 @@ async def advantage_spoll_choker(bot, query):
                 buttons = [[
                     InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
                 ],[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="ok")
+                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 await bot.send_message(
