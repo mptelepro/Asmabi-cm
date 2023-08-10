@@ -1673,6 +1673,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await m.delete()
 
     elif query.data.startswith("option"):
+        from_user = query.message.reply_to_message.from_user.id
         user = await client.get_users(from_user)
         btn = [[
                 InlineKeyboardButton("Uɴᴀᴠᴀɪʟᴀʙʟᴇ", callback_data=f"unavailable#{user}"),
