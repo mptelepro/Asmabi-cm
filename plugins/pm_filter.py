@@ -1225,7 +1225,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     pass
                 await client.send_message(
                     text=query.message.text,
-                    chat_id=int(reference_id),
+                    chat_id=query.message.chat.id,
                     parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
                             [
