@@ -393,7 +393,7 @@ async def advantage_spoll_choker(bot, query):
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
                 )           
-                await asyncio.sleep(10)
+                await asyncio.sleep(300)
                 await k.delete()
  
                 if query.message.from_user.id == ADMIN:
