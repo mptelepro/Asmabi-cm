@@ -1683,9 +1683,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn2 = [[
             InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
         ]]
-        
-        reply_markup = InlineKeyboardMarkup(btn)
-        await query.message.edit_reply_markup(reply_markup)
+        if query.from_user.id in ADMINS:
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_reply_markup(reply_markup)
             await query.answer("Hᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴs !")
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
