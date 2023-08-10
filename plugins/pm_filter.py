@@ -1229,8 +1229,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         ]
                     )
                 )        
-    except Exception as e:
-        logger.exception(e)
+    
 
    
 
