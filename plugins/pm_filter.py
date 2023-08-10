@@ -1673,15 +1673,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await m.delete()
 
     elif query.data.startswith("option"):
-        ident, from_user = query.data.split("#")
+        user = await client.get_users(from_user)
         btn = [[
-            InlineKeyboardButton("⚠️𝐔𝐧𝐚𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞⚠️", callback_data=f"un#{from_user}"),
-            InlineKeyboardButton("✔️𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝✔️", callback_data=f"up#{from_user}")
-        ],[
-            InlineKeyboardButton("📥𝐀𝐥𝐫𝐞𝐚𝐝𝐲 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞📥", callback_data=f"alr#{from_user}")
-        ],[
-            InlineKeyboardButton("⏳️𝐕𝐢𝐞𝐰 𝐒𝐭𝐚𝐭𝐮𝐬⏳️", url=f"{query.message.link}")
-        ]]
+                InlineKeyboardButton("Uɴᴀᴠᴀɪʟᴀʙʟᴇ", callback_data=f"unavailable#{user}"),
+                InlineKeyboardButton("Uᴘʟᴏᴀᴅᴇᴅ", callback_data=f"uploaded#{user}")
+             ],[
+                InlineKeyboardButton("Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ", callback_data=f"already_available#{user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
+               ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
