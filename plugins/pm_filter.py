@@ -1211,24 +1211,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
    
     elif query.data == "ok":
-        try:
+        
             
-            await client.send_message(
-                text=query.message.text,
-                chat_id=query.message.chat.id,
-                parse_mode=enums.ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(
+        await client.send_message(
+            text=query.message.text,
+            chat_id=query.message.chat.id,
+            parse_mode=enums.ParseMode.HTML,
+        reply_markup=InlineKeyboardMarkup(
+                    [
                         [
-                            [
-                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
-                            ],
-                            [
-                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/Nasrani_update"),
-                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
-                            ]                            
-                        ]
-                    )
-                )        
+                            InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                        ],
+                        [
+                            InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/Nasrani_update"),
+                            InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
+                        ]                            
+                    ]
+                )
+            )        
     
 
    
