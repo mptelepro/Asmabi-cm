@@ -386,7 +386,7 @@ async def advantage_spoll_choker(bot, query):
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[
-                    InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
+                    InlineKeyboardButton("📢 Updates Channel 📢", url = reqstr.link)
                 ],[
                     InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
                 ]]
