@@ -397,7 +397,7 @@ async def advantage_spoll_choker(bot, query):
                 buttons = [[
                     InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
                 ],[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="grp_checksub")
+                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="ok")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 await bot.send_message(
@@ -413,7 +413,38 @@ async def advantage_spoll_choker(bot, query):
 
 # ❤️❤️❤️❤️
 
-
+@Client.on_callback_query(filters.regex(r"^ok#"))
+async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
+    try:
+        reference_id = True
+        if query.message.reply_to_message is not None:
+            file = query.message.reply_to_message
+            try:
+                reference_id = file.text.split()[2]
+            except Exception:
+                pass
+            try:
+                reference_id = file.caption.split()[2]
+            except Exception:
+                pass
+            await client.send_message(
+                text=query.message.text,
+                chat_id=int(reference_id),
+                parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                            ],
+                            [
+                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/Nasrani_update"),
+                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
+                            ]                            
+                        ]
+                    )
+                )        
+    except Exception as e:
+        logger.exception(e)
     
 
     
