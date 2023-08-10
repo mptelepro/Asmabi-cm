@@ -386,7 +386,7 @@ async def advantage_spoll_choker(bot, query):
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
+                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="option")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 k = await query.message.edit(script.MVE_NT_FND,
@@ -1672,6 +1672,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await asyncio.sleep(60)
                 await m.delete()
 
+    elif query.data.startswith("option"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("Uɴᴀᴠᴀɪʟᴀʙʟᴇ", callback_data=f"unavailable#{from_user}"),
+                InlineKeyboardButton("Uᴘʟᴏᴀᴅᴇᴅ", callback_data=f"uploaded#{from_user}")
+             ],[
+                InlineKeyboardButton("Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ", callback_data=f"already_available#{from_user}")
+              ]]
+        btn2 = [[
+            InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
+            ]]
+        
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Hᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴs !")
+        else:
+            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+          
+
+
+   
+
+    
     elif query.data.startswith("show_option"):
         ident, from_user = query.data.split("#")
         btn = [[
