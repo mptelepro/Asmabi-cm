@@ -413,7 +413,7 @@ async def advantage_spoll_choker(bot, query):
                 await bot.send_photo(
                     photo=imdb.get('poster'),
                     chat_id=ADMIN,
-                    text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
+                    caption=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML
                 )
