@@ -1725,7 +1725,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.startswith("uploaded"):
         ident, from_user = query.data.split("#")
-        link = await bot.create_chat_invite_link(int(query.message.chat.id))
+        link = await client.create_chat_invite_link(int(query.message.chat.id))
         btn = [[
                 InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{from_user}")
               ]]
