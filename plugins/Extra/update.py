@@ -154,7 +154,7 @@ async def up(bot, message):
             buttons = [[
                 InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=BATCH_LINK)
             ], [
-                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url=(BATCH_LINK))
+                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/batchfiles_store")
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
