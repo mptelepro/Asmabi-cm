@@ -1724,12 +1724,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
-        _, user, movie_ = query.data.split('#')
-        movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-        movie = movies[(int(movie_))]
-        movie = re.sub(r"[:\-]", " ", movie)
-        movie = re.sub(r"\s+", " ", movie).strip()
-        k = (movie, files, offset, total_results)
+#        _, user, movie_ = query.data.split('#')
+#        movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+#        movie = movies[(int(movie_))]
+#        movie = re.sub(r"[:\-]", " ", movie)
+#        movie = re.sub(r"\s+", " ", movie).strip()
+#        k = (movie, files, offset, total_results)
                 
         reqstr1 = query.from_user.id if query.from_user else 0
         reqstr = await bot.get_users(reqstr1)
@@ -1749,7 +1749,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            await query.message.edit_text(script.NORSLTS.format(reqstr.id, reqstr.mention, movie))
+            await query.message.edit_text(script.NORSLTS.format(reqstr.id, reqstr.mention))
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
