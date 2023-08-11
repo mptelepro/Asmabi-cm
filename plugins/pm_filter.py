@@ -1755,7 +1755,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            await query.message.edit_text(f"🥰 {search} 🥰{text}")
+            await query.message.edit_text(f"🥰 {search}  🥰 {men} 🥰 {mention}")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
