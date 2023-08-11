@@ -1728,13 +1728,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
-        conten = query.message.reply_to_message.text
-        imdb = await get_poster(conten) if IMDB else None
+        content = query.message.reply_to_message.text
+        imdb = await get_poster(content) if IMDB else None
         
         ident, from_user = query.data.split("#")
         link = await client.create_chat_invite_link(int(query.message.chat.id))
+        k = await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
+
         btn = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", "select")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", "k")
               ]]
         btn2 = [[
                  InlineKeyboardButton('Jᴏɪɴ Cʜᴀɴɴᴇʟ', url=link.invite_link),
@@ -1750,7 +1752,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text = query.message.reply_to_message.text
             info = await client.get_users(user_ids=query.message.from_user.id)
             reference_id = int(query.message.chat.id)
-
+            
             k = await client.edit_message_media(
                 query.message.chat.id, 
                 query.message.id, 
