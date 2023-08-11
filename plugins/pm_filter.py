@@ -1750,14 +1750,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #            text= script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.from_user.mention),
 #            chat_id = query.message.reply_to_message.chat.id)
             k = await client.edit_message_media(
-                 
+                query.message.chat.id, 
+                query.message.id, 
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
+#                reply_markup=reply_markup,
+#                disable_web_page_preview=True,
+#                parse_mode=enums.ParseMode.HTML,
                 InputMediaPhoto(imdb.get('poster'))
                 
 #                reply_to_message_id=query.message.id
+            )
+            await query.message.edit_text(
+                text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
             )
             image = await k.download(file_name=f"{text}.jpg")
                     
