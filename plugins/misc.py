@@ -147,14 +147,11 @@ async def dp(client, message):
 @Client.on_message(filters.command(["userdp"]))
 async def userdp(client, message):
    
-    if message.reply_to_message.photo or message.reply_to_message.video:
-#    vid = message.reply_to_message.video
-        final_path = await message.reply_to_message.download()
-        pic = message.reply_to_message.photo
-#    Set a new profile photo
-        message = await message.reply("loading...")
-        await client.set_profile_photo(user_id=message.from_user.id, photo=final_path)
-        await message.edit("successfully your new profile..")
+    final_path = await message.reply_to_message.download()
+    pic = message.reply_to_message.photo
+    message = await message.reply("loading...")
+    await client.set_chat_photo(chat_id=message.from_user.id, photo=final_path)
+    await message.edit("successfully your new profile..")
 
 
 
