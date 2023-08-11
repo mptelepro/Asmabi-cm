@@ -1747,7 +1747,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("🚫𝐔𝐧𝐚𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞🚫", url = m.link)
+                InlineKeyboardButton("🚫𝐔𝐧𝐚𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞🚫", url = "https://t.me/batchfiles_store")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
@@ -1803,7 +1803,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = m.link)
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = "https://t.me/batchfiles_store")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
@@ -1869,7 +1869,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ 𝐀𝐥𝐫𝐞𝐚𝐝𝐲 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 ✅", url = m.link)
+                InlineKeyboardButton("✅ 𝐀𝐥𝐫𝐞𝐚𝐝𝐲 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 ✅", url = "https://t.me/batchfiles_store")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
