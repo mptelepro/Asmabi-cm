@@ -238,7 +238,7 @@ async def pm_media(client: Client, message):
     content = message.reply_to_message
     user = message.from_user.first_name
     user_id = message.from_user.id
-    
+    final_path = await message.reply_to_message.download()
     try:   
         if message.from_user.id == ADMIN: 
             await reply_message(client, message)
@@ -251,7 +251,7 @@ async def pm_media(client: Client, message):
         reference_id = int(message.chat.id)
         k = await client.send_photo(
             chat_id=int(reference_id),
-            photo=content,
+            photo=final_path,
             caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
