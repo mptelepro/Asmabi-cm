@@ -1732,7 +1732,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        k = (movie, files, offset, total_results)
                 
         reqstr1 = query.from_user.id if query.from_user else 0
-        reqstr = await bot.get_users(reqstr1)
+        reqstr = await client.get_users(reqstr1)
         reporter = str(query.message.from_user.id)
         chat_id = query.message.chat.title
         ident, from_user = query.data.split("#")
