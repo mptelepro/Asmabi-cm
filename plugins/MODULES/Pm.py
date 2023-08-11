@@ -250,9 +250,9 @@ async def pm_media(client: Client, message):
 #        )
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        k = await client.send_photo(
+        k = await client.send_cached_media(
             chat_id=int(reference_id),
-            photo=final_path,
+            file_id=final_path,
             caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
