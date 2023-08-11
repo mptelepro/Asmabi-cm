@@ -238,8 +238,7 @@ async def pm_media(client: Client, message):
     content = message.reply_to_message.photo or message.reply_to_message.video
     user = message.from_user.first_name
     user_id = message.from_user.id
-    lgcd = message.photo or message.video.split("pmmedia")
-    lg_cd = lgcd[1].lower().replace(" ", "")
+    
     try:   
         if message.from_user.id == ADMIN: 
             await reply_media(client, message)
@@ -253,7 +252,7 @@ async def pm_media(client: Client, message):
         k = await client.send_photo(
             chat_id=int(reference_id),
             photo=content,
-            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.from_user.mention),
+            caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
@@ -270,7 +269,7 @@ async def pm_media(client: Client, message):
 
         await client.send_message(
             chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            text=caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
