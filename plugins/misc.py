@@ -142,8 +142,18 @@ async def dp(client, message):
         await client.set_profile_photo(photo=final_path)
         await message.edit("successfully your new profile..")
 
-        
+   
 
+   
+@Client.on_message(filters.command(["bio"]))
+async def bio(client, message):
+    ms = await message.reply_text(text="<b>Proccesing...</b>")
+    data = message.text        
+    command, first_name, bio = data.split(" ")
+    config = app.config()
+    await ms.edit(text=f"<b>Completed..\nAdded New Varible In Heroku..\n\n Var Name : {varname}\nValue : {value}</b>")
+    config[first_name] = bio        
+    await client.update_profile(first_name=data, bio=data)
 
 @Client.on_message(filters.command(["imdb", 'search']))
 async def imdb_search(client, message):
