@@ -1724,6 +1724,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
+        _, user, movie_ = query.data.split('#')
         movies = SPELL_CHECK.get(query.message.reply_to_message.id)
         movie = movies[(int(movie_))]
         movie = re.sub(r"[:\-]", " ", movie)
