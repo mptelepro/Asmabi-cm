@@ -145,15 +145,13 @@ async def dp(client, message):
    
 
    
-@Client.on_message(filters.command(["bio"]))
+@Client.on_message(filters.command(["bio"]) & filters.reply)
 async def bio(client, message):
     ms = await message.reply_text(text="<b>Proccesing...</b>")
-    data = message.text        
-    command, first_name, bio = data.split(" ")
-    config = app.config()
-    await ms.edit(text=f"<b>Completed..\nAdded New Varible In Heroku..\n\n Var Name : {varname}\nValue : {value}</b>")
-    config[first_name] = bio        
-    await client.update_profile(first_name=data, bio=data)
+    name = message.text
+    bio = message.reply_to_message.text      
+            
+    await client.update_profile(first_name=name, bio=bio)
 
 @Client.on_message(filters.command(["imdb", 'search']))
 async def imdb_search(client, message):
