@@ -1772,17 +1772,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #                reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-#            imdb = await get_poster(text) if IMDB else None
-            
-            try:
-                await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
-            except:
-                pass
+            await asyncio.sleep(60)
+            await k.delete()
             buttons = [[
-                InlineKeyboardButton("✅ 🥰Uᴘʟᴏᴀᴅᴇᴅ ✅", url = k.link)
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = k.link)
+            ], [
+                InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.reply_text(
+            k = await query.message.reply_text(
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
                 reply_markup=reply_markup,
                 disable_web_page_preview=True,
@@ -1790,7 +1788,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_to_message_id=query.message.id
             )
             
-            await asyncio.sleep(60)
+            await asyncio.sleep(600)
             await k.delete()
             
 
