@@ -380,6 +380,9 @@ async def advantage_spoll_choker(bot, query):
                 k = (movie, files, offset, total_results)
                 await auto_filter(bot, query, k)
             else:
+                conten = query.message.reply_to_message.text
+                imdb = await get_poster(conten) if IMDB else None
+                
                 reqstr1 = query.from_user.id if query.from_user else 0
                 reqstr = await bot.get_users(reqstr1)
                 reporter = str(query.message.from_user.id)
@@ -407,7 +410,8 @@ async def advantage_spoll_choker(bot, query):
                     InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                await bot.send_message(
+                await bot.send_photo(
+                    photo=imdb.get('poster'),
                     chat_id=ADMIN,
                     text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
                     reply_markup=reply_markup,
