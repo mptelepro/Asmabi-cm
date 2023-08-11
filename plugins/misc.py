@@ -139,7 +139,7 @@ async def dp(client, message):
         pic = message.reply_to_message.photo
 #    Set a new profile photo
         message = await message.reply("loading...")
-        await client.set_profile_photo(photo=final_path)
+        await client.set_profile_photo(photo=final_path, has_spoiler=True)
         await message.edit("successfully your new profile..")
 
         
