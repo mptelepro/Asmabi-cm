@@ -1728,7 +1728,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
-        content = query.message.reply_to_message.text
+        content = query.message.text
         imdb = await get_poster(content) if IMDB else None
         
         ident, from_user = query.data.split("#")
@@ -1747,7 +1747,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
-            content = query.message.text
+            
             
             text = query.message.reply_to_message.text
             info = await client.get_users(user_ids=query.message.from_user.id)
@@ -1850,7 +1850,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
    
     elif query.data == "update":
         query_id = query.message.chat.id
-        content = query.message.reply_to_message.text
+        content = query.message.text
         imdb = await get_poster(content) if IMDB else None
         await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
 
