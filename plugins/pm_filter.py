@@ -1724,6 +1724,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
+        conten = query.message.reply_to_message.text
+        imdb = await get_poster(conten) if IMDB else None
+
         ident, from_user = query.data.split("#")
         link = await client.create_chat_invite_link(int(query.message.chat.id))
         btn = [[
@@ -1753,11 +1756,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode=enums.ParseMode.HTML
 #                reply_to_message_id=query.message.id
             )
-            image = await text.download(file_name=f"{text}.jpg")
+            image = await imdb.download(file_name=f"{text}.jpg")
                     
             im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
+            im.save(f"{text}.webp", "webp")
+            sticker = f"{text}.webp"
             await query.message.reply_sticker(
                 sticker=sticker,
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
