@@ -132,27 +132,14 @@ async def who_is(client, message):
 
 @Client.on_message(filters.command(["dp"]))
 async def dp(client, message):
-    
-    from_chat = await db.total_chat_count(message.chat.id)
-    chat_photo = from_chat.photo
+    if message.reply_to_message.photo or message.reply_to_message.video:
+    vid = message.reply_to_message.video
+    pic = message.reply_to_message.photo
+#    Set a new profile photo
+        await client.set_profile_photo(photo=pic)
+    else: 
 
-    if chat_photo:
-        local_user_photo = await client.download_media(
-            message=chat_photo.small_file_id
-        )
-        buttons = [[
-            InlineKeyboardButton('🔐 Close', callback_data='close_data')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=local_user_photo,
-            spoiler=True,
-            quote=True,
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML,
-            disable_notification=True
-        )
-        os.remove(local_user_photo)
+        await client.set_profile_photo(video=vid)
 
 
 
