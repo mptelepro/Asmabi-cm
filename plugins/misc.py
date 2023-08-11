@@ -138,9 +138,9 @@ async def dp(client, message):
         final_path = await message.reply_to_message.download()
         pic = message.reply_to_message.photo
 #    Set a new profile photo
-        k = await message.edit_text("loading...")
+        message = await message.reply("loading...")
         await client.set_profile_photo(photo=final_path)
-        await k.edit_text("successfully your new profile..")
+        await message.edit("successfully your new profile..")
 
         
 
