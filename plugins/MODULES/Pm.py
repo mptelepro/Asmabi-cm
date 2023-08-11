@@ -235,13 +235,13 @@ async def reply_media(client: Client, message):
 
 @Client.on_message(filters.command("pmmedia") & filters.media)
 async def pm_media(client: Client, message):
-    content = message.reply_to_message.photo or message.reply_to_message.video
+    content = message.reply_to_message
     user = message.from_user.first_name
     user_id = message.from_user.id
     
     try:   
         if message.from_user.id == ADMIN: 
-            await reply_media(client, message)
+            await reply_message(client, message)
             return
 #        await message.reply_text(
 #        text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ <a href=https://telegram.me/+ps2An00KwZYwNTRl>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ</a> ᴏʀ ᴄʟɪᴄᴋ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ 👇</b>",   
