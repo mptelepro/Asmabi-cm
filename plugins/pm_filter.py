@@ -1726,7 +1726,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("uploaded"):
         conten = query.message.reply_to_message.text
         imdb = await get_poster(conten) if IMDB else None
-
+        
         ident, from_user = query.data.split("#")
         link = await client.create_chat_invite_link(int(query.message.chat.id))
         btn = [[
@@ -1742,47 +1742,32 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            name_format = f"okda"
+            
             text = query.message.reply_to_message.text
             info = await client.get_users(user_ids=query.message.from_user.id)
             reference_id = int(query.message.chat.id)
-#            m = await client.send_message(
-#            text = script.NO_TEXT.format(query.from_user.mention, text),
-#            text= script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.from_user.mention),
-#            chat_id = query.message.reply_to_message.chat.id)
+
             k = await client.edit_message_media(
                 query.message.chat.id, 
                 query.message.id, 
-#                text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
-#                reply_markup=reply_markup,
-#                disable_web_page_preview=True,
-#                parse_mode=enums.ParseMode.HTML,
                 InputMediaPhoto(imdb.get('poster'))
             )
-                
-#                reply_to_message_id=query.message.id
-            
+                            
             await query.message.edit_text(
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-            image = await k.download(file_name=f"{name_format}.jpg")
-                    
-            im = Image.open(image).convert("RGB")
-            im.save(f"{name_format}.webp", "webp")
-            sticker = f"{name_format}.webp"
-            await query.message.reply_sticker(
-                sticker=sticker,
+            
+            await query.message.reply_text(
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
                 reply_markup=reply_markup,
                 disable_web_page_preview=True,
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id
             )
-            os.remove(sticker)
-            os.remove(image)
-#            await asyncio.sleep(60)
+            
+            await asyncio.sleep(60)
             await k.delete()
             
 
