@@ -1740,8 +1740,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
             text = query.message.reply_to_message.text
+            info = await client.get_users(user_ids=query.message.from_user.id)
+            reference_id = int(query.message.chat.id)
             await client.send_message(
-            text= f"<b><strike> {user.mention} {text} {content}</strike></b>",
+#            text= f"<b><strike> {user.mention} {text} {content}</strike></b>",
+            text= script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.from_user.mention),
             chat_id = query.message.reply_to_message.chat.id)
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
