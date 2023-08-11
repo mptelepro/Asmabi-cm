@@ -127,6 +127,29 @@ async def who_is(client, message):
         )
     await status_message.delete()
 
+@Client.on_message(filters.command(["dp"]))
+async def dp(client, message):
+    chat_photo = from_chat.photo
+    if chat_photo:
+        local_user_photo = await client.download_media(
+            message=chat_photo.small_file_id
+        )
+        buttons = [[
+            InlineKeyboardButton('🔐 Close', callback_data='close_data')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_photo(
+            photo=local_user_photo,
+            spoiler=True
+            quote=True,
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML,
+            disable_notification=True
+        )
+        os.remove(local_user_photo)
+
+
+
 @Client.on_message(filters.command(["imdb", 'search']))
 async def imdb_search(client, message):
     if ' ' in message.text:
