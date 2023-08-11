@@ -235,10 +235,10 @@ async def reply_media(client: Client, message):
 
 @Client.on_message(filters.command("pmmedia") & filters.media)
 async def pm_media(client: Client, message):
-    content = message.reply_to_message.media
+    content = message.reply_to_message.photo or message.reply_to_message.video
     user = message.from_user.first_name
     user_id = message.from_user.id
-    lgcd = message.media.split("pmmedia")
+    lgcd = message.photo or message.video.split("pmmedia")
     lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
