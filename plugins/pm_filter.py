@@ -1730,7 +1730,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        movie = re.sub(r"[:\-]", " ", movie)
 #        movie = re.sub(r"\s+", " ", movie).strip()
 #        k = (movie, files, offset, total_results)
-                
+        content = query.message.text         
         reqstr1 = query.from_user.id if query.from_user else 0
         reqstr = await client.get_users(reqstr1)
         reporter = str(query.message.from_user.id)
@@ -1749,7 +1749,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            await query.message.edit_text(script.NORSLTS.format(reqstr.id, reqstr.mention))
+            await query.message.edit_text(f" {content} {user.mention}")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
