@@ -1728,8 +1728,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
-        content = query.message.text
-        imdb = await get_poster(content) if IMDB else None
+        conten = query.message.reply_to_message.text
+        imdb = await get_poster(conten) if IMDB else None
         
         ident, from_user = query.data.split("#")
         link = await client.create_chat_invite_link(int(query.message.chat.id))
@@ -1764,7 +1764,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #                reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-            imdb = await get_poster(text) if IMDB else None
+#            imdb = await get_poster(text) if IMDB else None
             
             try:
                 await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
