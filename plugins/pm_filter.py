@@ -2372,7 +2372,7 @@ async def auto_filter(client, msg, spoll=False):
             
             search = message.text
             
-            hm=await message.reply_text(f"<b><i>📥𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
+            m=await message.reply_text(f"<b><i>📥𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
 
             
         
@@ -2394,7 +2394,7 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
-                await hm.delete()
+                await m.delete()
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
@@ -2532,8 +2532,8 @@ async def auto_filter(client, msg, spoll=False):
         try:
             
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            
             await m.delete()
-            await hm.delete()
             
             
             try:
