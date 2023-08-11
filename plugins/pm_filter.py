@@ -1730,7 +1730,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        movie = re.sub(r"[:\-]", " ", movie)
 #        movie = re.sub(r"\s+", " ", movie).strip()
 #        k = (movie, files, offset, total_results)
-         m = query.message.reply_to_message.id
+        m = query.message.reply_to_message.id
         content = query.message.reply_to_message.text
 #        content = query.message.text         
         reqstr1 = query.from_user.id if query.from_user else 0
