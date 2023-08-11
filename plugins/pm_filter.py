@@ -1725,7 +1725,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.startswith("uploaded"):
         ident, from_user = query.data.split("#")
-        link = await client.create_chat_invite_link(int(query.message.chat.id))
+        link = await client.create_chat_invite_link(int(query.message.from_user.id))
         btn = [[
                 InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{from_user}")
               ]]
@@ -1739,7 +1739,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await client.send_message(
+            text= f"<b><strike>{content}</strike></b>",
+            chat_id = query.message.reply_to_message.from_user.id)
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
