@@ -1742,6 +1742,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
+            name_format = f"okda"
             text = query.message.reply_to_message.text
             info = await client.get_users(user_ids=query.message.from_user.id)
             reference_id = int(query.message.chat.id)
@@ -1766,11 +1767,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-            image = await k.download(file_name=f"{text}.jpg")
+            image = await k.download(file_name=f"{name_format}.jpg")
                     
             im = Image.open(image).convert("RGB")
-            im.save(f"{text}.webp", "webp")
-            sticker = f"{text}.webp"
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
             await query.message.reply_sticker(
                 sticker=sticker,
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
