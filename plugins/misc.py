@@ -140,7 +140,7 @@ async def dp(client, message):
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
             photo=local_user_photo,
-            spoiler=True
+            spoiler=True,
             quote=True,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
