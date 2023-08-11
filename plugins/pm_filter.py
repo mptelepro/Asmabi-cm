@@ -136,7 +136,7 @@ async def give_filter(client, message):
                     InlineKeyboardButton("⚠️ 𝐃𝐞𝐥𝐞𝐭𝐞 ⚠️", callback_data="check_delete")
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
-                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {content} \n𝐋𝐚𝐬𝐭 𝐖𝐚𝐫𝐧𝐢𝐧𝐠...⚠️",
+                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {search} \n𝐋𝐚𝐬𝐭 𝐖𝐚𝐫𝐧𝐢𝐧𝐠...⚠️",
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML)
                     await asyncio.sleep(5)
