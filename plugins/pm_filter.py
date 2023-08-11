@@ -1724,6 +1724,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
     elif query.data.startswith("uploaded"):
+        movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+        movie = movies[(int(movie_))]
+        movie = re.sub(r"[:\-]", " ", movie)
+        movie = re.sub(r"\s+", " ", movie).strip()
         k = (movie, files, offset, total_results)
                 
         reqstr1 = query.from_user.id if query.from_user else 0
