@@ -252,7 +252,7 @@ async def pm_media(client: Client, message):
         reference_id = int(message.chat.id)
         k = await client.send_cached_media(
             chat_id=int(reference_id),
-            file_id=final_path,
+            file_id=content,
             caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
