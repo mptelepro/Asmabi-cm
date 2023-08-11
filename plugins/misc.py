@@ -129,7 +129,10 @@ async def who_is(client, message):
 
 @Client.on_message(filters.command(["dp"]))
 async def dp(client, message):
+    
+    from_chat = await db.total_chat_count(message.chat.id)
     chat_photo = from_chat.photo
+
     if chat_photo:
         local_user_photo = await client.download_media(
             message=chat_photo.small_file_id
