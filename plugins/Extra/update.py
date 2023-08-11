@@ -225,7 +225,7 @@ async def print(bot, message):
             buttons = [[
                 InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=BATCH_LINK)
             ], [
-                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url="https://t.me/nasrani_update")
+                InlineKeyboardButton(f"☘️ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ☘️", url=PRINT)
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             await bot.send_sticker(
