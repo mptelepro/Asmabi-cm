@@ -1732,6 +1732,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        k = (movie, files, offset, total_results)
         m = query.message.reply_to_message.id
         content = query.message.reply_to_message.text
+        search = query.message.text
+        text = query.message.reply_to_message
+        men = query.from_user.first_name
+        mention = query.from_user.mention
 #        content = query.message.text         
         reqstr1 = query.from_user.id if query.from_user else 0
         reqstr = await client.get_users(reqstr1)
@@ -1751,7 +1755,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
-            await query.message.edit_text(f"🥰{m}🥰{query.message.from_user.mention}🥰 {reporter} 🥰{content} {user.mention}")
+            await query.message.edit_text(f"🥰{m}🥰{query.message.from_user.mention}🥰 {search} 🥰{text} 🥰 {men} {mention}")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
