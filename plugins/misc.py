@@ -133,14 +133,13 @@ async def who_is(client, message):
 @Client.on_message(filters.command(["dp"]))
 async def dp(client, message):
     if message.reply_to_message.photo or message.reply_to_message.video:
-    vid = message.reply_to_message.video
-    pic = message.reply_to_message.photo
+#    vid = message.reply_to_message.video
+        pic = message.reply_to_message.photo
 #    Set a new profile photo
         await client.set_profile_photo(photo=pic)
-    else: 
+    
 
-        await client.set_profile_photo(video=vid)
-
+        
 
 
 @Client.on_message(filters.command(["imdb", 'search']))
