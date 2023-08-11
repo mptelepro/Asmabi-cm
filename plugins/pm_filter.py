@@ -1774,7 +1774,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = k.link)
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = m.link)
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
