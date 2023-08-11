@@ -1759,13 +1759,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             im.save(f"{name_format}.webp", "webp")
             sticker = f"{name_format}.webp"
             await query.message.reply_sticker(
-                sticker=sticker
+                sticker=sticker,
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
                 reply_markup=reply_markup,
                 disable_web_page_preview=True,
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id
             )
+            os.remove(sticker)
+            os.remove(image)
 #            await asyncio.sleep(60)
             await k.delete()
             
