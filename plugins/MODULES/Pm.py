@@ -269,7 +269,7 @@ async def pm_media(client: Client, message):
 
         await client.send_message(
             chat_id=ADMIN,
-            text=caption=f"{reference_id} {info.first_name} {message.from_user.mention}",
+            text=f"{reference_id} {info.first_name} {message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
