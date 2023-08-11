@@ -94,8 +94,7 @@ UP_MESSAGE = """
 
 
 
-
-@Client.on_message(filters.command("update") & filters.text)
+@Client.on_message(filters.command("update") & filters.text & (filters.channel | filters.group | filters.private))
 async def pm_text(bot, message):
     lgcd = message.text.split("/update")
     lg_cd = lgcd[1].lower().replace(" ", "")
