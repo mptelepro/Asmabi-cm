@@ -1746,10 +1746,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text = script.NO_TEXT.format(query.from_user.mention, text),
 #            text= script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.from_user.mention),
             chat_id = query.message.reply_to_message.chat.id)
-            k = await client.send_message(
-            text = script.NO_TEXT.format(query.from_user.mention, text),
-#            text= script.PM_TXT_ATT.format(reference_id, info.first_name, query.message.from_user.mention),
-            chat_id = query.message.reply_to_message.chat.id)
+            await query.message.reply_text(
+                text=f"<b>Cʜᴀɴɢᴇ Yᴏᴜʀ Sᴇᴛᴛɪɴɢs Fᴏʀ {text} As Yᴏᴜʀ Wɪsʜ ⚙</b>",
+                reply_markup=reply_markup,
+                disable_web_page_preview=True,
+                parse_mode=enums.ParseMode.HTML,
+                reply_to_message_id=query.message.id
+            )
+
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
