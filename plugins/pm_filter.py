@@ -1761,7 +1761,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             info = await client.get_users(user_ids=query.message.from_user.id)
             reference_id = int(query.message.chat.id)
             
-            k = await client.edit_message_media(
+            m = await client.edit_message_media(
                 query.message.chat.id, 
                 query.message.id, 
                 InputMediaPhoto(imdb.get('poster'))
@@ -1772,8 +1772,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #                reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-            await asyncio.sleep(60)
-            await k.delete()
+            
             buttons = [[
                 InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = k.link)
             ], [
@@ -1787,7 +1786,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id
             )
-            
+            await m.delete()
             await asyncio.sleep(600)
             await k.delete()
             
