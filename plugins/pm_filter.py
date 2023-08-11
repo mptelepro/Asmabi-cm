@@ -1758,7 +1758,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InputMediaPhoto(imdb.get('poster'))
                 
 #                reply_to_message_id=query.message.id
-  #          )
+            )
             image = await k.download(file_name=f"{text}.jpg")
                     
             im = Image.open(image).convert("RGB")
