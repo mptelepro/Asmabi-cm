@@ -233,12 +233,13 @@ async def reply_media(client: Client, message):
 
 
 
-@Client.on_message(filters.command("pmmedia") & filters.media)
+@Client.on_message(filters.command("pmmedia") & filters.reply)
 async def pm_media(client: Client, message):
+    final_path = await message.reply_to_message.download()
     content = message.reply_to_message
     user = message.from_user.first_name
     user_id = message.from_user.id
-    final_path = await message.reply_to_message.download()
+    
     try:   
         if message.from_user.id == ADMIN: 
             await reply_message(client, message)
