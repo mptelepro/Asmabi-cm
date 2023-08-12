@@ -86,7 +86,8 @@ async def left(client,message):
 	if (message.reply_to_message):
 		try:
 			lgcd = message.reply_to_message.text.split("/tr")
-			lg_cd = lgcd[1].lower().replace(" ", "")
+#			lg_cd = lgcd[1].lower().replace(" ", "")
+		        lg_cd =	lgcd[1].lower().replace.message.text.split(" ", 1)[1]
 #			lg_cd = message.text.split(" ")
 #  		        lg_cd = message.text.split(None, 1)[1]
 			tr_text = message.reply_to_message.text
