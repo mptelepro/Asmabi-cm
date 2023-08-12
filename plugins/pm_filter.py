@@ -410,18 +410,44 @@ async def advantage_spoll_choker(bot, query):
                     InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                await bot.send_photo(
+                m = await bot.send_photo(
                     photo=imdb.get('poster'),
                     chat_id=ADMIN,
                     caption=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML
                 )
+                
+                name_format = f"okda"
+                image = await m.download(file_name=f"{name_format}.jpg")
+                    
+                im = Image.open(image).convert("RGB")
+                im.save(f"{name_format}.webp", "webp")
+                sticker = f"{name_format}.webp"
+                buttons = [[
+                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+                    InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data="update")
+                    
+                ], [
+                    InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
+                
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
+           
+                sp = await client.send_sticker(
+                chat_id=AUTH_CHANNEL,
+                sticker=sticker,            
+                reply_markup=reply_markup,                       
+                )
                 await asyncio.sleep(3600)
                 await k.delete()
-            
                 
-
+                os.remove(sticker)
+                os.remove(image)
+#                    await asyncio.sleep(10)
+#                    await k.delete()
+                
+               
 
 
 # ❤️❤️❤️❤️
