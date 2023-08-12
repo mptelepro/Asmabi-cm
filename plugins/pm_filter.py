@@ -1010,7 +1010,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             typed = query.message.reply_to_message.from_user.id
         except:
             typed = query.from_user.id
-        ident, key file_id = query.data.split("#")
+        ident, key, file_id = query.data.split("#")
 #        
         if int(req) not in [query.from_user.id, 0]:
             return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
