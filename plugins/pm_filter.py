@@ -1127,7 +1127,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{key}")
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url="https://t.me/nasrani.update")
                     ], [
                         InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
                 
