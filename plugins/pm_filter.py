@@ -1819,7 +1819,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker = f"{name_format}.webp"
             buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="soon")
+                InlineKeyboardButton(f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...", callback_data="soon")
                     
             ], [
                 InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
@@ -2085,24 +2085,43 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
    
     elif query.data == "soon":
-#        grp_id = query.message.chat.id
-#        title = query.message.chat.title
-        buttons = [[
-            InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')                            
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-#        m=await client.edit_message_media(
-#            query.message.chat.id, 
-#            query.message.id, 
-#            InputMediaPhoto(random.choice(PICS))
-#        )
-        k=await query.message.edit_text(
-            text=f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await query.answer(MSG_ALRT)
-        
+        if query.from_user.id in ADMINS:
+            buttons = [[
+                InlineKeyboardButton('⌛️𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...⌛️', callback_data="done")                            
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            k=await query.message.edit_text(
+                text=f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
+            await query.answer(MSG_ALRT)            
+        else:
+            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+
+
+    elif query.data == "done":
+        content = query.message.reply_to_message.text
+        imdb = await get_poster(content) if IMDB else None
+#        await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
+
+        if query.from_user.id in ADMINS:
+            buttons = [[
+                InlineKeyboardButton('✅ 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅', callback_data="done")                            
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            k=await query.message.edit_text(
+                text=f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
+            await query.answer(MSG_ALRT)            
+        else:
+            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+
+
+
+    
 
     elif query.data == "helps":
         buttons = [[
