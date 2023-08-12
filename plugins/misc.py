@@ -166,10 +166,10 @@ async def chatdp(client, message):
     await message.edit("successfully your new profile..")
                       
 
-@Client.on_message(filters.group & filters.text)
-async def set_chat_protected(client, message):
-    await client.set_chat_protected_content(chat_id=message.chat.id, protect_content=True)
-                             
+# @Client.on_message(filters.group & filters.text)
+
+
+
 @Client.on_message(filters.command(["imdb", 'search']))
 async def imdb_search(client, message):
     if ' ' in message.text:
