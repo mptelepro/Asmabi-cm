@@ -2111,7 +2111,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             k=await query.message.edit_text(
-                text=f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅",
+                text=f"🏷 𝐓𝐢𝐭𝐥𝐞 : {search} 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
