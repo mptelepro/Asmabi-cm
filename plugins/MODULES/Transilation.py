@@ -89,6 +89,7 @@ async def left(client,message):
 			lg_cd = message.text.split(" ")
 #  		        lg_cd = message.text.split(None, 1)[1]
 			tr_text = message.reply_to_message.text
+			fromt = i
 			translator = Translator()
 			translation = translator.translate(tr_text,dest = lg_cd)
 			try:
@@ -106,6 +107,7 @@ async def left(client,message):
 		except :
 			print("error")
 	else:
+		         fromt = i
 	                 m = await message.reply_photo(
                          photo=(SP),
                          caption=f"translated from {fromt.capitalize()} to {to.capitalize()}\n\n```{translation.text}```",
