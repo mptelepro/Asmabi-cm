@@ -150,15 +150,6 @@ async def dp(client, message):
 
 
 
-@Client.on_message(filters.command(["userdp"]))
-async def userdp(client, message):
-   
-    final_path = await message.reply_to_message.download()
-    pic = message.reply_to_message.photo
-    message = await message.reply("loading...")
-    await client.set_chat_photo(chat_id=message.from_user.id, photo=final_path)
-    await message.edit("successfully your new profile..")
-
 
 
    
@@ -172,13 +163,6 @@ async def chatdp(client, message):
     await message.edit("successfully your new profile..")
                       
 
-@Client.on_message(filters.group)
-async def get_reactions(_: Client, message: Message) -> None:
-    rs = message.reply_to_message.reactions
-    if not rs:
-        await message.edit("<i>No reactions</i>")
-        return
-    await message.edit("\n".join(f"<code>{r.emoji}</code>: {r.count}" for r in rs))
 
 
 
