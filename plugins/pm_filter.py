@@ -1841,18 +1841,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
                 
             ]]
-            reply_markup = InlineKeyboardMarkup(buttons)         
-            await sp.edit_text(
-            text=f"𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
-            await m.delete()
-            await asyncio.sleep(600)
-            await k.delete()
-            await query.answer(MSG_ALRT)
-        else:
-            await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
+            reply_markup = InlineKeyboardMarkup(buttons) 
+            if query.from_user.id in ADMINS:
+                await sp.edit_text(
+                text=f"𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+                )
+                await m.delete()
+                await asyncio.sleep(600)
+                await k.delete()
+                await query.answer(MSG_ALRT)
+            else:
+                await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
 
     
     elif query.data.startswith("uploaded"):
