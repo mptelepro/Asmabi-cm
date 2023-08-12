@@ -418,32 +418,32 @@ async def advantage_spoll_choker(bot, query):
                     parse_mode=enums.ParseMode.HTML
                 )
                 
-                name_format = f"okda"
-                image = await m.download(file_name=f"{name_format}.jpg")
+#                name_format = f"okda"
+#                image = await m.download(file_name=f"{name_format}.jpg")
                     
-                im = Image.open(image).convert("RGB")
-                im.save(f"{name_format}.webp", "webp")
-                sticker = f"{name_format}.webp"
-                buttons = [[
-                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                    InlineKeyboardButton(f"✔️𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝✔️", callback_data="update")
-                    
-                ], [
-                    InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
-                
-                ]]
-                reply_markup = InlineKeyboardMarkup(buttons)
-           
-                sp = await bot.send_sticker(
-                chat_id=AUTH_CHANNEL,
-                sticker=sticker,            
-                reply_markup=reply_markup,                       
-                )
+#                im = Image.open(image).convert("RGB")
+#                im.save(f"{name_format}.webp", "webp")
+#                sticker = f"{name_format}.webp"
+#                buttons = [[
+#                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+#                    InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="update")
+#                    
+#                ], [
+#                    InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
+#                
+#                ]]
+#                reply_markup = InlineKeyboardMarkup(buttons)
+#           
+#                sp = await bot.send_sticker(
+#                chat_id=AUTH_CHANNEL,
+#                sticker=sticker,            
+#                reply_markup=reply_markup,                       
+#                )
                 await asyncio.sleep(3600)
                 await k.delete()
-                
-                os.remove(sticker)
-                os.remove(image)
+#                
+#                os.remove(sticker)
+#                os.remove(image)
 #                    await asyncio.sleep(10)
 #                    await k.delete()
                 
@@ -1867,6 +1867,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id
             )
+            name_format = f"okda"
+            image = await m.download(file_name=f"{name_format}.jpg")
+                    
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            buttons = [[
+                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+                InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="update")
+                    
+            ], [
+                InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
+                
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+           
+            sp = await client.send_sticker(
+            chat_id=AUTH_CHANNEL,
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )
+                
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
