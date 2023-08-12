@@ -17,7 +17,7 @@ class Config(object):
     else:
         LOG_CHANNEL = int(log_channel)
 
-    MONGO_STR = environ.get("DATABASE_URL", "")
+    DATABASE_URL = environ.get("DATABASE_URL", "")
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
