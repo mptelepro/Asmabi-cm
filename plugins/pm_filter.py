@@ -1010,20 +1010,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             typed = query.message.reply_to_message.from_user.id
         except:
             typed = query.from_user.id
-        ident, key, file_id = query.data.split("#")
-#        
-        if int(req) not in [query.from_user.id, 0]:
-            return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-        try:
-            offset = int(offset)
-        except:
-            offset = 0
-        if BUTTONS.get(key)!=None:
-            search = BUTTONS.get(key)
-        else:
-            search = FRESH.get(key)
-
-#        
+        ident, file_id = query.data.split("#")
+        
         files_ = await get_file_details(file_id)
         if not files_:
             return await query.answer('Nᴏ sᴜᴄʜ ғɪʟᴇ ᴇxɪsᴛ.')
@@ -1140,7 +1128,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     im.save(f"{name_format}.webp", "webp")
                     sticker = f"{name_format}.webp"
                     buttons = [[
-                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{key}")
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{file_id}")
                     ], [
                         InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
                 
