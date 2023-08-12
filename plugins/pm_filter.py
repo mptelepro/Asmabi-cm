@@ -1819,7 +1819,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker = f"{name_format}.webp"
             buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                InlineKeyboardButton(f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...", callback_data="soon")
+                InlineKeyboardButton(f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...", callback_data="done")
                     
             ], [
                 InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
@@ -1831,7 +1831,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_id=UPLOAD_CHANNEL,
             sticker=sticker,            
             reply_markup=reply_markup,                       
-            )            
+            ) 
+
+            buttons = [[
+                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+                InlineKeyboardButton(f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...", callback_data="done")
+                    
+            ], [
+                InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
+                
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+           
+            await query.sp.edit_text(
+            text=f"🕺𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...🕺",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
@@ -2091,7 +2107,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             k=await query.message.edit_text(
-                text=f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
+                text=f"🕺𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...🕺",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
@@ -2107,18 +2123,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         if query.from_user.id in ADMINS:
             buttons = [[
-                InlineKeyboardButton('✅ 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅', callback_data="done")                            
+                InlineKeyboardButton('✅ 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅', url="https://t.me/nasrani_update")                            
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             k=await query.message.edit_text(
-                text=f"🏷 𝐓𝐢𝐭𝐥𝐞 : {search} 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 ✅",
+                text=f"✅ 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 ✅",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
             await query.answer(MSG_ALRT)            
-        else:
-            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
-
+        
 
 
     
