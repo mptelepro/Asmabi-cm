@@ -1799,7 +1799,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("🚫𝐔𝐧𝐚𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞🚫", url = "https://t.me/batchfiles_store")
+                InlineKeyboardButton("🚫𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...🚫", url = "https://t.me/batchfiles_store")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
@@ -1811,6 +1811,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id
             )
+            name_format = f"okda"
+            image = await m.download(file_name=f"{name_format}.jpg")
+                    
+            im = Image.open(image).convert("RGB")
+            im.save(f"{name_format}.webp", "webp")
+            sticker = f"{name_format}.webp"
+            buttons = [[
+                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+                InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="soon")
+                    
+            ], [
+                InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
+                
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+           
+            sp = await client.send_sticker(
+            chat_id=UPLOAD_CHANNEL,
+            sticker=sticker,            
+            reply_markup=reply_markup,                       
+            )            
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
@@ -2061,6 +2082,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await m.delete()
         await k.delete()
 
+
+   
+    elif query.data == "soon":
+#        grp_id = query.message.chat.id
+#        title = query.message.chat.title
+        buttons = [[
+            InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')                            
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+#        m=await client.edit_message_media(
+#            query.message.chat.id, 
+#            query.message.id, 
+#            InputMediaPhoto(random.choice(PICS))
+#        )
+        k=await query.message.edit_text(
+            text=f"𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+        await query.answer(MSG_ALRT)
+        
 
     elif query.data == "helps":
         buttons = [[
