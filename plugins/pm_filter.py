@@ -1104,22 +1104,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await file_send.delete()
                     
 
-                    k = await client.send_message(
-                        chat_id=FILE_CHANNEL,                        
-                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                     InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-                                 ],
-                                 [
-                                 InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=(BATCH_LINK))
-                                 
-                                 ]                            
-                            ]
-                        )
-                    )
+#                    k = await client.send_message(
+#                        chat_id=FILE_CHANNEL,                        
+#                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+#                        parse_mode=enums.ParseMode.HTML,
+#                        reply_markup=InlineKeyboardMarkup(
+#                            [
+#                                [
+#                                     InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
+#                                 ],
+#                                 [
+#                                 InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=(BATCH_LINK))
+#                                 
+#                                 ]                            
+#                            ]
+#                        )
+#                    )
                     name_format = f"okda"
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     
@@ -1135,14 +1135,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup = InlineKeyboardMarkup(buttons)
            
                     sp = await client.send_sticker(
-                    chat_id=FILE_CHANNEL,
+                    chat_id=AUTH_CHANNEL,
                     sticker=sticker,            
                     reply_markup=reply_markup,                       
                     )
                     os.remove(sticker)
                     os.remove(image)
-                    await asyncio.sleep(10)
-                    await k.delete()                                                                                   
+#                    await asyncio.sleep(10)
+#                    await k.delete()                                                                                   
                     
 
                     
