@@ -40,6 +40,7 @@ for language in LANGUAGES:
 
 @Client.on_message(filters.command(["mll"]) & (filters.text | filters.caption))
 async def get_message(_, message):
+    
     text = message.reply_to_message.text
 #    text = message.text if message.text else message.caption
     await translate(message, text)
@@ -84,8 +85,8 @@ async def translate(update, text):
 async def left(client,message):
 	if (message.reply_to_message):
 		try:
-			lgcd = message.text.split("/tr")
-			lg_cd = lgcd[1].lower().replace(" ", " ")
+			lgcd = message.reply_to_message.text.split("/tr")
+			lg_cd = lgcd[1].lower().replace(" ", "")
 #			lg_cd = message.text.split(" ")
 #  		        lg_cd = message.text.split(None, 1)[1]
 			tr_text = message.reply_to_message.text
