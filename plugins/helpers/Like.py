@@ -12,9 +12,9 @@ except ModuleNotFoundError:
 
 
 ### Connecting to mongodb
-client = MongoClient(Config.MONGO_STR)
+client = MongoClient(Config.DATABASE_URL)
 db = client["ReactionButtonBot"]
-collection = db[str(Config.CHANNEL_ID)]
+collection = db[str(Config.LOG_CHANNEL)]
 
 
 ### Class
