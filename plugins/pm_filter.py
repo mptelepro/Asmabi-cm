@@ -1133,7 +1133,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data="update")
                     
                     ], [
-                        InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
+                        InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
                 
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
@@ -1964,7 +1964,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        mention = query.message.reply_to_message.from_user.mention
         await query.answer(f"{query.message.chat.title}", show_alert=True)
        
-
+    elif query.data == "dl":
+        await query.message.delete()
 
     elif query.data == "selectt":
         await query.answer(text=script.SELECT, show_alert=True)
