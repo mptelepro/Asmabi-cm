@@ -1120,7 +1120,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-                                                                                                       
+                    name_format = f"okda"
+                    image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
+                    
+                    im = Image.open(image).convert("RGB")
+                    im.save(f"{name_format}.webp", "webp")
+                    sticker = f"{name_format}.webp"
+                    buttons = [[
+                        InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data=f"sendfiles#{key}")
+                    ], [
+                        InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="check_delete")
+                
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+           
+                    sp = await client.send_sticker(
+                    chat_id=FILE_CHANNEL,
+                    sticker=sticker,            
+                    reply_markup=reply_markup,                       
+                    )
+                    os.remove(sticker)
+                    os.remove(image)
+                    await asyncio.sleep(10)
+                    await k.delete()                                                                                   
                     
 
                     
