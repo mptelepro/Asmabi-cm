@@ -1,4 +1,23 @@
 from pymongo import MongoClient
+
+from os import environ
+
+
+### Environment Variables
+class Config(object):
+    BOT_TOKEN = environ.get("BOT_TOKEN", "")
+    
+    APP_ID = int(environ.get("API_ID", 12345))
+    
+    API_HASH = environ.get("API_HASH", "")
+    
+    log_channel = environ.get("LOG_CHANNEL", None)
+    if ',' in log_channel:
+        LOG_CHANNEL = list(map(int, list(log_channel.split(','))))
+    else:
+        LOG_CHANNEL = int(log_channel)
+
+    MONGO_STR = environ.get("DATABASE_URL", "")
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -6,9 +25,9 @@ from pyrogram.types import (
 )
 from pyrogram.errors.exceptions import bad_request_400
 try:
-    from testexp.config import Config
+    from testexp.plugins.helpers.Like import Config
 except ModuleNotFoundError:
-    from config import Config
+    from plugins.helpers.Like import Config
 
 
 ### Connecting to mongodb
