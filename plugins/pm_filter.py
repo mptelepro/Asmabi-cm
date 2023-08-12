@@ -394,8 +394,7 @@ async def advantage_spoll_choker(bot, query):
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
-                reply_markup=reply_markup,
-                reply_to_message_id=query.message.id,                             
+                reply_markup=reply_markup,                             
                 parse_mode=enums.ParseMode.HTML
                 )           
                 
