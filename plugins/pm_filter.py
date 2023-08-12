@@ -1884,7 +1884,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
            
             sp = await client.send_sticker(
-            chat_id=AUTH_CHANNEL,
+            chat_id=UPLOAD_CHANNEL,
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
