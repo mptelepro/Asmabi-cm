@@ -1105,7 +1105,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await file_send.delete()
                     
 
-                    k = await client.send_message(
+                    await client.send_message(
                         chat_id=FILE_CHANNEL,                        
                         text=script.DONE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
@@ -1121,7 +1121,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-                    return 
+#                    return 
                     name_format = f"okda"
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     
@@ -1136,7 +1136,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
            
-                    sp = await client.send_sticker(
+                    sp = await query.message.reply_sticker(
                     chat_id=AUTH_CHANNEL,
                     sticker=sticker,            
                     reply_markup=reply_markup,                       
