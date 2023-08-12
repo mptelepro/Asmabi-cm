@@ -1962,7 +1962,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
    
     elif query.data == "update":
         mention = query.message.reply_to_message.from_user.mention
-        await query.answer(f"query.message.reply_to_message.from_user.mention", show_alert=True)
+        await query.answer(f"{query.message.chat.title}", show_alert=True)
        
 
 
