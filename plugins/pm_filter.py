@@ -1126,12 +1126,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                     )
                     if settings['auto_delete']:
-                        await asyncio.sleep(10)
+                        await asyncio.sleep(90)
                         await Joel_tgx.delete()
                         await file_send.delete()
                     
 
-                    await client.send_message(
+                    s = await client.send_message(
                         chat_id=FILE_CHANNEL,                        
                         text=script.DONE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
@@ -1156,7 +1156,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     sticker = f"{name_format}.webp"
                     buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                        InlineKeyboardButton(f"📥 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐝 📥", url= file_send.link)
+                        InlineKeyboardButton(f"📥 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐝 📥", url= s.link)
                     
                     ], [
                         InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
