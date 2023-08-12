@@ -1,6 +1,3 @@
-from pyrogram import Client, filters
-from pyrogram.handlers import MessageHandler
-from pyrogram.types import Message
 
 
 
@@ -18,45 +15,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
-
-from pyrogram import Client
-from pyrogram.handlers import MessageHandler
-
-set_menu = InlineKeyboardMarkup(row_width=1,
-                                inline_keyboard=[
-                                    [
-                                        InlineKeyboardButton(
-                                            text="RUB",
-                                            callback_data='1'
-                                        ),
-                                        InlineKeyboardButton(
-                                            text="UAH",
-                                            callback_data='2'
-                                        ),
-                                        InlineKeyboardButton(
-                                            text="USD",
-                                            callback_data='3'
-                                        ),
-                                        InlineKeyboardButton(
-                                            text="KZT",
-                                            callback_data='4'
-                                        ),
-                                        InlineKeyboardButton(
-                                            text="BYN",
-                                            callback_data='5'
-                                        ),
-                                    ]
-                                ])
-
-
-
-@Client.on_message(filters.command('set'))
-async def set(client, message):
-    await message.answer(
-        f"{message.from_user.first_name}",
-        reply_markup=set_menu)
-
-
 
 
 @Client.on_message(filters.command('id'))
