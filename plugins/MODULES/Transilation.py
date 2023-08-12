@@ -86,7 +86,7 @@ async def left(client,message):
 		try:
 #			lgcd = message.text.split("/tr")
 #			lg_cd = lgcd[1].lower().replace(" ", "")
-			lg_cd = message.split(' ') message.reply(message[1])
+			lg_cd = message.text.split(" ")
 #  		        lg_cd = message.text.split(None, 1)[1]
 			tr_text = message.reply_to_message.text
 			translator = Translator()
