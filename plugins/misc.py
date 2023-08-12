@@ -1,3 +1,9 @@
+from pyrogram import Client, filters
+from pyrogram.handlers import MessageHandler
+from pyrogram.types import Message
+
+
+
 from database.users_chats_db import db
 
 
@@ -166,7 +172,13 @@ async def chatdp(client, message):
     await message.edit("successfully your new profile..")
                       
 
-# @Client.on_message(filters.group & filters.text)
+@Client.on_message(filters.group)
+async def get_reactions(_: Client, message: Message) -> None:
+    rs = message.reply_to_message.reactions
+    if not rs:
+        await message.edit("<i>No reactions</i>")
+        return
+    await message.edit("\n".join(f"<code>{r.emoji}</code>: {r.count}" for r in rs))
 
 
 
