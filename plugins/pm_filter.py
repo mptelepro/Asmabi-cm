@@ -2494,8 +2494,8 @@ async def auto_filter(client, msg, spoll=False):
             
             search = message.text
             
-            m=await message.reply_text(f"<b><i>📥𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
-
+            m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
+            await m.delete()
             
         
             search = search.lower()
@@ -2530,7 +2530,7 @@ async def auto_filter(client, msg, spoll=False):
         search, files, offset, total_results = spoll
         
         m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
-        
+        await m.delete()
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
     # if 'is_shortlink' in settings.keys():
@@ -2655,7 +2655,7 @@ async def auto_filter(client, msg, spoll=False):
             
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             
-            await m.delete()
+            
             
             
             try:
