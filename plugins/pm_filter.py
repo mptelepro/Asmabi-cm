@@ -2835,7 +2835,7 @@ async def advantage_spell_chok(client, msg):
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn)
     )
-    await asyncio.sleep(120)
+    await asyncio.sleep(3600)
     await spell_check_del.delete()
     await msg.delete()
     
