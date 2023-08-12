@@ -434,7 +434,7 @@ async def advantage_spoll_choker(bot, query):
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
            
-                sp = await client.send_sticker(
+                sp = await bot.send_sticker(
                 chat_id=AUTH_CHANNEL,
                 sticker=sticker,            
                 reply_markup=reply_markup,                       
