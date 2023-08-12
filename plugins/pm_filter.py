@@ -1841,9 +1841,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
                 
             ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-           
-            await query.sp.edit_text(
+            reply_markup = InlineKeyboardMarkup(buttons)         
+            await sp.edit_text
             text=f"🕺𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...🕺",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
@@ -2117,8 +2116,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "done":
-        search = query.message.text
-        imdb = await get_poster(search) if IMDB else None
+#        search = query.message.text
+#        imdb = await get_poster(search) if IMDB else None
 #        await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {search} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
 
         if query.from_user.id in ADMINS:
