@@ -85,7 +85,7 @@ async def left(client,message):
 	if (message.reply_to_message):
 		try:
 			lgcd = message.text.split("/tr")
-			lg_cd = lgcd[2].lower().replace(" ", " ")
+			lg_cd = lgcd[1].lower().replace(" ", " ")
 #			lg_cd = message.text.split(" ")
 #  		        lg_cd = message.text.split(None, 1)[1]
 			tr_text = message.reply_to_message.text
@@ -107,18 +107,8 @@ async def left(client,message):
 		except :
 			print("error")
 	else:
-		         
-	                 m = await message.reply_photo(
-                         photo=(SP),
-                         caption=f"translated from {fromt.capitalize()} to {to.capitalize()}\n\n```{translation.text}```",
-                         reply_markup=InlineKeyboardMarkup(
-                                   [[
-                                     InlineKeyboardButton('Close', callback_data="close_data"),
-                                                                         
-                                   ]]
-                         ),
-                         parse_mode=enums.ParseMode.HTML
-) 
+			 ms = await message.reply_text("You can Use This Command by using reply to message")
+			 await ms.delete()
 
                      
 
