@@ -1100,27 +1100,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                     )
                     if settings['auto_delete']:
-                        await asyncio.sleep(120)
+                        await asyncio.sleep(10)
                         await Joel_tgx.delete()
                         await file_send.delete()
                     
 
-#                    k = await client.send_message(
-#                        chat_id=FILE_CHANNEL,                        
-#                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
-#                        parse_mode=enums.ParseMode.HTML,
-#                        reply_markup=InlineKeyboardMarkup(
-#                            [
-#                                [
-#                                     InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
-#                                 ],
-#                                 [
-#                                 InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=(BATCH_LINK))
-#                                 
-#                                 ]                            
-#                            ]
-#                        )
-#                    )
+                    k = await client.send_message(
+                        chat_id=FILE_CHANNEL,                        
+                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+                        parse_mode=enums.ParseMode.HTML,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                     InlineKeyboardButton(f"📩𝐒𝐚𝐯𝐞 𝐅𝐢𝐥𝐞 𝐈𝐝📩", url=f"https://t.me/share/url?url={file_id}")
+                                 ],
+                                 [
+                                 InlineKeyboardButton(f"💻𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥💻", url=(BATCH_LINK))
+                                 
+                                 ]                            
+                            ]
+                        )
+                    )
+                    return 
                     name_format = f"okda"
                     image = await Joel_tgx.download(file_name=f"{name_format}.jpg")
                     
