@@ -426,7 +426,7 @@ async def advantage_spoll_choker(bot, query):
                 sticker = f"{name_format}.webp"
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                    InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", callback_data="update")
+                    InlineKeyboardButton(f"✔️𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝✔️", callback_data="update")
                     
                 ], [
                     InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
