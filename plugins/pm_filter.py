@@ -1734,57 +1734,43 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.startswith("repeat"):
         mv_rqst = query.message.reply_to_message.text
-        mv_id = query.message.id
-        mv_rqst = query.message.text
-        reqstr1 = query.message.from_user.id if query.message.from_user else 0
-        reqstr = await client.get_users(reqstr1)
-        settings = await get_settings(query.message.chat.id)
-        query = re.sub(
-            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-            "", query.message.text, flags=re.IGNORECASE)  # plis contribute some common words
-        query = query.strip() + " movie"
-        try:
-            movies = await get_poster(mv_rqst, bulk=True)
-        except Exception as e:
-            logger.exception(e)
+        search = query.message.text
             
-            reqst_gle = mv_rqst.replace(" ", "+")
-            button = [[
-                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-            ]]
-            if NO_RESULTS_MSG:
-                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-            k = await query.message.reply_photo(
-                photo=SPELL_IMG, 
-                caption=script.I_CUDNT.format(mv_rqst),
-                reply_markup=InlineKeyboardMarkup(button)
-            )
-            await asyncio.sleep(30)
-            await k.delete()
-            return
-        movies = await get_poster(mv_rqst.strip(), bulk=True)  
-        movielist = []
+        m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
+        await m.delete()
+            
         
-        movielist += [movie.get('title') for movie in movies]
-        movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-        SPELL_CHECK[mv_id] = movielist
-                
-        for k, movie in enumerate(movielist):
-            btn = [[
-                InlineKeyboardButton(
-                    text=movie.strip(),
-                    callback_data=f"spolling#{reqstr1}#{k}",
-                )
-            ]]# for k, movie in enumerate(movielist)]
-#            btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-            spell_check_del = await query.message.reply_photo(
-                photo=SPELL_IMG,
-                caption=(script.CUDNT_FND.format(mv_rqst)),
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=query.message.id,
-                reply_markup=InlineKeyboardMarkup(btn)
-            )
+        search = search.lower()
+        find = search.split(" ")
+        search = ""
+        removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
+            for x in find:
+                if x in removes:
+                    continue
+                else:
+                    search = search + x + " "
+            search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+            search = re.sub(r"\s+", " ", search).strip()
+            search = search.replace("-", " ")
+            search = search.replace(":","")
+            files, offset, total_results = await get_search_results(query.message.chat.id ,search, offset=0, filter=True)
+            settings = await get_settings(message.chat.id)
+            pre = 'filep' if settings['file_secure'] else 'file'
+            key = f"{query.message.chat.id}-{query.message.id}"
+            FRESH[key] = search
+            temp.GETALL[key] = files
+            temp.SHORT[query.message.from_user.id] = message.chat.id
+    
+            if settings["button"]:
+                btn = [
+                    [
+                        InlineKeyboardButton(
+                            text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                        ),
+                    ]
+                    for file in files
+                ]
+        
 
 
 
