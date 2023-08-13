@@ -1754,7 +1754,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         search = search.replace("-", " ")
         search = search.replace(":","")
         files, offset, total_results = await get_search_results(query.message.chat.id ,search, offset=0, filter=True)
-        settings = await get_settings(message.chat.id)
+        settings = await get_settings(query.message.chat.id)
         pre = 'filep' if settings['file_secure'] else 'file'
         key = f"{query.message.chat.id}-{query.message.id}"
         FRESH[key] = search
