@@ -1761,7 +1761,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         key = f"{query.message.chat.id}-{query.message.id}"
         FRESH[key] = search
         temp.GETALL[key] = files
-        temp.SHORT[query.message.reply_to_message.from_user.id] = query.message.chat.id
+        temp.SHORT[query.message.from_user.id] = query.message.chat.id
     
         if settings["button"]:
             btn = [
