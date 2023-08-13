@@ -1736,7 +1736,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
 
         mv_rqst = query.message.reply_to_message.text
-        search = query.message.reply_to_message.text
+        search = query.message.text
             
         m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
         await m.delete()
