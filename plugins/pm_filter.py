@@ -1983,7 +1983,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ 𝐀𝐥𝐫𝐞𝐚𝐝𝐲 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 ✅", url = "https://t.me/batchfiles_store")
+                InlineKeyboardButton("✅ 𝐀𝐥𝐫𝐞𝐚𝐝𝐲 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 ✅", url = "https://t.me/nasrani_update")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
