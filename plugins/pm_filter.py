@@ -1848,9 +1848,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #            if not settings["button"]:
                 
             if imdb and imdb.get('poster'):
-                try:
+                
             
-                    hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             
             
 
