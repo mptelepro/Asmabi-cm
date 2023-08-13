@@ -1929,10 +1929,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 query.message.id, 
                 InputMediaPhoto(imdb.get('poster'))
             )
-                            
+            buttons = [[
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"repeat")
+            ], [
+                InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)                
             await query.message.edit_text(
                 text=f"<b>𝐇𝐞𝐥𝐥𝐨 {query.message.reply_to_message.from_user.mention} {text} 𝐌𝐨𝐯𝐢𝐞 𝐔𝐩𝐥𝐨𝐚𝐝𝐞𝐝.</b>",
-#                reply_markup=reply_markup,
+                reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
             
@@ -1971,7 +1976,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,                       
             )
                 
-            await m.delete()
+#            await m.delete()
             await asyncio.sleep(600)
             await k.delete()
             
