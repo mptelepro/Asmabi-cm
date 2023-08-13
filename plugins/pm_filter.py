@@ -1848,7 +1848,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons) 
             
             await sp.edit_text(
-            text=f"𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
+            text=f"📥{imdb.get('title')} {imdb.get('year')}📥 𝐃𝐕𝐃, 𝐎𝐓𝐓 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧...",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
