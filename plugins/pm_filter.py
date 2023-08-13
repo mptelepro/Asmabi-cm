@@ -1781,15 +1781,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             temp.SHORT[query.message.from_user.id] = query.message.chat.id
     
             if settings["button"]:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                    ),
+                btn = [
+                    [
+                        InlineKeyboardButton(
+                            text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                        ),
+                    ]
+                    for file in files
                 ]
-                for file in files
-            ]
-            hehe = await query.message.reply_text(text=f"imdb", reply_markup=InlineKeyboardMarkup(btn))
+                hehe = await query.message.reply_text(text=f"imdb", reply_markup=InlineKeyboardMarkup(btn))
             
             
             
