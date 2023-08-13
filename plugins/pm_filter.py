@@ -1770,7 +1770,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]
                 for file in files
             ]
-        
+            hehe = await message.reply_photo(photo=SP, caption=f"ok", reply_markup=InlineKeyboardMarkup(btn))
+            
 
 
 
