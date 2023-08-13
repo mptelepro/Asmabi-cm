@@ -1732,8 +1732,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     
 
+    elif query.data.startswith("repeat"):
+        mv_rqst = query.message.text
+        reqstr1 = query.message.from_user.id if query.message.from_user else 0
+        reqstr = await client.get_users(reqstr1)
+        for k, movie in enumerate(movielist)]:
+            btn = [[
+                InlineKeyboardButton(
+                    text=movie.strip(),
+                    callback_data=f"spolling#{reqstr1}#{k}",
+                 )
+            ] # for k, movie in enumerate(movielist)]
+#            btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+            spell_check_del = await query.message.reply_photo(
+                photo=SPELL_IMG,
+                caption=(script.CUDNT_FND.format(mv_rqst)),
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
 
 
+
+
+            
    
 
     
@@ -1892,7 +1912,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url = "https://t.me/batchfiles_store")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="repeat")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
