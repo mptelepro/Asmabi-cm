@@ -1738,10 +1738,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         mv_rqst = query.message.reply_to_message.text
         search = query.message.text
         msg = query.message.reply_to_message.text
-        if query.message.reply_to_message.startswith("/"): return  # ignore commands
+        if query.message.reply_to_message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", query.message.text):
             return
-        if len(query.message.text) < 100:
+        if 0 len(query.message.text) < 100:
             search = query.message.text
             
             m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
