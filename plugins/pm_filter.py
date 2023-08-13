@@ -1733,13 +1733,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
     
 
     elif query.data.startswith("repeat"):
-        mv_rqst = query.message.text
+        mv_rqst = query.message.reply_to_message.text
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)
         mv_rqst.split(" ")
         query = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-        "", query.message.text, flags=re.IGNORECASE)  # plis contribute some common words
+        "", query.message.reply_to_message.text, flags=re.IGNORECASE)  # plis contribute some common words
         query = query.strip() + " movie"
         try:
             movies = await get_poster(mv_rqst, bulk=True)
@@ -1754,13 +1754,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             k = await query.message.reply_photo(
                 photo=SPELL_IMG, 
                 caption=script.I_CUDNT.format(mv_rqst),
+                disable_web_page_preview=True,
+                parse_mode=enums.ParseMode.HTML,
+                reply_to_message_id=query.message.id,
                 reply_markup=InlineKeyboardMarkup(button)
             )
             await asyncio.sleep(30)
             await k.delete()
             return
         g_s = await search_gagala(query)
-        g_s += await search_gagala(query.message.text)
+        g_s += await search_gagala(query.message.reply_to_message.text)
         gs_parsed = []
         regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
         gs = list(filter(regex.match, g_s))
@@ -1796,6 +1799,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     spell_check_del = await query.message.reply_photo(
                         photo=SPELL_IMG,
                         caption=(script.CUDNT_FND.format(mv_rqst)),
+                        disable_web_page_preview=True,
+                        parse_mode=enums.ParseMode.HTML,
+                        reply_to_message_id=query.message.id,
                         reply_markup=InlineKeyboardMarkup(btn)
                     )
 
