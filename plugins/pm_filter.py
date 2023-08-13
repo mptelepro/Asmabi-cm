@@ -1736,6 +1736,46 @@ async def cb_handler(client: Client, query: CallbackQuery):
         mv_rqst = query.message.text
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)
+         mv_rqst.split(" ")
+         query = ""
+         removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
+         for x in find:
+            if x in removes:
+                continue
+            else:
+                query = query + x + " "
+        query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", query, flags=re.IGNORECASE)
+        query = re.sub(r"\s+", " ", query).strip() + "movie"
+        g_s = await search_gagala(query)
+        g_s += await search_gagala(query.message.text)
+        gs_parsed = []
+        if not g_s:
+            reqst_gle = query.replace(" ", "+")
+            button = [[
+                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+            ]]
+            if NO_RESULTS_MSG:
+                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+            k = await query.message.reply_photo(
+                photo=SPELL_IMG, 
+                caption=script.I_CUDNT.format(mv_rqst),
+                reply_markup=InlineKeyboardMarkup(button)
+            )
+            await asyncio.sleep(30)
+            await k.delete()
+            return
+        regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
+        gs = list(filter(regex.match, g_s))
+        gs_parsed = [re.sub(
+            r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)',
+            '', i, flags=re.IGNORECASE) for i in gs]
+        if not gs_parsed:
+            reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*",
+                             re.IGNORECASE)  # match something like Watch Niram | Amazon Prime
+            for mv in g_s:
+                match = reg.match(mv)
+                if match:
+                    gs_parsed.append(match.group(1))
         movielist = []
         gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
         if len(gs_parsed) > 3:
