@@ -1851,10 +1851,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
-            await query.answer("Hᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴs !")
-        else:
-            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
-
+            
     
     elif query.data.startswith("uploaded"):
         conten = query.message.reply_to_message.text
