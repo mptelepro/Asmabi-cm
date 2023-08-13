@@ -1740,6 +1740,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
         m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
         await m.delete()
+        
+        message = query.msg
             
         
         search = search.lower()
@@ -1771,14 +1773,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     # if NO_RESULTS_MSG:
                     #     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
                     return
-        else:
-            return
-    else:
-        message = msg.message.reply_to_message  # msg will be callback query
-        search, files, offset, total_results = spoll
+                else:
+                    message = query.msg.message.reply_to_message  # msg will be callback query
+                    search, files, offset, total_results = spoll
         
-        m=await message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
-        await m.delete()
+                    m=await query.message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
+                    await m.delete()
             
 
 
