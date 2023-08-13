@@ -1762,48 +1762,42 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await asyncio.sleep(30)
             await k.delete()
             return
-        g_s = await search_gagala(query)
-        g_s += await search_gagala(query.message.reply_to_message.text)
-        gs_parsed = []
-        regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
-        gs = list(filter(regex.match, g_s))
-        gs_parsed = [re.sub(
-            r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)',
-            '', i, flags=re.IGNORECASE) for i in gs]
-        if not gs_parsed:
-            reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*",
-                             re.IGNORECASE)  # match something like Watch Niram | Amazon Prime
-            for mv in g_s:
-                match = reg.match(mv)
-                if match:
-                    gs_parsed.append(match.group(1))
         movielist = []
-        gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
-        if len(gs_parsed) > 3:
-            gs_parsed = gs_parsed[:3]
-        if gs_parsed:
-            for mov in gs_parsed:
-                imdb_s = await get_poster(mov.strip(), bulk=True)  # searching each keyword in imdb
-                if imdb_s:
-                    movielist += [movie.get('title') for movie in imdb_s]
-                movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
-                movielist = list(dict.fromkeys(movielist))
-                for k, movie in enumerate(movielist):
-                    btn = [[
-                        InlineKeyboardButton(
-                            text=movie.strip(),
-                            callback_data=f"spolling#{reqstr1}#{k}",
-                        )
-                    ]]# for k, movie in enumerate(movielist)]
+        if not movies:
+            reqst_gle = mv_rqst.replace(" ", "+")
+            button = [[
+                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+            ]]
+            if NO_RESULTS_MSG:
+                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+            k = await msg.reply_photo(
+                photo=SPELL_IMG, 
+                caption=script.I_CUDNT.format(mv_rqst),
+                reply_markup=InlineKeyboardMarkup(button)
+            )
+            await asyncio.sleep(30)
+            await k.delete()
+            return
+        movielist += [movie.get('title') for movie in movies]
+        movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+        SPELL_CHECK[mv_id] = movielist
+                
+        for k, movie in enumerate(movielist):
+            btn = [[
+                InlineKeyboardButton(
+                    text=movie.strip(),
+                    callback_data=f"spolling#{reqstr1}#{k}",
+                )
+            ]]# for k, movie in enumerate(movielist)]
 #            btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-                    spell_check_del = await query.message.reply_photo(
-                        photo=SPELL_IMG,
-                        caption=(script.CUDNT_FND.format(mv_rqst)),
-                        disable_web_page_preview=True,
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_to_message_id=query.message.id,
-                        reply_markup=InlineKeyboardMarkup(btn)
-                    )
+            spell_check_del = await query.message.reply_photo(
+                photo=SPELL_IMG,
+                caption=(script.CUDNT_FND.format(mv_rqst)),
+                disable_web_page_preview=True,
+                parse_mode=enums.ParseMode.HTML,
+                reply_to_message_id=query.message.id,
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
 
 
 
