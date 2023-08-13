@@ -1790,7 +1790,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         movielist = list(dict.fromkeys(movielist))  # removing duplicates
         if not movielist:
             reqst_gle = query.replace(" ", "+")
-             button = [[
+            button = [[
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
             ]]
             if NO_RESULTS_MSG:
