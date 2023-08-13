@@ -1759,6 +1759,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await asyncio.sleep(30)
             await k.delete()
             return
+        g_s = await search_gagala(query)
+        g_s += await search_gagala(msg.text)
+        gs_parsed = []
         regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
         gs = list(filter(regex.match, g_s))
         gs_parsed = [re.sub(
