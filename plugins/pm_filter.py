@@ -1930,7 +1930,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InputMediaPhoto(imdb.get('poster'))
             )
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"repeat")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"sendfiles")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
