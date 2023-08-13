@@ -1736,10 +1736,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         mv_rqst = query.message.text
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)
-         mv_rqst.split(" ")
-         query = ""
-         removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
-         for x in find:
+        mv_rqst.split(" ")
+        query = ""
+        removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
+        for x in find:
             if x in removes:
                 continue
             else:
