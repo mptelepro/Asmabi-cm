@@ -1898,7 +1898,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         conten = query.message.reply_to_message.text
         imdb = await get_poster(conten) if IMDB else None
         
-        ident, from_user = query.data.split("#")
+        
+        _, ident, key, from_user = query.data.split("#")
         link = await client.create_chat_invite_link(int(query.message.chat.id))
         k = await query.answer(f"🏷 𝐓𝐢𝐭𝐥𝐞 : {imdb.get('title')} \n 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {imdb.get('year')} \n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {imdb.get('runtime')} \n ☀️ 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 : {imdb.get('languages')} \n\n 🍿{query.message.chat.title}🍿", show_alert=True)
 
@@ -1926,7 +1927,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InputMediaPhoto(imdb.get('poster'))
             )
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"sendfiles")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"languages#{key}")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
