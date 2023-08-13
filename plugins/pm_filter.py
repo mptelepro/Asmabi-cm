@@ -1762,6 +1762,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await asyncio.sleep(30)
             await k.delete()
             return
+        movies = await get_poster(mv_rqst.strip(), bulk=True)  
         movielist = []
         
         movielist += [movie.get('title') for movie in movies]
