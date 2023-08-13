@@ -1737,7 +1737,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)
         settings = await get_settings(query.message.chat.id)
-        find = mv_rqst.split("#")
+        find = mv_rqst # .split(" ")
         query = ""
         removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
         for x in find:
@@ -1986,7 +1986,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="repeat")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"repeat")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
