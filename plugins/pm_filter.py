@@ -1739,16 +1739,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
         search = query.message.text
         
         m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
-        await m.delete()
-        search, files, offset, total_results = spoll
-        if not spoll:
-            message = msg
-        if query.message.text.startswith("/"): return  # ignore commands
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(query.message.text) < 100:
             
-            
+            search = query.message.text
             
             m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
@@ -1764,9 +1759,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if x in removes:
                     continue
                 else:
-            
-        
-        
                     search = search + x + " "
             search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
             search = re.sub(r"\s+", " ", search).strip()
@@ -1774,22 +1766,41 @@ async def cb_handler(client: Client, query: CallbackQuery):
             search = search.replace(":","")
             files, offset, total_results = await get_search_results(query.message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(query.message.chat.id)
-            pre = 'filep' if settings['file_secure'] else 'file'
-            key = f"{query.message.chat.id}-{query.message.id}"
-            FRESH[key] = search
-            temp.GETALL[key] = files
-            temp.SHORT[query.message.from_user.id] = query.message.chat.id
-    
-            if settings["button"]:
-                btn = [
-                    [
-                        InlineKeyboardButton(
-                            text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                        ),
+            if not files:
+                await m.delete()
+                if settings["spell_check"]:
+                    return await advantage_spell_chok(client, msg)
+                else:
+                    # if NO_RESULTS_MSG:
+                    #     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
+                    return
+            else:
+            
+        
+        
+                message = msg.message.reply_to_message  # msg will be callback query
+                search, files, offset, total_results = spoll
+        
+                m=await query.message.reply_text(f"<b><i>𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....📥 </i></b>")
+                await m.delete()
+                settings = await get_settings(query.message.chat.id)
+                await msg.message.delete()
+
+                pre = 'filep' if settings['file_secure'] else 'file'
+                key = f"{query.message.chat.id}-{query.message.id}"
+                FRESH[key] = search
+                temp.GETALL[key] = files
+                temp
+                if settings["button"]:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
                     ]
-                    for file in files
-                ]
-                hehe = await query.message.reply_text(text=f"imdb", reply_markup=InlineKeyboardMarkup(btn))
+                    hehe = await query.message.reply_text(text=f"imdb", reply_markup=InlineKeyboardMarkup(btn))
             
             
             
