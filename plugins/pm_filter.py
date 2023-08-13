@@ -1736,7 +1736,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
 
         mv_rqst = query.message.reply_to_message.text
-        search = query.message.text
+        search = query.message.reply_to_message.text
             
         m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
         await m.delete()
@@ -1761,7 +1761,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         key = f"{query.message.chat.id}-{query.message.id}"
         FRESH[key] = search
         temp.GETALL[key] = files
-        temp.SHORT[query.message.from_user.id] = query.message.chat.id
+        temp.SHORT[query.message.reply_to_message.from_user.id] = query.message.chat.id
     
         if settings["button"]:
             btn = [
@@ -1788,7 +1788,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             btn = []
         if offset != "":
-            req = query.message.from_user.id if query.message.from_user else 0
+            req = query.message.reply_to_message.from_user.id if query.message.reply_to_message.from_user else 0
             try:
                 if settings['max_btn']:
                     btn.append(
@@ -1850,7 +1850,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if imdb and imdb.get('poster'):
                 
             
-                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                hehe = await query.message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             
             
 
