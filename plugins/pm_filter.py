@@ -817,7 +817,7 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
 
                 
 @Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery, msg: spoll=False):
+async def cb_handler(client: Client, query: CallbackQuery):
     try:
         link = await client.create_chat_invite_link(int(REQST_CHANNEL))
     except:
@@ -1740,17 +1740,17 @@ async def cb_handler(client: Client, query: CallbackQuery, msg: spoll=False):
         
         m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
         await m.delete()
-        
+        search, files, offset, total_results = spoll
         if not spoll:
             message = msg
         if query.message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
-        if len(message.text) < 100:
+        if len(query.message.text) < 100:
             
             
             
-            m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
+            m=await query.message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
             
         
