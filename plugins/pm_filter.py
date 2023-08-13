@@ -1737,10 +1737,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if int(query.from_user.id) not in [query.message.reply_to_message.from_user.id, 0]:
             return await query.answer(
                 f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
-                show_alert=True)
+                show_alert=True,
+            )
             
-        except:
-            pass
+
         _, key = query.data.split("#")
 
         search = FRESH.get(key)
@@ -3025,7 +3025,6 @@ async def advantage_spell_chok(client, msg):
     spell_check_del = await msg.reply_photo(
         photo=SPELL_IMG,
         caption=(script.CUDNT_FND.format(mv_rqst)),
-        reply_to_message_id=message.id,
         reply_markup=InlineKeyboardMarkup(btn)
     )
     await asyncio.sleep(3600)
