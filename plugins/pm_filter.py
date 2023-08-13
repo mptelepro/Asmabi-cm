@@ -1912,7 +1912,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker = f"{name_format}.webp"
             buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
-                InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data="update")
+                InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url="https://t.me/nasrani_update")
                     
             ], [
                 InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")
