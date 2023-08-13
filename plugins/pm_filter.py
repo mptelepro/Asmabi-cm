@@ -1737,20 +1737,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)
         settings = await get_settings(query.message.chat.id)
-        query = re.sub(
-            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-            "", query.message.reply_to_message.text, flags=re.IGNORECASE)  # plis contribute some common words
-        query = query.strip() + " movie"
-        find = mv_rqst.replace(" ", "+")
         query = ""
-        removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
-        for x in find:
-            if x in removes:
-                continue
-            else:
-                query = query + x + " "
         query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", query, flags=re.IGNORECASE)
         query = re.sub(r"\s+", " ", query).strip() + "movie"
+        find = mv_rqst.replace(" ", "+")
+        
+        
         g_s = await search_gagala(query)
         g_s += await search_gagala(query.message.reply_to_message.text)
         gs_parsed = []
