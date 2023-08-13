@@ -393,7 +393,7 @@ async def advantage_spoll_choker(bot, query):
                     InlineKeyboardButton("🔁 Request Again 🔁", callback_data=f'show_option#{reporter}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
+                k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} ᴍᴏᴠɪᴇ\n {conten} ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
                 reply_markup=reply_markup,                             
                 parse_mode=enums.ParseMode.HTML
                 )           
@@ -1732,41 +1732,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     
 
-    elif query.data.startswith("repeat"):
-    
 
-            
-
-        _, key = query.data.split("#")
-
-        search = FRESH.get(key)
-        search = search.replace(' ', '_')
-        btn = []
-        for i in range(0, len(LANGUAGES)-1, 2):
-            btn.append([
-                InlineKeyboardButton(
-                    text=LANGUAGES[i].title(),
-                    callback_data=f"fl#{LANGUAGES[i].lower()}#{key}"
-                ),
-                InlineKeyboardButton(
-                    text=LANGUAGES[i+1].title(),
-                    callback_data=f"fl#{LANGUAGES[i+1].lower()}#{key}"
-                ),
-            ])
-
-        btn.insert(
-            0,
-            [
-                InlineKeyboardButton(
-                    text="👇 𝖲𝖾𝗅𝖾𝖼𝗍 𝖸𝗈𝗎𝗋 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾𝗌 👇", callback_data="ident"
-                )
-            ],
-        )
-        req = query.from_user.id
-        offset = 0
-        btn.append([InlineKeyboardButton(text="↭ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↭", callback_data=f"fl#homepage#{key}")])
-
-        await query.edit_message_reply_markup(InlineKeyboardMarkup(btn))
             
             
             
@@ -1927,7 +1893,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InputMediaPhoto(imdb.get('poster'))
             )
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"languages#{key}")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url="https://t.me/nasrani_update")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
@@ -1939,7 +1905,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             
             buttons = [[
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"repeat")
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url="https://t.me/nasrani_update")
             ], [
                 InlineKeyboardButton("⚠️ 𝙲𝚕𝚘𝚜𝚎 𝙳𝚊𝚝𝚊 ⚠️", callback_data="close_data")
             ]]
@@ -1973,7 +1939,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,                       
             )
                 
-#            await m.delete()
+            await m.delete()
             await asyncio.sleep(600)
             await k.delete()
             
