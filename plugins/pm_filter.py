@@ -1960,7 +1960,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
-            b_msg = sp
+            b_msg = query.message.reply_to_message
             async for user in users:
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
