@@ -25,7 +25,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 aiohttpsession = ClientSession()
 
-async def make_carbon(code):
+async def make_carbon(code, message):
     text = message.text.split(None, 1)[1]
     url = get(f"https://api.single-developers.software/logo?name={text}").history[1].url
     async with aiohttpsession.post(url, json={"code": code}) as resp:
