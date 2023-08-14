@@ -1960,7 +1960,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
-            b_msg = query.message.reply_to_message
+            b_msg = sticker
             async for user in users:
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
@@ -1984,7 +1984,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await asyncio.sleep(2)
                 if not done % 20:
                     await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
-            time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
+#            time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
                 
                 
             await sts.edit(f"Broadcast Completed:\nCompleted in  seconds.\n\nTotal Users {total_users}\nCompleted:")
