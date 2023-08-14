@@ -1977,7 +1977,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )                                       
                 
                 
-                await sts.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")
+                await sts.edit(f"Broadcast Completed:\nCompleted in  seconds.\n\nTotal Users {total_users}\nCompleted:")
 
                 await m.delete()
                 await asyncio.sleep(600)
