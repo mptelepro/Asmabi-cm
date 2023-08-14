@@ -1961,7 +1961,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             failed =0
 
             success = 0
-            b_msg = sticker
+            b_msg = sp
             async for user in users:
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
