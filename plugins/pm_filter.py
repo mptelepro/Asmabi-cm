@@ -399,7 +399,7 @@ async def advantage_spoll_choker(bot, query):
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data=f'show_option#{reporter}')
+                    InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", callback_data=f'show_option#{reporter}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
@@ -414,9 +414,9 @@ async def advantage_spoll_choker(bot, query):
                 info = await bot.get_users(user_ids=query.message.from_user.id)
                 reference_id = int(query.message.chat.id)
                 buttons = [[
-                    InlineKeyboardButton("📢 Updates Channel 📢", url = k.link)
+                    InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", url = k.link)
                 ],[
-                    InlineKeyboardButton("🔁 Request Again 🔁", callback_data="show_option")
+                    InlineKeyboardButton("📢 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 📢", callback_data=f'show_option#{reporter}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 m = await bot.send_photo(
@@ -448,7 +448,7 @@ async def advantage_spoll_choker(bot, query):
 #                sticker=sticker,            
 #                reply_markup=reply_markup,                       
 #                )
-                await asyncio.sleep(3600)
+                await asyncio.sleep(333600)
                 await k.delete()
 #                
 #                os.remove(sticker)
