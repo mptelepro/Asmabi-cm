@@ -1972,7 +1972,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 pti, sh = await broadcast_messages(
                 chat_id=int(user['id']),
                 b_msg,            
-                reply_markup=reply_markup,                       
+                reply_markup=reply_markup                       
                 )
                 if pti:
                     success += 1
