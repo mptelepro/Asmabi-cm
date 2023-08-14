@@ -54,6 +54,9 @@ async def autoapprove(client: pr0fess0r_99, message: ChatJoinRequest):
         reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML
         )
+        print("Welcome....")
+
+        return 
         users = await db.get_all_users()
         b_msg = TEXT
         
