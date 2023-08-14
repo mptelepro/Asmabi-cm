@@ -389,8 +389,8 @@ async def advantage_spoll_choker(bot, query):
                 k = (movie, files, offset, total_results)
                 await auto_filter(bot, query, k)
             else:
-#                conten = query.message.reply_to_message.text
-                conten = query.message.text
+                conten = query.message.reply_to_message.text
+                
                 imdb = await get_poster(conten) if IMDB else None
                 
                 reqstr1 = query.from_user.id if query.from_user else 0
@@ -403,12 +403,11 @@ async def advantage_spoll_choker(bot, query):
                     InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", callback_data=f'show_option#{reporter}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                mk = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...")
-                await mk.delete()                             
-                k = await query.message.reply_photo(photo=imdb.get('poster'), caption=f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
+                                             
+                k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
                 reply_markup=reply_markup,                
                 parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=query.message.id                                   
+#                reply_to_message_id=query.message.id                                   
                 )           
                 
  
