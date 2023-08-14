@@ -8,7 +8,7 @@ from re import findall
 from re import sub as re_sub
 from sys import executable
 from aiohttp import ClientSession
-
+from info import PICS
 import aiofiles
 import speedtest
 from PIL import Image
@@ -17,8 +17,8 @@ from pyrogram.types import Message
 aiohttpsession = ClientSession()
 
 async def make_carbon(code):
-    url = "https://carbonara.vercel.app/api/cook"
-    async with aiohttpsession.post(url, json={"code": code}) as resp:
+    pic = PICS
+    async with aiohttpsession.post(pic, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
     image.name = "carbon.png"
     return image
