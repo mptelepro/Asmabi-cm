@@ -405,8 +405,7 @@ async def advantage_spoll_choker(bot, query):
                 mk = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...")
                 await mk.delete()                             
                 k = await query.message.reply_photo(photo=imdb.get('poster'), caption=f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
+                reply_markup=reply_markup,                
                 parse_mode=enums.ParseMode.HTML,
                 reply_to_message_id=query.message.id                                   
                 )           
