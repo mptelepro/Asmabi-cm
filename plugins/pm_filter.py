@@ -1948,7 +1948,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
-             users = await db.get_all_users()
+            users = await db.get_all_users()
         
             sts = await query.message.reply_text(
             text='Broadcasting your messages...'
