@@ -1969,7 +1969,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
            
-                pti, sh = await broadcast_messages(chat_id=int(user['id']), b_msg)           
+                pti, sh = await broadcast_messages(int(user['id']), b_msg)           
                                        
                 
                 if pti:
