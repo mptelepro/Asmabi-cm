@@ -1,4 +1,13 @@
 # Kanged From @TroJanZheX
+from pyrogram import Client, filters
+import datetime
+import time
+from database.users_chats_db import db
+from info import ADMINS
+from utils import broadcast_messages, broadcast_messages_group
+import asyncio
+
+
 
 
 import os
@@ -1938,10 +1947,37 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
+            users = await db.get_all_users()
+#            b_msg = message.reply_to_message
+            sts = await query.message.reply_text(
+            text='Broadcasting your messages...'
+            )
+            start_time = time.time()
+            total_users = await db.total_users_count()
+            done = 0
+            blocked = 0
+            deleted = 0
+            failed =0
+
+            success = 0
+            async for user in users:
+                buttons = [[
+                     #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
+                    InlineKeyboardButton(f"✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", url="https://t.me/nasrani_update")                    
+                ], [
+                    InlineKeyboardButton(f"⚠️𝐃𝐞𝐥𝐞𝐭𝐞 𝐍𝐨𝐰⚠️", callback_data="dl")                
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
+           
+                sp = await client.send_sticker(
+                chat_id=int(user['id'],
+                sticker=sticker,            
+                reply_markup=reply_markup,                       
+                )
                 
-            await m.delete()
-            await asyncio.sleep(600)
-            await k.delete()
+                await m.delete()
+                await asyncio.sleep(600)
+                await k.delete()
             
 
 #            await query.message.edit_reply_markup(reply_markup)
