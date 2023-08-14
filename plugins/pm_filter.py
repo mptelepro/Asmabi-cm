@@ -389,7 +389,8 @@ async def advantage_spoll_choker(bot, query):
                 k = (movie, files, offset, total_results)
                 await auto_filter(bot, query, k)
             else:
-                conten = query.message.reply_to_message.text
+#                conten = query.message.reply_to_message.text
+                conten = query.message.text
                 imdb = await get_poster(conten) if IMDB else None
                 
                 reqstr1 = query.from_user.id if query.from_user else 0
