@@ -1871,7 +1871,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     
     elif query.data.startswith("uploaded"):
         users = await db.get_all_users()
-        b_msg = sp
+        
         sts = await query.message.reply_text(
         text='Broadcasting your messages...'
         )
@@ -1960,7 +1960,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
-            
+            b_msg = sp
             async for user in users:
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
