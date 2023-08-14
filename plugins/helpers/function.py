@@ -17,8 +17,8 @@ from pyrogram.types import Message
 aiohttpsession = ClientSession()
 
 async def make_carbon(code):
-    pic = PICS
-    async with aiohttpsession.post(pic, json={"code": code}) as resp:
+    url = https://png.carbon.now.sh?url=raw.githubusercontent.com/username/project/master/examples/demo.js&language=jsx&theme=dracula
+    async with aiohttpsession.post(url, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
     image.name = "carbon.png"
     return image
