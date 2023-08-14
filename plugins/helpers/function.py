@@ -14,10 +14,20 @@ import speedtest
 from PIL import Image
 from pyrogram.types import Message
 
+from pyrogram import filters, Client
+from pyrogram.types import Message
+from requests import get
+import os
+import requests
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+
+
 aiohttpsession = ClientSession()
 
 async def make_carbon(code):
-    url = https://apibu.herokuapp.com/api/y-images?query=
+    text = message.text.split(None, 1)[1]
+    url = get(f"https://api.single-developers.software/logo?name={text}").history[1].url
     async with aiohttpsession.post(url, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
     image.name = "carbon.png"
