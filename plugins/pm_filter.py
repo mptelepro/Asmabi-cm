@@ -416,7 +416,7 @@ async def advantage_spoll_choker(bot, query):
                 buttons = [[
                     InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", url = k.link)
                 ],[
-                    InlineKeyboardButton("📢 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 📢", callback_data=f'show_option#{reporter}')
+                    InlineKeyboardButton("📢 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 📢", callback_data='close_data')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
                 m = await bot.send_photo(
