@@ -1870,6 +1870,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
     
     elif query.data.startswith("uploaded"):
+        users = await db.get_all_users()
+        b_msg = sp
+        sts = await query.message.reply_text(
+        text='Broadcasting your messages...'
+        )
+        start_time = time.time()
+        total_users = await db.total_users_count()
+        done = 0
+        blocked = 0
+        deleted = 0
+        failed =0
+
+        success = 0
         conten = query.message.reply_to_message.text
         imdb = await get_poster(conten) if IMDB else None
         
@@ -1947,19 +1960,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             sticker=sticker,            
             reply_markup=reply_markup,                       
             )
-            users = await db.get_all_users()
-            b_msg = sp
-            sts = await query.message.reply_text(
-            text='Broadcasting your messages...'
-            )
-            start_time = time.time()
-            total_users = await db.total_users_count()
-            done = 0
-            blocked = 0
-            deleted = 0
-            failed =0
-
-            success = 0
+            
             async for user in users:
                 buttons = [[
                      #   InlineKeyboardButton(f"📥{imdb.get('title')} {imdb.get('year')}📥", url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")                    
