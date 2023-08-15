@@ -2772,15 +2772,18 @@ async def auto_filter(client, msg, spoll=False):
 #            
 #        ]
  #       ]
-       btn = [[
-           InlineKeyboardButton(
-                text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}"
-                            
-           ), 
-            InlineKeyboardButton(                
-                text=f'{pre}#{file.file_id}'
-            
-        )] for file in files]
+       btn = [ [
+                [
+                    InlineKeyboardButton(
+                        "JOIN CHANNEL", url=invite_link.invite_link
+                    ),
+                    InlineKeyboardButton(
+                        text="NEW MOVIES",
+                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                    ),
+                ]
+                
+            ] for file in files]
 #        btn.append([InlineKeyboardButton(text="Close", callback_data='close_data')])
 #        spell_check_del = await msg.reply_photo(
 #            photo=SPELL_IMG,
