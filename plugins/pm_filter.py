@@ -2775,11 +2775,11 @@ async def auto_filter(client, msg, spoll=False):
        btn = [ [
                 [
                     InlineKeyboardButton(
-                        "JOIN CHANNEL", url=invite_link.invite_link
+                        text=f"{file.file_name}"
                     ),
                     InlineKeyboardButton(
                         text="NEW MOVIES",
-                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                        callback_data=f"{pre}#{file.file_id}"
                     ),
                 ]
                 
