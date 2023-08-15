@@ -2772,10 +2772,7 @@ async def auto_filter(client, msg, spoll=False):
 #            
 #        ]
         for file in files:
-           btn = await client.send_message(
-            "me",  # Edit this
-            "This is a ReplyKeyboardMarkup example",
-            reply_markup=InlineKeyboardMarkup(
+           btn = ((
                 [
                     [  # First row
                         InlineKeyboardButton(  # Generates a callback query when pressed
