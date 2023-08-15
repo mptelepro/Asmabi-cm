@@ -2763,48 +2763,29 @@ async def auto_filter(client, msg, spoll=False):
     temp.SHORT[message.from_user.id] = message.chat.id
     
     if settings["button"]:
-#        btn = [
-#            [
-#                InlineKeyboardButton(
-#                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-#                ),
-#            ]
-#            
-#        ]
- #       ]
-        btn = [ [
+        btn = [
             [
                 InlineKeyboardButton(
-                        
-                text = f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
+                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
                 ),
-            ],
-            [
-                 InlineKeyboardButton(
-                 text = f"<b>{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
-                 ),
             ]
-              
-        ] for file in files]
-        btn.append([InlineKeyboardButton(text="Close", callback_data='close_data')])
-        spell_check_del = await message.reply_photo(
-            photo=SPELL_IMG,
-            caption=f"❤️❤️",
-            reply_markup=InlineKeyboardMarkup(btn)
+            for file in files
+            
+        ]
+       
+        
+        btn.insert(0, 
+            [
+                InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
+                InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
+                InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
+            ]    
         )
-
-#                btn.insert(0, 
-#                    [
-#                        InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
-#                        InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-#                        InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
-#                    ]    
-#                 )
-#         
-#                 btn.insert(0, [
-#                     InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-#                     InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
-#                 ])
+         
+        btn.insert(0, [
+                InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
+                InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
+            ])
 
     else:
         btn = []
