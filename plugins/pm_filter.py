@@ -2792,7 +2792,7 @@ async def auto_filter(client, msg, spoll=False):
                     ]
                 ]
             )
-        
+        )
         
 
 
