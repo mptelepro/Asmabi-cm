@@ -2763,84 +2763,38 @@ async def auto_filter(client, msg, spoll=False):
     temp.SHORT[message.from_user.id] = message.chat.id
     
     if settings["button"]:
-#        btn += [
-#            [
-#                InlineKeyboardButton(
-#                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-#                ),
-#            ]
-#            
-#        ]
-        btn = ((
+        btn = [
             [
-                [  # First row
-                    InlineKeyboardButton(  # Generates a callback query when pressed
-                        "Button",
-                        callback_data="data"
-                    ),
-                ],
-                [  # Second row
-                        
-                    InlineKeyboardButton(  # Opens the inline interface in the current chat
-                        "Inline here",
-                        switch_inline_query_current_chat="pyrogram"
-                    )
-                ]
+                InlineKeyboardButton(
+                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                ),
             ]
-        )
-                    )        
-        btn += ((
-            [
-                [  # First row
-                    InlineKeyboardButton(  # Generates a callback query when pressed
-                        "Button",
-                        callback_data="data"
+            
+        ]
+        for file in files:
+            btn += [
+                [
+                    InlineKeyboardButton(
+                        text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
                     ),
-                ],
-                [  # Second row
-                        
-                    InlineKeyboardButton(  # Opens the inline interface in the current chat
-                        "Inline here",
-                        switch_inline_query_current_chat="pyrogram"
-                    )
                 ]
+            
             ]
-        )
-    )
-    for file in files:
-        btn += ((
-            [
-                [  # First row
-                    InlineKeyboardButton(  # Generates a callback query when pressed
-                        "Button",
-                        callback_data="data"
-                    ),
-                ],
-                [  # Second row
-                        
-                    InlineKeyboardButton(  # Opens the inline interface in the current chat
-                        "Inline here",
-                        switch_inline_query_current_chat="pyrogram"
-                    )
-                ]
-            ]
-        )
-        )  
 
 
 
-        btn.insert(0, 
-            [
-                InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
-                InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-                InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
-            ]    
-        )
+            btn.insert(0, 
+                [
+                    InlineKeyboardButton(f'Sᴇʟᴇᴄᴛ ➢', 'select'),
+                    InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
+                    InlineKeyboardButton("Sᴇᴀsᴏɴs", callback_data=f"seasons#{key}")
+                ]    
+            )
      
-        btn.insert(0, [
-            InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
-            InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
-        ])
+            btn.insert(0, [
+                InlineKeyboardButton("Sᴛᴀʀᴛ Bᴏᴛ", url=f"https://telegram.me/{temp.U_NAME}"),
+                InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}")
+            ])
 
     else:
         btn = []
