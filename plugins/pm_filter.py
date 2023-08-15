@@ -2771,8 +2771,25 @@ async def auto_filter(client, msg, spoll=False):
 #            ]
 #            
 #        ]
-        
         btn = ((
+            [
+                [  # First row
+                    InlineKeyboardButton(  # Generates a callback query when pressed
+                        "Button",
+                        callback_data="data"
+                    ),
+                ],
+                [  # Second row
+                        
+                    InlineKeyboardButton(  # Opens the inline interface in the current chat
+                        "Inline here",
+                        switch_inline_query_current_chat="pyrogram"
+                    )
+                ]
+            ]
+        )
+                    )        
+        btn += ((
             [
                 [  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
@@ -2791,7 +2808,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     )
     for file in files:
-        btn = ((
+        btn += ((
             [
                 [  # First row
                     InlineKeyboardButton(  # Generates a callback query when pressed
