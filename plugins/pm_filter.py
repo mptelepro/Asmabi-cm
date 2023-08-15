@@ -1017,26 +1017,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             elif settings['botpm'] and settings['is_shortlink'] and clicked not in PREMIUM_USER:
                 if clicked == typed:
-#                    temp.SHORT[clicked] = query.message.chat.id
-#                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=short_{file_id}")
-                    await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=f"short_{file_id}",
-                    caption=f_caption
-                    )
+                    temp.SHORT[clicked] = query.message.chat.id
+                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=short_{file_id}")
                     await query.answer('Check PM, I have sent files in pm',show_alert = True)
                     return
                 else:
                     await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             elif settings['is_shortlink'] and not settings['botpm'] and clicked not in PREMIUM_USER:
                 if clicked == typed:                    
-#                    temp.SHORT[clicked] = query.message.chat.id
-#                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=short_{file_id}")
-                    await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=f"short_{file_id}",
-                    caption=f_caption
-                    )
+                    temp.SHORT[clicked] = query.message.chat.id
+                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=short_{file_id}")
+                    
                     await query.answer('Check PM, I have sent files in pm',show_alert = True)
                     return
                 else:
@@ -1046,7 +1037,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
-                    file_id=file_id,
+                    file_id=f"{ident}_{file_id}",
                     caption=f_caption
                     )
                     await query.answer('Check PM, I have sent files in pm',show_alert = True)
