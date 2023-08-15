@@ -2787,7 +2787,7 @@ async def auto_filter(client, msg, spoll=False):
               
         ] for file in files]
         btn.append([InlineKeyboardButton(text="Close", callback_data='close_data')])
-        spell_check_del = await mmessage.reply_photo(
+        spell_check_del = await message.reply_photo(
             photo=SPELL_IMG,
             caption=f"❤️❤️",
             reply_markup=InlineKeyboardMarkup(btn)
