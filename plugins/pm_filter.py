@@ -2763,23 +2763,36 @@ async def auto_filter(client, msg, spoll=False):
     temp.SHORT[message.from_user.id] = message.chat.id
     
     if settings["button"]:
-        btn += [
-            [
-                InlineKeyboardButton(
-                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                ),
-            ]
-            
-        ]
+#        btn += [
+#            [
+#                InlineKeyboardButton(
+#                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+#                ),
+#            ]
+#            
+#        ]
         for file in files:
-            btn += [
+           btn = await client.send_message(
+            "me",  # Edit this
+            "This is a ReplyKeyboardMarkup example",
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton(
-                        text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                    ),
+                    [  # First row
+                        InlineKeyboardButton(  # Generates a callback query when pressed
+                            "Button",
+                            callback_data="data"
+                        ),
+                    ],
+                    [  # Second row
+                        
+                        InlineKeyboardButton(  # Opens the inline interface in the current chat
+                            "Inline here",
+                            switch_inline_query_current_chat="pyrogram"
+                        )
+                    ]
                 ]
-            
-            ]        
+            )
+        
         
 
 
