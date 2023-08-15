@@ -2816,7 +2816,7 @@ async def auto_filter(client, msg, spoll=False):
 
     if imdb and imdb.get('poster'):
         try:
-            tele = f"https://telegra.ph/{cap}"
+            tele = f"https://telegra.ph/<a href="https://telegra.ph/{search}">{cap}</a>"
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             
             
