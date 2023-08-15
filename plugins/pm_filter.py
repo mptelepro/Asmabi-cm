@@ -2763,24 +2763,31 @@ async def auto_filter(client, msg, spoll=False):
     temp.SHORT[message.from_user.id] = message.chat.id
     
     if settings["button"]:
+#        btn = [
+#            [
+#                InlineKeyboardButton(
+#                    text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+#                ),
+#            ]
+#            
+        ]
+        btn+= [
+            [
+                InlineKeyboardButton(
+                    text=f"<b>\n{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n</a></b>"
+                ),
+            ]
+            
+        ]        
         for file in files:
-            btn = [
+            btn += [
                 [
                     InlineKeyboardButton(
-                        text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"<b>\n{random.choice(RUN_STRINGS)} <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n</a></b>"
                     ),
                 ]
             
             ]
-            for file in files:
-                btn = [
-                    [
-                        InlineKeyboardButton(
-                            text=f"{random.choice(RUN_STRINGS)}[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
-                        ),
-                    ]
-            
-                ]
 
 
 
