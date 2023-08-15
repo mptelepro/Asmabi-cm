@@ -2821,7 +2821,7 @@ async def auto_filter(client, msg, spoll=False):
                 cap+=f"<b> <a href='[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}'>https://telegra.ph/{search}</a> </b> \n\n"
           
                 for file in files:
-                    cap = f"<b> <a href='https://telegra.ph/{[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}}'>😞</a> </b>"
+                    cap = f"<b> <a href='https://telegra.ph/[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}'>click</a> </b>"
 
     if imdb and imdb.get('poster'):
         try:
