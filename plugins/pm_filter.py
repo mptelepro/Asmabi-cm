@@ -104,30 +104,22 @@ async def ai(query):
 
 @Client.on_message(filters.command("openai"))
 async def pm_text(client, message):
-    try:
-        lgcd = message.text.split("/openai")
-        lg_cd = lgcd[1].lower().replace(" ", "")
-        question = message.text.split(" ", 1)[1]
-        # Generate response using OpenAI API
-        response = await ai(question)
-        k = await message.reply_text(
-            text = f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {lg_cd} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>",
-            chat_id = chat_id)
-    except Exception as e:
-        # Handle other errors
-        error_message = f"An error occurred: {e}"
-        await m.edit(error_message)
-        buttons = [[        
-            InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)        
-        m = await message.reply_text(
-            text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
-            reply_markup=reply_markup
+    if len(message.command) == 1:
+       return await message.reply_text("Give an input!")
+    m = await message.reply_text("👀")
+    await ask_ai(client, m, message)
+    
+    buttons = [[        
+        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)        
+    m = await message.reply_text(
+        text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
+        reply_markup=reply_markup
             
-        )
-        await asyncio.sleep(30)
-        await m.delete()
+    )
+    await asyncio.sleep(30)
+    await m.delete()
     
 
 
