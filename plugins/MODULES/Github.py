@@ -55,7 +55,7 @@ async def getgithub(bot, message):
         
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('repo'))
 async def repo(Kashmira, message):
-#    un = message.text.split(None, 1)[1]
+    un = message.text
 #    search = https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc
     
     repositories = requests.get('https://api.github.com/search/repositories')
@@ -82,6 +82,8 @@ async def repo(Kashmira, message):
 <b>Fork Count :</b> <i>{qw.get("forks_count")}</i>
 
 <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
+
+<b>total repository :</b> <a href="https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc">TOTAL URL</a>
 """
         if qw.get("description"):
             txt += f'<b>Description :</b> <code>{qw.get("description")}</code>'
