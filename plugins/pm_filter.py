@@ -102,8 +102,9 @@ async def pm_text(client, message):
     if len(message.command) == 1:
        return await message.reply_text("Give an input!")
     m = await message.reply_text("👀")
-    await ask_ai(client, m, message)
-    
+    sp = await ask_ai(client, m, message)
+    await sp.delete()
+    await message.reply_text(sp)
     buttons = [[        
         InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
     ]]
