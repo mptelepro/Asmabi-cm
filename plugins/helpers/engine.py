@@ -20,4 +20,4 @@ async def ask_ai(client, m, message):
         error_message = f"An error occurred: {e}"
         await m.edit(error_message)
     else:
-        await message.reply_text(😥 Sᴏʀʀʏ {message.from_user.mention}, \nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️
+        await message.reply_text(f"😥 Sᴏʀʀʏ {message.from_user.mention}, \nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️")
