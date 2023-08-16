@@ -54,6 +54,8 @@ from database.gfilters_mdb import (
 )
 import logging
 
+from plugins.helpers.engine import ask_ai
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
@@ -88,17 +90,18 @@ RUN_STRINGS = (
 
 @Client.on_message(filters.command("openai"))
 async def pm_text(bot, message):
+    k = await ask_ai(client, m, message)
     buttons = [[        
-        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url="https://t.me/NASRANI_SUPPORT")
+        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)        
-    k = await message.reply_text(
+    m = await message.reply_text(
         text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
         reply_markup=reply_markup
             
     )
     await asyncio.sleep(30)
-    await k.delete()
+    await m.delete()
     
 
 
