@@ -12,6 +12,16 @@ from pyrogram import Client, filters
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /git command."""
 
+@Client.on_message(filters.command(["repo", "repository"]))
+async def getgithub(bot, message):
+    if len(message.command) != 2:
+        await message.reply_text("/github Username \n\n Like:- `/github hkrrish`", quote=True)
+        return
+    await message.reply_chat_action(enums.ChatAction.TYPING)
+    k = await message.reply_text("**Processing...⏳**", quote=True)    
+    un = message.text.split(None, 1)[1]
+    await message.reply_text(f'https://github.com/search?q={un}=repositories')
+    
 @Client.on_message(filters.command(["github", "git"]))
 async def getgithub(bot, message):
     if len(message.command) != 2:
@@ -20,7 +30,7 @@ async def getgithub(bot, message):
     await message.reply_chat_action(enums.ChatAction.TYPING)
     k = await message.reply_text("**Processing...⏳**", quote=True)    
     un = message.text.split(None, 1)[1]
-    URL = f'https://github.com/search?q={un}&type=repositories'
+    URL = f'https://api.github.com/users/{un}'
     request = requests.get(URL)
     result = request.json()
     username = result['login']
