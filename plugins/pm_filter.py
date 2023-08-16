@@ -102,7 +102,7 @@ async def pm_text(client, message):
     if len(message.command) == 1:
        return await message.reply_text("Give an input!")
     
-    sp =await ask_aii(client, m, message)
+    await ask_aii(client, m, message)
    
     buttons = [[        
         InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= sp.link)
