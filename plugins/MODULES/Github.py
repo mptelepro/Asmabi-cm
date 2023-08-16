@@ -83,7 +83,7 @@ async def repo(Kashmira, message):
 
 <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
 
-<b>total repository :</b> <a href="https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc">TOTAL URL</a>
+<b>total repository :</b> [total url](https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc)
 """
         if qw.get("description"):
             txt += f'<b>Description :</b> <code>{qw.get("description")}</code>'
