@@ -174,17 +174,17 @@ async def give_filter(client, message):
                     settings = await get_settings(message.chat.id)
                     if settings['auto_ffilter']:
                         await auto_filter(client, message)
-#                else:
-#                    buttons = [[                    
-#                    InlineKeyboardButton("⚠️ 𝐃𝐞𝐥𝐞𝐭𝐞 ⚠️", callback_data="check_delete")
-#                    ]]
-#                    reply_markup = InlineKeyboardMarkup(buttons)
-#                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {search} \n𝐈𝐟 𝐲𝐨𝐮 𝐠𝐨𝐭 𝐲𝐨𝐮𝐫 𝐦𝐨𝐯𝐢𝐞 𝐭𝐡𝐞𝐧 𝐝𝐞𝐥𝐞𝐭𝐞 𝐭𝐡𝐢𝐬 𝐩𝐨𝐬𝐭...⚠️",
-#                    reply_markup=reply_markup,
-#                    parse_mode=enums.ParseMode.HTML)
-#                    await asyncio.sleep(300)
-#                    await k.delete()  
-#                    await message.delete()
+                else:
+                    buttons = [[                    
+                    InlineKeyboardButton("⚠️ 𝐃𝐞𝐥𝐞𝐭𝐞 ⚠️", callback_data="check_delete")
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {search} \n𝐈𝐟 𝐲𝐨𝐮 𝐠𝐨𝐭 𝐲𝐨𝐮𝐫 𝐦𝐨𝐯𝐢𝐞 𝐭𝐡𝐞𝐧 𝐝𝐞𝐥𝐞𝐭𝐞 𝐭𝐡𝐢𝐬 𝐩𝐨𝐬𝐭...⚠️",
+                    reply_markup=reply_markup,
+                    parse_mode=enums.ParseMode.HTML)
+                    await asyncio.sleep(300)
+                    await k.delete()  
+                    await message.delete()
 
 
 
