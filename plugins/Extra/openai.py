@@ -1,8 +1,5 @@
-from pyrogram import Client, filters, enums
+from pyrogram import Client, filters
 from plugins.helpers.engine import ask_ai
-from database.users_chats_db import db
-# from info import SUPPORT_CHAT
-support = "https://t.me/NASRANI_SUPPORT"
 
 
 
