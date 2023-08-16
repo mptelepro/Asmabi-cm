@@ -2911,6 +2911,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
+    admin = ADMINS
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
@@ -2994,7 +2995,7 @@ async def advantage_spell_chok(client, msg):
             callback_data=f"spolling#{reqstr1}#{k}",
         )
     ] for k, movie in enumerate(movielist)]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{admin}#close_spellcheck')])
     spell_check_del = await msg.reply_photo(
         photo=SPELL_IMG,
         caption=(script.CUDNT_FND.format(mv_rqst)),
