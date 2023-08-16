@@ -12,6 +12,11 @@ from pyrogram import Client, filters
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /git command."""
 
+import logging
+import os
+import requests
+from pyrogram import Client, filters
+from info import SUPPORT_CHAT_ID
 
 
 
@@ -21,11 +26,10 @@ A = """{} with user id:- {} used /git command."""
 
 
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('repo'))
-async def repo(Kashmira, message):
-#    un = message.text.split(None, 1)[1]
-#    search = https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc
-    
-    pablo = await message.reply_text("Processing...")
+
+# @Client.on_message(filters.command('repo') & filters.chat (SUPPORT_CHAT_ID))
+async def git(Kashmira, message):
+    pablo = await message.reply_text("Processing...")
     args = message.text.split(None, 1)[1]
     if len(message.command) == 1:
         await pablo.edit("No input found")
@@ -40,9 +44,13 @@ async def repo(Kashmira, message):
         qw = lol[0]
         txt = f"""
 <b>Name :</b> <i>{qw.get("name")}</i>
+
 <b>Full Name :</b> <i>{qw.get("full_name")}</i>
+
 <b>Link :</b> {qw.get("html_url")}
+
 <b>Fork Count :</b> <i>{qw.get("forks_count")}</i>
+
 <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
 """
         if qw.get("description"):
