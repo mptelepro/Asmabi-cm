@@ -62,3 +62,43 @@ async def getgithub(bot, message):
     await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
     await k.delete()
         
+@Client.on_message(filters.command(["myr", "poory"]))
+async def myr(bot, message):
+    if len(message.command) != 2:
+        await message.reply_text("/github Username \n\n Like:- `/github hkrrish`", quote=True)
+        return
+    await message.reply_chat_action(enums.ChatAction.TYPING)
+    k = await message.reply_text("**Processing...⏳**", quote=True)    
+    un = message.text.split(None, 1)[1]
+    repositories = requests.get('https://api.github.com/search/repositories')
+    data = json.loads(response.text)
+    result = request.json()
+    title = repo['name']
+    url = result['html_url']
+    name = result['name']
+    company = result['company']
+    bio = result['bio']
+    created_at = result['created_at']
+    avatar_url = result['avatar_url']
+    blog = result['blog']
+    location = result['location']
+    repositories = result['public_repos']
+    followers = result['followers']
+    following = result['following']
+    capy = f"""**Info Of {name}**
+**Username:** `{title}`
+**Bio:** `{bio}`
+**Profile Link:** [Click Here]({url})
+**Company:** `{company}`
+**Created On:** `{created_at}`
+**Repositories:** `{repositories}`
+**Blog:** `{blog}`
+**Location:** `{location}`
+**Followers:** `{followers}`
+**Following:** `{following}`
+
+**@kinzanoufal**"""
+    await message.reply_text(text=title, reply_markup=BUTTONS)
+    await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    await k.delete()
+     
