@@ -15,19 +15,12 @@ async def ask_ai(client, m, message):
         # Generate response using OpenAI API
         response = await ai(question)
         # Send response back to user
-        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {message} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code>{response}</code>")
+        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {message} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>")
     except Exception as e:
         # Handle other errors
         error_message = f"An error occurred: {e}"
         await m.edit(error_message)
-    else:
-        content = message.text
-        user = message.from_user.first_name
-        user_id = message.from_user.id
-        if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
-        if user_id in ADMINS: return
-        await message.reply_text(f"😥 Sᴏʀʀʏ {message.from_user.mention}, \nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️")
-
+    
 
 
 
