@@ -89,7 +89,7 @@ RUN_STRINGS = (
 
 
 @Client.on_message(filters.command("openai"))
-async def pm_text(bot, message):
+async def pm_text(client, message):
     m = await ask_ai(client, m, message)
     buttons = [[        
         InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
