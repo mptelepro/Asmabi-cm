@@ -15,26 +15,31 @@ A = """{} with user id:- {} used /git command."""
 
 
 
+
+
+
+
+
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('repo'))
-async def repo(Kashmira, message):
-    un = message.text
+# @Client.on_message(filters.command('repo') & filters.chat (SUPPORT_CHAT_ID))
+async def git(Kashmira, message):
+#    un = message.text
 #    search = https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc
     
-    repositories = requests.get('https://api.github.com/search/repositories')
-    pablo = await message.reply_text("Processing...")
-    args = message.text.split(None, 1)[1]
-    if len(message.command) == 1:
-        await pablo.edit("No input found")
-        return
-    r = requests.get("https://api.github.com/search/repositories", params={"q": args})
-    lool = r.json()
-    if lool.get("total_count") == 0:
-        await pablo.edit("File not found")
-        return
-    else:
-        lol = lool.get("items")
-        qw = lol[0]
-        txt = f"""
+    pablo = await message.reply_text("Processing...")
+    args = message.text.split(None, 1)[1]
+    if len(message.command) == 1:
+        await pablo.edit("No input found")
+        return
+    r = requests.get("https://api.github.com/search/repositories", params={"q": args})
+    lool = r.json()
+    if lool.get("total_count") == 0:
+        await pablo.edit("File not found")
+        return
+    else:
+        lol = lool.get("items")
+        qw = lol[0]
+        txt = f"""
 <b>Name :</b> <i>{qw.get("name")}</i>
 
 <b>Full Name :</b> <i>{qw.get("full_name")}</i>
@@ -63,6 +68,4 @@ async def repo(Kashmira, message):
         if qw.get("archived") == True:
             txt += f"<b>This Project is Archived</b>"
         await pablo.edit(txt, disable_web_page_preview=True)
-#        await pablo.edit(f" <a href='https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>total url</a> ", disable_web_page_preview=True)
-
-
+        await pablo.edit(f" <a href='https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>total url</a> ", disable_web_page_preview=True)
