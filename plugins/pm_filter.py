@@ -105,16 +105,16 @@ async def pm_text(client, message):
     await ask_aii(client, m, message)
    
     buttons = [[        
-        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= sp.link)
+        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= "https://t.me/nasrsmi")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)        
-    m = await message.reply_text(
+    k = await message.reply_text(
         text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
         reply_markup=reply_markup
             
     )
     await asyncio.sleep(30)
-    await m.delete()
+    await k.delete()
     
 
 
