@@ -25,7 +25,7 @@ async def ask_ai(client, m, message):
         user_id = message.from_user.id
         if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
         if user_id in ADMINS: return
-            await message.reply_text(f"😥 Sᴏʀʀʏ {message.from_user.mention}, \nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️")
+        await message.reply_text(f"😥 Sᴏʀʀʏ {message.from_user.mention}, \nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️")
 
 
 
