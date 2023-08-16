@@ -73,7 +73,7 @@ async def repo(Kashmira, message):
         lol = lool.get("items")
         qw = lol[0]
         await message.reply_text(
-        text = f" <b>Name :</b> <i>{qw.get("name")}</i> \n\n <b>Full Name :</b> <i>{qw.get("full_name")}</i> \n\n <b>Link :</b> {qw.get("html_url")} \n\n <b>Fork Count :</b> <i>{qw.get("forks_count")}</i> \n\n <b>Open Issues :</b> <i>{qw.get("open_issues")}</i> \n\n <a href="https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc">total url</a>")
+        text = f" <b>Name :</b> <i>{qw.get("name")}</i> \n\n <b>Full Name :</b> <i>{qw.get("full_name")}</i> \n\n <b>Link :</b> {qw.get("html_url")} \n\n <b>Fork Count :</b> <i>{qw.get("forks_count")}</i> \n\n <b>Open Issues :</b> <i>{qw.get("open_issues")}</i> \n\n <a href='https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>total url</a>")
         if qw.get("description"):
             txt += f'<b>Description :</b> <code>{qw.get("description")}</code>'
 
