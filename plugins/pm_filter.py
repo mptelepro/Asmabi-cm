@@ -59,7 +59,7 @@ import logging
 
 import openai
 from info import OPENAI
-from plugins.helpers.engine import ask_ai
+from plugins.helpers.engine import ask_aii
 
 
 logger = logging.getLogger(__name__)
@@ -102,9 +102,8 @@ async def pm_text(client, message):
     if len(message.command) == 1:
        return await message.reply_text("Give an input!")
     m = await message.reply_text("👀")
-    sp = await ask_ai(client, m, message)
-    await sp.delete()
-    await message.reply_text(sp)
+    await ask_aii(client, m, message)
+   
     buttons = [[        
         InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
     ]]
