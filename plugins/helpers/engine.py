@@ -14,13 +14,14 @@ async def ai(query):
     
 async def ask_ai(client, m, message):
     try:
-        message = message.text
+        lgcd = message.text.split("/openai")
+        lg_cd = lgcd[1].lower().replace(" ", "")
         question = message.text.split(" ", 1)[1]
         # Generate response using OpenAI API
         response = await ai(question)
         # Send response back to user
 #        await m.edit(f"{response}")
-        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {message} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>")
+        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {lg_cd} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>")
     except Exception as e:
         # Handle other errors
         error_message = f"An error occurred: {e}"
