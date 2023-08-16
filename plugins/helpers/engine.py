@@ -1,7 +1,7 @@
 from pyrogram import Client, filters, enums
 
 import openai
-from info import OPENAI, ADMINS
+from info import OPENAI, ADMINS, SUPPORT_CHAT
 async def ai(query):
     
     openai.api_key = OPENAI #Your openai api key
