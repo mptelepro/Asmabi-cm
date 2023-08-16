@@ -13,7 +13,7 @@ BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='ht
 A = """{} with user id:- {} used /git command."""
 
 @Client.on_message(filters.command(["repo", "repository"]))
-async def getgithub(bot, message):
+async def repo(bot, message):
     if len(message.command) != 2:
         await message.reply_text("/github Username \n\n Like:- `/github hkrrish`", quote=True)
         return
