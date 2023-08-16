@@ -17,12 +17,7 @@ support = "https://t.me/NASRANI_SUPPORT"
 
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('openai'))
 async def openai_ask(client, message):
-    chatid = message.chat.id if message.chat else None
-    if not chatid:
-        m = await message.reply_text("👀")
-
-        if len(message.command) == 1:
-            return await message.reply_text("Give an input!")
+    if len(message.command) == 1:
         m = await message.reply_text("👀")
         await ask_ai(client, m, message)
    
