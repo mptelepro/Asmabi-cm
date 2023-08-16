@@ -1,5 +1,6 @@
 from pyrogram import Client, filters, enums
 from plugins.helpers.engine import ask_ai
+from database.users_chats_db import db
 # from info import SUPPORT_CHAT
 support = "https://t.me/NASRANI_SUPPORT"
 
@@ -26,7 +27,7 @@ async def openai_ask(client, message):
     else:
         return
     userid = message.from_user.id
-    user = await bot.get_chat_member(grpid, userid)
+    user = await client.get_chat_member(grpid, userid)
     if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
         return
     else:
