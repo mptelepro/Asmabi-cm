@@ -113,7 +113,7 @@ PRINT = environ.get('PRINT',"https://t.me/+IpB01WFvsNplZDI9")
 # heroku
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
 HRK_API = environ.get('HRK_API', '0')
-
+OPENAI = environ.get('OPENAI', '0')
 
 
 LANGUAGES = ["malayalam", "mal", "tamil", "tam" ,"english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
