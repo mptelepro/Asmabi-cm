@@ -10,11 +10,12 @@ async def ai(query):
      
 async def ask_ai(client, m, message):
     try:
+        message = message.text
         question = message.text.split(" ", 1)[1]
         # Generate response using OpenAI API
         response = await ai(question)
         # Send response back to user
-        await m.edit(f"user: {message.from_user.mention} \n{response}")
+        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {message} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code>{response}</code>")
     except Exception as e:
         # Handle other errors
         error_message = f"An error occurred: {e}"
