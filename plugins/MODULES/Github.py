@@ -72,7 +72,7 @@ async def repo(Kashmira, message):
     else:
         lol = lool.get("items")
         qw = lol[0]
-        await message.reply_text
+        await message.reply_text(
         txt = f"
 <b>Name :</b> <i>{qw.get("name")}</i>
 
@@ -85,7 +85,7 @@ async def repo(Kashmira, message):
 <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
 
 <b>total repository :</b> [total url](https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc)
-"
+")
         if qw.get("description"):
             txt += f'<b>Description :</b> <code>{qw.get("description")}</code>'
 
