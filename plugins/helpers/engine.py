@@ -1,3 +1,5 @@
+from pyrogram import Client, filters, enums
+
 import openai
 from info import OPENAI
 async def ai(query):
