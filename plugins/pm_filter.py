@@ -54,7 +54,13 @@ from database.gfilters_mdb import (
 )
 import logging
 
-from plugins.helpers.engine import ask_ai
+
+
+
+import openai
+from info import OPENAI
+
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
@@ -62,6 +68,7 @@ logger.setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+chat_id = "NASRANI_SUPPORT"
 
 BUTTON = {}
 BUTTONS = {}
@@ -78,6 +85,13 @@ RUN_STRINGS = (
     "🎭",    
 )
 
+async def ai(query):
+    
+    openai.api_key = OPENAI #Your openai api key
+    response = openai.Completion.create(engine="text-davinci-002", prompt=query, max_tokens=100, n=1, stop=None, temperature=0.9, timeout=5)
+    return response.choices[0].text.strip()
+    
+
 # def convert(text):
 #    audio = BytesIO()    
 #    i = Translator().translate(text, dest="en")
@@ -90,18 +104,30 @@ RUN_STRINGS = (
 
 @Client.on_message(filters.command("openai"))
 async def pm_text(client, message):
-    m = await ask_ai(client, m, message)
-    buttons = [[        
-        InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
-    ]]
-    reply_markup = InlineKeyboardMarkup(buttons)        
-    m = await message.reply_text(
-        text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
-        reply_markup=reply_markup
+    try:
+        lgcd = message.text.split("/openai")
+        lg_cd = lgcd[1].lower().replace(" ", "")
+        question = message.text.split(" ", 1)[1]
+        # Generate response using OpenAI API
+        response = await ai(question)
+        k = await message.reply_text(
+            text = f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {lg_cd} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>",
+            chat_id = chat_id)
+    except Exception as e:
+        # Handle other errors
+        error_message = f"An error occurred: {e}"
+        await m.edit(error_message)
+        buttons = [[        
+            InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= k.link)
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)        
+        m = await message.reply_text(
+            text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
+            reply_markup=reply_markup
             
-    )
-    await asyncio.sleep(30)
-    await m.delete()
+        )
+        await asyncio.sleep(30)
+        await m.delete()
     
 
 
