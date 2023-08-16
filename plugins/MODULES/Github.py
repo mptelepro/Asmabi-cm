@@ -73,7 +73,7 @@ async def repo(Kashmira, message):
         lol = lool.get("items")
         qw = lol[0]
         await message.reply_text(
-        txt = f"
+        text = f"
 <b>Name :</b> <i>{qw.get("name")}</i>
 
 <b>Full Name :</b> <i>{qw.get("full_name")}</i>
