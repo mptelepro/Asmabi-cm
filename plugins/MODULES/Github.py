@@ -62,8 +62,7 @@ async def repo(Kashmira, message):
 
         if qw.get("archived") == True:
             txt += f"<b>This Project is Archived</b>"
-        await pablo.edit(txt, disable_web_page_preview=True)
-        await message.reply_text(
-            text = f" <a href='https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>total url</a> ")
+#        await pablo.edit(txt, disable_web_page_preview=True)
+        await pablo.edit(f" <a href='https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>total url</a> ", disable_web_page_preview=True)
 
 
