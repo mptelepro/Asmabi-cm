@@ -30,7 +30,7 @@ async def ask_ai(client, m, message):
 
 
 
-@Client.on_message(filters.chat(SUPPORT_CHAT) & filters.text & filters.incoming)
+@Client.on_message(filters.group & filters.chat(SUPPORT_CHAT) & filters.text & filters.incoming)
 async def pm_text(bot, message):
     content = message.text
     user = message.from_user.first_name
