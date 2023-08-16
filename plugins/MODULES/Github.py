@@ -55,8 +55,8 @@ async def getgithub(bot, message):
         
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('repo'))
 async def repo(Kashmira, message):
-    un = message.text.split(None, 1)[1]
-    search = https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc
+#    un = message.text.split(None, 1)[1]
+#    search = https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc
     
     repositories = requests.get('https://api.github.com/search/repositories')
     pablo = await message.reply_text("Processing...")
