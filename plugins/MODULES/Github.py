@@ -20,7 +20,7 @@ async def repo(bot, message):
     await message.reply_chat_action(enums.ChatAction.TYPING)
     k = await message.reply_text("**Processing...⏳**", quote=True)    
     un = message.text.split(None, 1)[1]
-    await message.reply_text(f'https://github.com/search?q={un}=repositories')
+    await message.reply_text(f'https://github.com/search?q={un}+language%3APython&type=repositories&l=Python&s=updated&o=desc')
     
 @Client.on_message(filters.command(["github", "git"]))
 async def getgithub(bot, message):
