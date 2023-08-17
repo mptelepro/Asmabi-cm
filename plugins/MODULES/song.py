@@ -29,7 +29,8 @@ def time_to_seconds(time):
 
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('song'))
 async def song(client, message):
-
+    if len(message.command) == 1:
+       return await message.reply_text("Give an input!")
     user_id = message.from_user.id 
     user_name = message.from_user.first_name 
     rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
@@ -156,6 +157,9 @@ def get_text(message: Message) -> [None,str]:
 
 @Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('video'))
 async def vsong(client, message: Message):
+    if len(message.command) == 1:
+       return await message.reply_text("Give an input!")
+
     args = message.text.split(None, 1)[1]
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     sname = r['data']['results'][0]['name']
