@@ -111,7 +111,7 @@ PRINT = environ.get('PRINT',"https://t.me/+IpB01WFvsNplZDI9")
 
 #mute_login
 
-login_channel = environ.get('LOGIN_CHANNEL')
+login_channel = environ.get('LOGIN_CHANNEL' "-1001351202807")
 LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
 pm = environ.get('PM')
 PM = int(pm) if pm and id_pattern.search(pm) else None
