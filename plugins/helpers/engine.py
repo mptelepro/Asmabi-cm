@@ -39,7 +39,7 @@ async def ask_aii(client, m, message):
         response = await ai(question)
         # Send response back to user
 #        await m.edit(f"{response}")
-        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n\n 🔍 Qᴜᴇʀʏ: {lg_cd} \n\n <u>ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇</u> \n\n<code>{response} </code>")
+        await m.edit(f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n\n 🔍 Qᴜᴇʀʏ: {lg_cd} \n\n <u>ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇</u> \n\n<code>{response} </code>", chat_id=chat_id)
 #        await m.delete()
 #        await client.send_message(text = f" 🕵‍♂ ʀᴇǫᴜꜱᴛᴇᴅ ʙʏ: {message.from_user.mention} \n 🔍 Qᴜᴇʀʏ: {lg_cd} \n ʜᴇʀᴇ ɪ ғᴏᴜɴᴅ ғᴏʀ ʏᴏᴜ ǫᴜᴇʀʏ 👇 \n\n <code> {response} </code>", chat_id=chat_id)
     except Exception as e:
