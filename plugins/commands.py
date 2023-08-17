@@ -44,7 +44,7 @@ async def start(client, message):
             InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
+        k = await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
         await client.send_message(
             chat_id=ADMIN,
             text=f"{message.from_user.mention}",
@@ -52,8 +52,7 @@ async def start(client, message):
         )
         await asyncio.sleep(3000)
         await k.delete()
-    except Exception as e:
-        logger.exception(e)
+
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
         if not await db.get_chat(message.chat.id):
             total=await client.get_chat_members_count(message.chat.id)
