@@ -105,9 +105,9 @@ RUN_STRINGS = (
 async def pm_text(client, message):
     if len(message.command) == 1:
        return await message.reply_text("Give an input!")
-#    m = await client.send_message(text = f"👀", chat_id = chat_id)
-    m = await message.reply_text(text = f"👀")
-    await ask_aii(client, m, message)
+    m = await client.send_message(text = f"👀", chat_id = chat_id)
+#    m = await message.reply_text(text = f"👀")
+    ss = await ask_aii(client, m, message)
    
     buttons = [[        
         InlineKeyboardButton("🚫 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩 🚫", url= m.link)
@@ -118,6 +118,8 @@ async def pm_text(client, message):
         reply_markup=reply_markup
             
     )
+    await ss.delete()
+    
     await asyncio.sleep(30)
     await k.delete()
     
