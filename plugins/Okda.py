@@ -2622,8 +2622,8 @@ async def auto_filterr(client, msg, spoll=False):
             m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
             
-#            search = lgcd[1].lower().replace(" ", "")
-            search = search.lower()
+            search = lgcd[1].lower().replace(" ", "")
+#            search = search.lower()
 #            find = search.split(" ")
             search = ""
             removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
