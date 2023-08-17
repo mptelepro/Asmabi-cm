@@ -100,17 +100,18 @@ RUN_STRINGS = (
 
 @Client.on_message(filters.private & filters.text)
 async def give_filterr(client, message):
+    if len(message.command) == 1:
 
-    settings = await get_settings(message.chat.id)
-    try:
-        if settings['auto_ffilter']:
-            await auto_filter(client, message)
-    except KeyError:
-        grpid = await active_connection(str(message.from_user.id))
-        await save_group_settings(grpid, 'auto_ffilter', True)
         settings = await get_settings(message.chat.id)
-        if settings['auto_ffilter']:
-            await auto_filter(client, message) 
+        try:
+            if settings['auto_ffilter']:
+                await auto_filter(client, message)
+        except KeyError:
+            grpid = await active_connection(str(message.from_user.id))
+            await save_group_settings(grpid, 'auto_ffilter', True)
+            settings = await get_settings(message.chat.id)
+            if settings['auto_ffilter']:
+                await auto_filter(client, message) 
     
 
 @Client.on_message(filters.command("openai"))
