@@ -48,6 +48,9 @@ async def start(client, message):
                 )
         await asyncio.sleep(3000)
         await k.delete()
+    except Exception as e:
+        logger.exception(e)
+        
         if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             buttons = [[
                 InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
