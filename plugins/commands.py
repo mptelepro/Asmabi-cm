@@ -1125,7 +1125,7 @@ async def stop_button(bot, message):
 
 
 
-@Client.on_message(filters.command("start") & filters.text)
+@Client.on_message(filters.text)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
@@ -1209,7 +1209,7 @@ async def reply_text(client: Client, message):
 
 
 
-@Client.on_message(filters.command("start") & filters.media)
+@Client.on_message(filters.command("startt") & filters.media)
 async def pm_text(client: Client, message):
 #    content = message.text
     user = message.from_user.first_name
