@@ -2622,12 +2622,12 @@ async def auto_filterr(client, msg, spoll=False):
             m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
             
-            search = lgcd[1].lower().replace(" ", "")
-#            search = search.lower()
-            find = search.split(" ")
+#            search = lgcd[1].lower().replace(" ", "")
+            search = search.lower()
+#            find = search.split(" ")
             search = ""
             removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
-            for x in find:
+            for x in lgcd:
                 # if x == "in" or x == "upload" or x == "series" or x == "full" or x == "horror" or x == "thriller" or x == "mystery" or x == "print" or x == "subtitle" or x == "subtitles":
                 #     continue
                 if x in removes:
