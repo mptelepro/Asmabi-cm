@@ -7,6 +7,7 @@ from info import ADMINS
 from utils import broadcast_messages, broadcast_messages_group
 import asyncio
 
+from plugins.pm_filter import global_filters, manual_filters
 
 
 
@@ -109,7 +110,69 @@ RUN_STRINGS = (
 
 
 
-
+@Client.on_callback_query(filters.regex(r"^spoll"))
+async def advantage_spoll_choker(bot, query):
+    _, user, movie_ = query.data.split('#')
+    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+    if not movies:
+        return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+    if movie_ == "close_spellcheck":
+        return await query.message.delete()
+    movie = movies[(int(movie_))]
+    movie = re.sub(r"[:\-]", " ", movie)
+    movie = re.sub(r"\s+", " ", movie).strip()
+    await query.answer(script.TOP_ALRT_MSG)
+    gl = await global_filters(bot, query.message, text=movie)
+    if gl == False:
+        k = await manual_filters(bot, query.message, text=movie)
+        if k == False:
+            files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
+            if files:
+                k = (movie, files, offset, total_results)
+                await auto_filtere(bot, query, k)
+            else:
+                conten = query.message.reply_to_message.text
+                
+                imdb = await get_poster(conten) if IMDB else None
+                
+                reqstr1 = query.from_user.id if query.from_user else 0
+                reqstr = await bot.get_users(reqstr1)
+                reporter = str(query.message.from_user.id)
+                chat_id = query.message.chat.title
+                if NO_RESULTS_MSG:
+                    await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                buttons = [[
+                    InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", callback_data=f'show_option#{reporter}')
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
+                                             
+                k = await query.message.edit(f"{query.message.reply_to_message.from_user.mention} \n <code>{conten}</code> ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...",
+                reply_markup=reply_markup,                
+                parse_mode=enums.ParseMode.HTML,
+#                reply_to_message_id=query.message.id                                   
+                )           
+                
+ 
+                if query.message.from_user.id == ADMIN:
+                    await reply_text(bot, query, k)
+                    return
+                info = await bot.get_users(user_ids=query.message.from_user.id)
+                reference_id = int(query.message.chat.id)
+                buttons = [[
+                    InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", url = k.link)
+                ],[
+                    InlineKeyboardButton("📢 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 📢", callback_data='close_data')
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
+                m = await bot.send_photo(
+                    photo=imdb.get('poster'),
+                    chat_id=ADMIN,
+                    caption=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)),
+                    reply_markup=reply_markup,
+                    parse_mode=enums.ParseMode.HTML
+                )
     
                 
             
@@ -121,12 +184,8 @@ async def auto_filterr(client, message, spoll=False):
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
-    if len(message.text) < 100:
-            
-        search = message.text
-            
-        m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
-        await m.delete()
+    if not spoll:
+        message = msg
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
