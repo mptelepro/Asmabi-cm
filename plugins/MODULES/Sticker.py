@@ -24,6 +24,13 @@ from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document
+import asyncio
+import os
+import math
+import time
+import requests
+from pyrogram import Client, filters
+
 
 
 bughunter0 = Client(
@@ -39,8 +46,8 @@ SUPPORTED_TYPES = ["jpeg", "png", "webp", "gif", "mp4"]
 
 START_STRING = """ Hi {}, I'm Sticker Bot. 
 
-START_TIME = datetime.utcnow()
-START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+START_TIME = """datetime.utcnow()"""
+START_TIME_ISO = """START_TIME.replace(microsecond=0).isoformat()"""
 TIME_DURATION_UNITS = (
     ('week', 60 * 60 * 24 * 7),
     ('day', 60 * 60 * 24),
@@ -60,6 +67,11 @@ JOIN_BUTTON = InlineKeyboardMarkup(
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
 
+#=====================================================
+BOT_START_TIME = time.time()
+#=====================================================
+
+
 async def _human_time_duration(seconds):
     if seconds == 0:
         return 'inf'
@@ -72,6 +84,19 @@ async def _human_time_duration(seconds):
     return ', '.join(parts)
    
 
+
+
+
+@Client.on_message(filters.command("ping"))
+async def ping(_, message):
+    start_t = time.time()  
+    avr = await message.reply_text("•••")  
+    end_t = time.time()
+    time_taken_s = (end_t - start_t) * 1000
+    uptime = time.strftime("%Hh | %Mm | %Ss", time.gmtime(time.time() - BOT_START_TIME))   
+    await avr.edit(f"ᴄᴜʀʀᴇɴᴛ ʙᴏᴛ sᴛᴀᴛᴜs\n\n‹› ᴘᴏɴɢ! : {time_taken_s:.3f} ms\n‹› ʙᴏᴛ ᴜᴘᴛɪɴᴇ : {uptime}")
+    await asyncio.sleep(10)
+    await avr.delete()
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('start_sticker'))
 async def start_sticker(bot, update):
