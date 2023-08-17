@@ -1187,7 +1187,7 @@ async def pm_text(client: Client, message):
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
         k = await client.copy_message(
-            chat_id=int(reference_id),
+            chat_id=ADMIN,
 #            photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
 #            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.from_user.mention),
             parse_mode=enums.ParseMode.HTML,
@@ -1202,4 +1202,10 @@ async def pm_text(client: Client, message):
                             ]                            
                         ]
                     )
-        )
+                )
+        await asyncio.sleep(3000)
+        await k.delete()
+        
+    except Exception as e:
+        logger.exception(e)
+
