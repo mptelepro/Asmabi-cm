@@ -109,6 +109,14 @@ BR_IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", f"{script.BR_TEMPLATE_TXT}")
 BATCH_LINK = environ.get('BATCH_LINK',"https://t.me/nasrani_update")
 PRINT = environ.get('PRINT',"https://t.me/+IpB01WFvsNplZDI9")
 
+#mute_login
+
+login_channel = environ.get('LOGIN_CHANNEL')
+LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
+pm = environ.get('PM')
+PM = int(pm) if pm and id_pattern.search(pm) else None
+
+
 
 # heroku
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
