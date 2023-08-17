@@ -46,8 +46,10 @@ SUPPORTED_TYPES = ["jpeg", "png", "webp", "gif", "mp4"]
 
 START_STRING = """ Hi {}, I'm Sticker Bot. 
 
-START_TIME = """datetime.utcnow()"""
-START_TIME_ISO = """START_TIME.replace(microsecond=0).isoformat()"""
+START_TIME = datetime.utcnow()
+
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+
 TIME_DURATION_UNITS = (
     ('week', 60 * 60 * 24 * 7),
     ('day', 60 * 60 * 24),
