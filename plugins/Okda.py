@@ -99,12 +99,12 @@ RUN_STRINGS = (
 
 
 
+# @Client.on_message(filters.private & filters.command("movie") & filters.reply)
 
-@Client.on_message(filters.private & filters.command("movie") & filters.reply)
-async def give_filterr(client, message):
+# async def give_filterr(client, message):
 #    k = await manual_filters(client, message)
 #    if k == False:
-     await auto_filterr(client, message)
+#     await auto_filterr(client, message)
     
 
 
@@ -115,8 +115,7 @@ async def give_filterr(client, message):
             
  
 
-
-    
+@Client.on_message(filters.private & filters.command("movie") & filters.reply)    
 async def auto_filterr(client, msg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
