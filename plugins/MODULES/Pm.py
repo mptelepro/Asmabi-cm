@@ -210,6 +210,11 @@ async def reply_media(client: Client, message):
             text=f"{reference_id} {info.first_name}",
             parse_mode=enums.ParseMode.HTML)
             
+        await asyncio.sleep(3000)
+        await k.delete()
+        
+    except Exception as e:
+        logger.exception(e)
 		
 
 
