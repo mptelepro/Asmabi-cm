@@ -1227,7 +1227,7 @@ async def pm_media(bot, message):
         chat_id=ADMIN,
         from_chat_id=message.chat.id,
         message_id=message.id,
-        caption=script.PM_MED_ATT.format(reference_id, message.from_user_mention), # info.first_name),        
+        caption=script.PM_MED_ATT.format(reference_id, message.from_user.mention), # info.first_name),        
     )
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
