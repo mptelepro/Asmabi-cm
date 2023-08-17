@@ -1171,11 +1171,11 @@ async def reply_text(client: Client, message):
 
 @Client.on_message(filters.command("chat") & filters.media)
 async def pm_text(client: Client, message):
-    content = message.text
+#    content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
-    lgcd = message.text.split("/chat")
-    lg_cd = lgcd[1].lower().replace(" ", "")
+#    lgcd = message.text.split("/chat")
+#    lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
             await reply_text(client, message)
