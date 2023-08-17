@@ -1231,12 +1231,14 @@ async def replay_media(client: Client, message):
             except Exception:
                 pass
         k = await client.send_cached_media(
-            chat_id=int(reference_id)
+            file_id=message.reply_to_message
+        
+            chat_id=int(reference_id))
 #            from_chat_id=message.chat.id,
 #            message_id=message.id)
 #        m = await client.send_message(
 #            chat_id=ADMIN,
-#            text=f"{reference_id} {info.first_name}",
+#            caption=f"{reference_id} {info.first_name}",
 #            parse_mode=enums.ParseMode.HTML)
             
         await asyncio.sleep(3000)
