@@ -141,7 +141,7 @@ async def reply_textt(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.media)
+@Client.on_message(filters.private & filters.media & filters.command("okk"))
 async def reply_media(client: Client, message):
     
 #    if message.from_user.id in ADMINS:
