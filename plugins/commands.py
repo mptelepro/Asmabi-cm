@@ -30,16 +30,6 @@ async def start(client, message):
         if message.from_user.id == ADMIN: 
             await reply_text(client, message)
             return
-        await client.send_message(
-            chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-            parse_mode=enums.ParseMode.HTML
-        )
-        await asyncio.sleep(3000)
-        await k.delete()
-    except Exception as e:
-        logger.exception(e)
-        
         if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             buttons = [[
                 InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
@@ -57,7 +47,7 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+                    InlineKeyboardButton('🥺ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAEBEDhkyBBP_ei4cBYN5vwYZ7Ca7W-oSgAC0gcAArwmiVSTwrq-v5Wohx4E") 
@@ -96,7 +86,7 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+                    InlineKeyboardButton('😡ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
