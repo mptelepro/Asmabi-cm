@@ -208,19 +208,9 @@ async def reply_media(client: Client, message):
         m = await client.send_message(
             chat_id=ADMIN,
             text=f"{reference_id} {info.first_name}",
-            parse_mode=enums.ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
-                            ],
-                            [
-                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/NasraniMovies"),
-                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
-                            ]                            
-                        ]
-                    ) 
-                )
+            parse_mode=enums.ParseMode.HTML)
+            
+		
 
 
 
