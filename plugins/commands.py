@@ -1230,7 +1230,7 @@ async def replay_media(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-        k = await client.copy_message(
+        k = await client.send_cached_media(
             chat_id=int(reference_id),
             from_chat_id=message.chat.id,
             message_id=message.id)
