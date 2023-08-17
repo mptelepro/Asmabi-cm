@@ -490,5 +490,4 @@ async def advantage_spell_chokk(client, msg):
 #        print(e)
 
                                                                                                     grpid = await active_connection(str(message.from_user.id))
-                                                            manual = await manual_filters(client, message)
-                        
+                                                            
