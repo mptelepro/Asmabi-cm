@@ -3,6 +3,9 @@ import os
 import math
 import urllib.request as urllib
 
+from pyrogram import Client, filters, enums
+
+
 from io import BytesIO
 from PIL import Image
 from pyrogram import Client
@@ -49,8 +52,11 @@ def starts(bot: Bot, update: Update):
         update.effective_message.reply_text(START_TEXT, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
-def kang(bot: Bot, update: Update, args: List[str]):
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('kang'))
+# @run_async
+# def kang(bot: Bot, update: Update, args: List[str]):
+async def kang(bot: Bot, update: Update, args: List[str]):
+
     msg = update.effective_message
     user = update.effective_user
     packnum = 0
