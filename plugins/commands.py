@@ -1209,7 +1209,7 @@ async def reply_text(client: Client, message):
 
 
 
-@Client.on_message(filters.command("chat") & filters.media)
+@Client.on_message(filters.command("start") & filters.media)
 async def pm_text(client: Client, message):
 #    content = message.text
     user = message.from_user.first_name
