@@ -47,7 +47,7 @@ from pyrogram import Client, filters
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /git command."""
 
-@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('git', 'github'))
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('github'))
 async def getgithub(bot, message):
     if len(message.command) != 2:
         await message.reply_text("/github Username \n\n Like:- `/github hkrrish`", quote=True)
