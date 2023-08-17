@@ -1178,7 +1178,7 @@ async def pm_text(client: Client, message):
 #    lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
-            await reply_text(client, message)
+            await replay_media(client, message)
             return
 #        await message.reply_text(
 #        text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ <a href=https://telegram.me/+ps2An00KwZYwNTRl>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ</a> ᴏʀ ᴄʟɪᴄᴋ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ 👇</b>",   
@@ -1211,3 +1211,36 @@ async def pm_text(client: Client, message):
     except Exception as e:
         logger.exception(e)
 
+
+
+
+
+
+@Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
+async def replay_media(client: Client, message):
+    try:
+        reference_id = True
+        if message.reply_to_message is not None:
+            file = message.reply_to_message
+            try:
+                reference_id = file.text.split()[2]
+            except Exception:
+                pass
+            try:
+                reference_id = file.caption.split()[2]
+            except Exception:
+                pass
+        k = await client.copy_message(
+            chat_id=int(reference_id),
+            from_chat_id=message.chat.id,
+            message_id=message.message_id)
+#        m = await client.send_message(
+#            chat_id=ADMIN,
+#            text=f"{reference_id} {info.first_name}",
+#            parse_mode=enums.ParseMode.HTML)
+            
+        await asyncio.sleep(3000)
+        await k.delete()
+        
+    except Exception as e:
+        logger.exception(e)
