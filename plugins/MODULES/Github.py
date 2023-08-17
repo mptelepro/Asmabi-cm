@@ -19,7 +19,18 @@ from pyrogram import Client, filters
 from info import SUPPORT_CHAT_ID
 
 START_MESSAGE = """
-total <a href='https://github.com/search?q={}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>{}</a>
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("name")}</i>
+
+<b>𝐅𝐮𝐥𝐥 𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("full_name")}</i>
+
+<b>𝐋𝐢𝐧𝐤 :</b> {qw.get("html_url")}
+
+<b>𝐅𝐨𝐫𝐤 𝐂𝐨𝐮𝐧𝐭 : </b> <i>{qw.get("forks_count")}</i>
+
+<b>𝐎𝐩𝐞𝐧 𝐈𝐬𝐬𝐮𝐞𝐬 : </b> <i>{qw.get("open_issues")}</i>
+
+𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 : <a href='https://github.com/search?q={}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>{}</a>
+
 """
 
 
