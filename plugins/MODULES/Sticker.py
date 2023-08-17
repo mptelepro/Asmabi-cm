@@ -160,10 +160,10 @@ async def document(bot, message):
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('file'))
 async def documentid(bot, message):   
-    if message.reply_to_message.document:
+    if message.reply_to_message.document or video:
        await message.reply_text(
 #       chat_id=message.chat.id,
-       text=f"**Sticker ID is**  \n `{message.reply_to_message.document.file_id}` \n \n ** Unique ID is ** \n\n`{message.reply_to_message.document.file_unique_id}`", quote=True)
+       text=f"**Sticker ID is**  \n `{message.reply_to_message.document or video.file_id}` \n \n ** Unique ID is ** \n\n`{message.reply_to_message.document or video.file_unique_id}`", quote=True)
     else: 
        await message.reply("Oops !! Not a sticker file")
 
