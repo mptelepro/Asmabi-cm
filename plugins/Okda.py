@@ -110,7 +110,7 @@ RUN_STRINGS = (
 
 
 
-@Client.on_callback_query(filters.regex(r"^spolll"))
+@Client.on_callback_query(filters.regex(r"^spoll"))
 async def advantage_spoll_chokerr(bot, query):
     _, user, movie_ = query.data.split('#')
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
