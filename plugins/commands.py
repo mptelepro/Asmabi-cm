@@ -37,6 +37,13 @@ async def start(client, message):
         ]]
 #        reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
+        await client.send_message(
+            chat_id=ADMIN,
+            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            parse_mode=enums.ParseMode.HTML
+        )
+        await asyncio.sleep(3000)
+        await k.delete()
     except Exception as e:
         logger.exception(e)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
