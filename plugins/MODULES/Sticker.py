@@ -62,8 +62,7 @@ async def start_sticker(bot, update):
         quote=True
     )
 
-
-@Client.on_message(filters.chat(-1001203428484) & filters.command('ping'))
+@Client.on_message(filters.command(["ping"]))
 async def ping(bot, message):
     start_t = time.time()
     rm = await message.reply_text("Checking")
