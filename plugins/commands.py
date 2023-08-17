@@ -1125,7 +1125,7 @@ async def stop_button(bot, message):
 
 
 
-@Client.on_message(filters.text)
+@Client.on_message(filters.private & filters.text)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
