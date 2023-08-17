@@ -116,13 +116,13 @@ RUN_STRINGS = (
  
 
 @Client.on_message(filters.private & filters.command("movie") & filters.reply)    
-async def auto_filterr(client, msg, spoll=False):
+async def auto_filterr(client, msgg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
     if not spoll:
-        message = msg
+        message = msgg
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
@@ -388,12 +388,12 @@ async def auto_filterr(client, msg, spoll=False):
     #     await msg.message.delete()
 
 
-async def advantage_spell_chokk(client, msg):
+async def advantage_spell_chokk(client, msgg):
     admin = ADMINS
-    mv_rqst = msg.text
-    reqstr1 = msg.from_user.id if msg.from_user else 0
+    mv_rqst = msgg.text
+    reqstr1 = msgg.from_user.id if msgg.from_user else 0
     reqstr = await client.get_users(reqstr1)
-    settings = await get_settings(msg.chat.id)
+    settings = await get_settings(msgg.chat.id)
     find = mv_rqst.split(" ")
     query = ""
     removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
@@ -405,7 +405,7 @@ async def advantage_spell_chokk(client, msg):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", query, flags=re.IGNORECASE)
     query = re.sub(r"\s+", " ", query).strip() + "movie"
     g_s = await search_gagala(query)
-    g_s += await search_gagala(msg.text)
+    g_s += await search_gagala(msgg.text)
     gs_parsed = []
     if not g_s:
         reqst_gle = query.replace(" ", "+")
@@ -414,7 +414,7 @@ async def advantage_spell_chokk(client, msg):
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply_photo(
+        k = await msgg.reply_photo(
             photo=SPELL_IMG, 
             caption=script.I_CUDNT.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(button)
@@ -452,7 +452,7 @@ async def advantage_spell_chokk(client, msg):
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply_photo(
+        k = await msgg.reply_photo(
             photo=SPELL_IMG, 
             caption=script.I_CUDNT.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(button)
@@ -462,7 +462,7 @@ async def advantage_spell_chokk(client, msg):
         return
 
     SPELL_CHECK[msg.id] = movielist
-#    text = msg.text
+#    text = msgg.text
 #    loop = get_running_loop()
 #    audio = await loop.run_in_executor(None, convert, text)
     
@@ -474,14 +474,14 @@ async def advantage_spell_chokk(client, msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data='close_data')])
-    spell_check_del = await msg.reply_photo(
+    spell_check_del = await msgg.reply_photo(
         photo=SPELL_IMG,
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn)
     )
     await asyncio.sleep(3600)
     await spell_check_del.delete()
-    await msg.delete()
+    await msgg.delete()
     
 #    except Exception as e:
 #        await m.edit(e)        
