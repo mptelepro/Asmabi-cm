@@ -9,7 +9,7 @@ from pyrogram import filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='https://t.me/nasrani_update')]])
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨𝐔𝐩𝐝𝐚𝐭𝐞𝐝 𝐛𝐲✨', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /git command."""
 
 import logging
@@ -47,7 +47,7 @@ from pyrogram import Client, filters
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('✨ Made By ✨', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /git command."""
 
-@Client.on_message(filters.command(["github", "git"]))
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('git', 'github'))
 async def getgithub(bot, message):
     if len(message.command) != 2:
         await message.reply_text("/github Username \n\n Like:- `/github hkrrish`", quote=True)
@@ -70,19 +70,29 @@ async def getgithub(bot, message):
     repositories = result['public_repos']
     followers = result['followers']
     following = result['following']
-    capy = f"""**Info Of {name}**
-**Username:** `{username}`
-**Bio:** `{bio}`
-**Profile Link:** [Click Here]({url})
-**Company:** `{company}`
-**Created On:** `{created_at}`
-**Repositories:** `{repositories}`
-**Blog:** `{blog}`
-**Location:** `{location}`
-**Followers:** `{followers}`
-**Following:** `{following}`
+    capy = f"""
+𝐈𝐧𝐟𝐨 𝐨𝐟 `{name}`
 
-**@kinzanoufal**"""
+𝐔𝐬𝐞𝐫𝐧𝐚𝐦𝐞 : `{username}`
+
+𝐁𝐢𝐨 : `{bio}`
+
+𝐏𝐫𝐨𝐟𝐢𝐥𝐞 𝐋𝐢𝐧𝐤 : [Click Here]({url})
+
+𝐂𝐨𝐦𝐩𝐚𝐧𝐲 : `{company}`
+
+𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐨𝐧 : `{created_at}`
+
+𝐑𝐞𝐩𝐨𝐬𝐢𝐭𝐨𝐫𝐢𝐞𝐬 : `{repositories}`
+
+𝐁𝐥𝐨𝐠 : `{blog}`
+
+𝐋𝐨𝐜𝐚𝐭𝐢𝐨𝐧 : `{location}`
+
+𝐅𝐨𝐥𝐥𝐨𝐰𝐞𝐫𝐬 : `{followers}`
+
+𝐅𝐨𝐥𝐥𝐨𝐰𝐢𝐧𝐠 : `{following}`
+"""
     await message.reply_photo(photo=avatar_url, caption=capy, reply_markup=BUTTONS)
     await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
     await k.delete()
@@ -121,16 +131,6 @@ async def git(Kashmira, message):
 # <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
 # """
         txt = f"""
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("avatar_url")}</i>
-
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("followers")}</i>
-
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("following")}</i>
-
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("bio")}</i>
-
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("name")}</i>
-
 <b>𝐅𝐮𝐥𝐥 𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("full_name")}</i>
 
 <b>𝐋𝐢𝐧𝐤 :</b> {qw.get("html_url")}
