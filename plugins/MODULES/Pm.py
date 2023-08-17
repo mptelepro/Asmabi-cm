@@ -120,7 +120,7 @@ async def reply_textt(client: Client, message):
                 pass
             await client.send_message(
                 text=message.text,
-                chat_id=message.reply_to_message.from_user.id,
+                chat_id=int(reference_id),
 #		chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
