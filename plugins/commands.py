@@ -1210,7 +1210,7 @@ async def reply_text(client: Client, message):
 
 
 @Client.on_message(filters.command("startt") & filters.media)
-async def pm_text(client: Client, message):
+async def pm_textts(client: Client, message):
 #    content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
