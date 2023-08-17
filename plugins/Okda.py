@@ -102,7 +102,7 @@ RUN_STRINGS = (
 
 
 
-@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
+@Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filterr(client, message):
     k = await manual_filterss(client, message)
     if k == False:
@@ -2702,7 +2702,7 @@ async def auto_filterr(client, msg, spoll=False):
             if not files:
                 await m.delete()
                 if settings["spell_check"]:
-                    return await advantage_spell_chok(client, msg)
+                    return await advantage_spell_chokk(client, msg)
                 else:
                     # if NO_RESULTS_MSG:
                     #     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
@@ -2936,7 +2936,7 @@ async def auto_filterr(client, msg, spoll=False):
     #     await msg.message.delete()
 
 
-async def advantage_spell_chok(client, msg):
+async def advantage_spell_chokk(client, msg):
     admin = ADMINS
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
