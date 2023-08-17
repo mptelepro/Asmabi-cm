@@ -1134,7 +1134,7 @@ async def stop_button(bot, message):
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.command("ok"))
-async def reply_textt(client: Client, message):
+async def reply_text(client: Client, message):
     try:
         reference_id = True
         if message.reply_to_message is not None:
