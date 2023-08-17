@@ -50,7 +50,8 @@ JOIN_BUTTON = InlineKeyboardMarkup(
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
 
-@Client.on_message(filters.command(["start_sticker"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('start_sticker'))
 async def start_sticker(bot, update):
     text = START_STRING.format(update.from_user.mention)
     reply_markup = JOIN_BUTTON
@@ -61,7 +62,8 @@ async def start_sticker(bot, update):
         quote=True
     )
 
-@Client.on_message(filters.command(["ping"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('ping'))
 async def ping(bot, message):
     start_t = time.time()
     rm = await message.reply_text("Checking")
@@ -70,14 +72,16 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@Client.on_message(filters.command(["alive"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('alive'))
 async def ping(bot, message):
     await message.reply_document(f"BQACAgQAAx0CbSitBQACETJkw9__TNjSs50hmpGPXnxovk6eTAACJw4AAltmEFFvEc8DS7Kipx4E")
     
 
 
 
-@Client.on_message(filters.command(["getsticker"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('getsticker'))
 async def getstickerasfile(bot, message):      
     try :     
                      
@@ -96,7 +100,8 @@ async def getstickerasfile(bot, message):
 
 
 
-@Client.on_message(filters.private & filters.group & filters.command(["clearcache"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('clearcache'))
 async def clearcache(bot, message):   
     # Found some Files showing error while Uploading, So a method to Remove it !!  
     txt = await message.reply_text("Checking Cache")
@@ -110,7 +115,8 @@ async def clearcache(bot, message):
     await txt.edit("Cleared "+ str(i) + "File") 
     await txt.delete()
     
-@Client.on_message(filters.command(["stickerid"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('stickerid'))
 async def stickerid(bot, message):   
     if message.reply_to_message.sticker:
        await message.reply_text(
@@ -120,7 +126,8 @@ async def stickerid(bot, message):
        await message.reply("Oops !! Not a sticker file")
 
 
-@Client.on_message(filters.command(["find"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('find'))
 async def find(bot, message):  
     txt = await message.reply_text("Validating Sticker ID")
     stickerid = message.reply_to_message.text
@@ -130,7 +137,8 @@ async def find(bot, message):
    
 
 
-@Client.on_message(filters.command(["doc"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('doc'))
 async def document(bot, message):  
     documentid= message.reply_to_message.text
     chat_id = message.chat.id
@@ -149,7 +157,8 @@ async def document(bot, message):
     await k.delete()
 
 
-@Client.on_message(filters.command(["fileid"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('file'))
 async def documentid(bot, message):   
     if message.reply_to_message.document:
        await message.reply_text(
@@ -163,7 +172,8 @@ async def documentid(bot, message):
 
 
 
-@Client.on_message(filters.private & filters.group & filters.command(["findsticker"]))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('findsticker'))
 async def findsticker(bot, message):  
     try:
         
@@ -183,7 +193,8 @@ async def findsticker(bot, message):
 
 
 
-@Client.on_message(filters.command("get_sticker"))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('get_sticker'))
 async def sticker_image(_, message: Message):
     r = message.reply_to_message
 
