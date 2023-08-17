@@ -55,17 +55,30 @@ async def git(Kashmira, message):
     else:
         lol = lool.get("items")
         qw = lol[0]
+#        txt = f"""
+# <b>Name :</b> <i>{qw.get("name")}</i>
+
+# <b>Full Name :</b> <i>{qw.get("full_name")}</i>
+
+# <b>Link :</b> {qw.get("html_url")}
+
+# <b>Fork Count :</b> <i>{qw.get("forks_count")}</i>
+
+# <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
+# """
         txt = f"""
-<b>Name :</b> <i>{qw.get("name")}</i>
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("name")}</i>
 
-<b>Full Name :</b> <i>{qw.get("full_name")}</i>
+<b>𝐅𝐮𝐥𝐥 𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("full_name")}</i>
 
-<b>Link :</b> {qw.get("html_url")}
+<b>𝐋𝐢𝐧𝐤 :</b> {qw.get("html_url")}
 
-<b>Fork Count :</b> <i>{qw.get("forks_count")}</i>
+<b>𝐅𝐨𝐫𝐤 𝐂𝐨𝐮𝐧𝐭 : </b> <i>{qw.get("forks_count")}</i>
 
-<b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
-"""
+<b>𝐎𝐩𝐞𝐧 𝐈𝐬𝐬𝐮𝐞𝐬 : </b> <i>{qw.get("open_issues")}</i>
+
+𝐓𝐨𝐭𝐚𝐥 𝐅𝐢𝐥𝐞𝐬 : <a href='https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>{args}</a>
+"""        
         if qw.get("description"):
             txt += f'<b>Description :</b> <code>{qw.get("description")}</code>'
 
@@ -88,6 +101,6 @@ async def git(Kashmira, message):
 #    search = https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc
 
 #        await pablo.edit(f"https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc", disable_web_page_preview=True)
-        await pablo.edit(START_MESSAGE.format(args, args), disable_web_page_preview=True)
+        await pablo.edit(txt, disable_web_page_preview=True)
 
 
