@@ -153,7 +153,7 @@ async def document(bot, message):
 #    await m.edit("**♻ 𝙲𝚘𝚗𝚟𝚎𝚛𝚝  𝙵𝚒𝚕𝚎... ♻**......\n\n[▇▇▇▇▇▇▇▇▇▇] 100%")
 #    await m.edit("📤Uploading....")
     await m.edit("📤Uploading.....")
-    k = await app.send_cached_media(chat_id, file_id=f"{documentid or videoid}")
+    k = await bot.send_cached_media(chat_id, file_id=f"{documentid or videoid}")
     await asyncio.sleep(120)
     await k.delete()
 
