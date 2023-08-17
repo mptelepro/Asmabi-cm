@@ -150,7 +150,7 @@ async def reply_media(client: Client, message):
     reference_id = int(message.chat.id)
     try:   
         if message.from_user.id == ADMIN: 
-            await replay_media(client, message)
+            await reply_textt(client, message)
             return
         k = await client.copy_message(
             chat_id=ADMIN,
