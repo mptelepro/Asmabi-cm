@@ -21,38 +21,37 @@ BATCH_FILES = {}
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
-    search = message.text                                  
-#    imdb = await get_poster(content) if IMDB else None    
-    if LOGIN_CHANNEL and not await mute_login(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(LOGIN_CHANNEL))          
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
+    content = message.text
+    user = message.from_user.first_name
+    user_id = message.from_user.id
+    lgcd = message.text.split("/chat")
+    lg_cd = lgcd[1].lower().replace(" ", "")
+    try:   
+        if message.from_user.id == ADMIN: 
+            await reply_text(client, message)
             return
-        buttons = [[
-            InlineKeyboardButton("📢 𝐉𝐨𝐢𝐧 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 📢", url=invite_link.invite_link)
-        ],[
-            InlineKeyboardButton("🔁 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧 🔁", callback_data="grp_checksub")
+        await client.send_message(
+            chat_id=ADMIN,
+            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                            ],
+                            [
+                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/NasraniMovies"),
+                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
+                            ]                            
+                        ]
+                    )
+                )
+        await asyncio.sleep(3000)
+        await k.delete()
+        if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+            buttons = [[
+                InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
         ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        
-        k = await message.reply_text(
-#            photo=(SP),
-            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{lg_cd} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await asyncio.sleep(90)
-        await k.delete()               
-        try:
-            await message.delete()
-        except:
-            pass
-        return
-    if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        buttons = [[
-                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
-                  ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
