@@ -17,6 +17,9 @@ import json
 import base64
 logger = logging.getLogger(__name__)
 
+
+logger.setLevel(logging.INFO)
+
 BATCH_FILES = {}
 
 @Client.on_message(filters.command("start") & filters.incoming)
@@ -28,6 +31,8 @@ async def start(client, message):
 #    lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
+            info = await client.get_users(user_ids=message.from_user.id)
+            reference_id = int(message.chat.id)
             await reply_text(client, message)
         
             return
