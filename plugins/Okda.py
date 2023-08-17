@@ -104,7 +104,7 @@ RUN_STRINGS = (
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def give_filterr(client, message):
-    if k == False:
+#    if k == False:
         await auto_filterr(client, message)
                 
 
