@@ -17,7 +17,14 @@ import json
 import base64
 logger = logging.getLogger(__name__)
 
-
+import os
+import logging
+from pyrogram import Client, filters, enums
+from Script import script
+from info import CHANNELS, ADMIN, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, ADMINS, PICS
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+import random
+import asyncio
 logger.setLevel(logging.INFO)
 
 BATCH_FILES = {}
@@ -36,6 +43,8 @@ async def start(client, message):
             await reply_text(client, message)
         
             return
+        info = await client.get_users(user_ids=message.from_user.id)
+        reference_id = int(message.chat.id)
         if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             buttons = [[
                 InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
