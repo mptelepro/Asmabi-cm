@@ -6,7 +6,7 @@ from pyrogram.types import *
 from pyrogram.errors import *
 # from utils.files import *
 # from utils.stickerset import *
-    
+from datetime import datetime    
 
 
 # © BugHunterCodeLabs ™
@@ -39,6 +39,16 @@ SUPPORTED_TYPES = ["jpeg", "png", "webp", "gif", "mp4"]
 
 START_STRING = """ Hi {}, I'm Sticker Bot. 
 
+START_TIME = datetime.utcnow()
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+TIME_DURATION_UNITS = (
+    ('week', 60 * 60 * 24 * 7),
+    ('day', 60 * 60 * 24),
+    ('hour', 60 * 60),
+    ('min', 60),
+    ('sec', 1)
+)
+
 I can Provide all Kind of Sticker Options Here """
 
 
@@ -49,6 +59,18 @@ JOIN_BUTTON = InlineKeyboardMarkup(
     )
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
+
+async def _human_time_duration(seconds):
+    if seconds == 0:
+        return 'inf'
+    parts = []
+    for unit, div in TIME_DURATION_UNITS:
+        amount, seconds = divmod(int(seconds), div)
+        if amount > 0:
+            parts.append('{} {}{}'
+                         .format(amount, unit, "" if amount == 1 else "s"))
+    return ', '.join(parts)
+   
 
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('start_sticker'))
@@ -65,12 +87,19 @@ async def start_sticker(bot, update):
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('ping'))
 async def ping(bot, message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
     start_t = time.time()
     rm = await message.reply_text("Checking")
     end_t = time.time()
     time_taken_s = (end_t - start_t) * 1000
-    await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
-
+    await rm.edit(
+        Pong!\n
+        f"{time_taken_s:.3f} ms\n\n"
+        "🤖 Bot status:\n"
+        f"• **Uptime:** `{uptime}`\n"
+        f"• **Start time:** `{START_TIME_ISO}`"
 
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('alive'))
