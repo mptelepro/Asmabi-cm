@@ -97,6 +97,16 @@ RUN_STRINGS = (
 #    return audio
 
 
+@Client.on_message(filters.private & filters.text & filters.command("movie"))
+async def ok_filter(client, message):
+    if len(message.command) == 1:
+        k = await manual_filters(client, message)
+        if k == False:
+            await auto_filter(client, message)
+
+
+
+
 @Client.on_message(filters.command("openai"))
 async def pm_text(client, message):
     if len(message.command) == 1:
