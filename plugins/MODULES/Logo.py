@@ -11,7 +11,7 @@ async def sticker_image(_, msg: Message):
     user_id = msg.from_user.id
     message_id = msg.id
 #    name_format = f"StarkBots_{user_id}_{message_id}"
-    name_format = f"http://t.me/addstickers/a{message.from_user.id}_by_{temp.U_NAME}"
+    name_format = f"http://t.me/addstickers/a{user_id}_by_{temp.U_NAME}"
     
     message = await msg.reply("Converting...")
     image = await replied.download(file_name=f"{name_format}.jpg")
