@@ -487,7 +487,3 @@ async def advantage_spell_chokk(client, msg):
 #    except Exception as e:
 #        await m.edit(e)        
 #        e = traceback.format_exc()
-#        print(e)
-
-                                                                                                    grpid = await active_connection(str(message.from_user.id))
-                                                            
