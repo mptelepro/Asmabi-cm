@@ -54,7 +54,15 @@ async def start(client, message):
         await asyncio.sleep(1)
         await m.delete()
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
-        
+        await client.send_message(
+            chat_id=ADMIN,
+            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            parse_mode=enums.ParseMode.HTML
+        )
+        await asyncio.sleep(3000)
+        await k.delete()
+    except Exception as e:
+        logger.exception(e)
         return
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
@@ -86,7 +94,7 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-                    InlineKeyboardButton('😡ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
