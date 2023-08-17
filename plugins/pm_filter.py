@@ -105,8 +105,8 @@ RUN_STRINGS = (
 async def pm_text(client, message):
     if len(message.command) == 1:
        return await message.reply_text("Give an input!")
-    m = await client.send_message(text = f"👀", chat_id = chat_id)
-#    m = await message.reply_text(text = f"👀")
+#    m = await client.send_message(text = f"👀", chat_id = chat_id)
+    m = await message.reply_text(text = f"👀")
     ss = await ask_aii(client, m, message)
    
     buttons = [[        
