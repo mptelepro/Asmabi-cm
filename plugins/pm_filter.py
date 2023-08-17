@@ -1163,8 +1163,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
                     os.remove(sticker)
                     os.remove(image)
-#                    await asyncio.sleep(10)
-#                    await k.delete()                                                                                   
+#                   await asyncio.sleep(300)
+#                   await sp.delete()                                                                                   
                     
 
                     
