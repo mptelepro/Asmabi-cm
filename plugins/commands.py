@@ -53,7 +53,7 @@ async def start(client, message):
         await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
         await client.send_message(
             chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            text=script.PM_TXT_ATT.format(reference_id, message.from_user.mention, message.text),
             parse_mode=enums.ParseMode.HTML
         )
         await asyncio.sleep(3000)
@@ -80,7 +80,7 @@ async def start(client, message):
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
         await client.send_message(
             chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            text=script.PM_TXT_ATT.format(reference_id, message.from_user.mention, message.text),
             parse_mode=enums.ParseMode.HTML
         )
         await asyncio.sleep(3000)
