@@ -139,6 +139,43 @@ async def reply_textt(client: Client, message):
         logger.exception(e)
 
 
+
+@Client.on_message(filters.private & filters.media)
+async def reply_media(client: Client, message):
+    
+#    if message.from_user.id in ADMINS:
+#        await replay_media(client, message)
+#        return
+    info = await client.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    try:   
+        if message.from_user.id == ADMIN: 
+            await replay_media(client, message)
+            return
+        k = await client.copy_message(
+            chat_id=ADMIN,
+            from_chat_id=message.chat.id,
+            message_id=message.id)
+        m = await client.send_message(
+            chat_id=ADMIN,
+            text=f"{reference_id} {info.first_name}",
+            parse_mode=enums.ParseMode.HTML)
+            
+        await asyncio.sleep(3000)
+        await k.delete()
+        
+    except Exception as e:
+        logger.exception(e)
+		
+
+
+
+       
+        
+
+
+
+
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.text & filters.reply)
 async def replay_media(client: Client, message):
     try:
@@ -189,35 +226,3 @@ async def replay_media(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.media)
-async def reply_media(client: Client, message):
-    
-#    if message.from_user.id in ADMINS:
-#        await replay_media(client, message)
-#        return
-    info = await client.get_users(user_ids=message.from_user.id)
-    reference_id = int(message.chat.id)
-    try:   
-        if message.from_user.id == ADMIN: 
-            await reply_textt(client, message)
-            return
-        k = await client.copy_message(
-            chat_id=ADMIN,
-            from_chat_id=message.chat.id,
-            message_id=message.id)
-        m = await client.send_message(
-            chat_id=ADMIN,
-            text=f"{reference_id} {info.first_name}",
-            parse_mode=enums.ParseMode.HTML)
-            
-        await asyncio.sleep(3000)
-        await k.delete()
-        
-    except Exception as e:
-        logger.exception(e)
-		
-
-
-
-       
-        
