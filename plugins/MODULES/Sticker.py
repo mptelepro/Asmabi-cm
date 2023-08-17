@@ -44,11 +44,12 @@ MAX_STICKERS = (120)  # would be better if we could fetch this limit directly fr
 SUPPORTED_TYPES = ["jpeg", "png", "webp", "gif", "mp4"]
     
 
-START_STRING = """ Hi {}, I'm Sticker Bot. 
 
 START_TIME = datetime.utcnow()
 
+
 START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+
 
 TIME_DURATION_UNITS = (
     ('week', 60 * 60 * 24 * 7),
@@ -57,6 +58,8 @@ TIME_DURATION_UNITS = (
     ('min', 60),
     ('sec', 1)
 )
+
+START_STRING = """ Hi {}, I'm Sticker Bot. 
 
 I can Provide all Kind of Sticker Options Here """
 
