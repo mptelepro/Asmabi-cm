@@ -179,13 +179,13 @@ async def advantage_spoll_choker(bot, query):
  
 
 @Client.on_message(filters.private & filters.command("movie") & filters.reply)    
-async def auto_filterr(client, message, spoll=False):
+async def auto_filterr(client, msgg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
     if not spoll:
-        message = msg
+        message = msgg
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
