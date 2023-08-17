@@ -117,9 +117,7 @@ async def pm_text(client, message):
         text=f"<b>😥 Sᴏʀʀʏ {message.from_user.mention}, \n\nYᴏᴜ Cᴀɴ'ᴛ Aꜱᴋ Qᴜᴇꜱᴛɪᴏɴꜱ Hᴇʀᴇ !!!\n/openai Cᴏᴍᴍᴀɴᴅ Oɴʟʏ Wᴏʀᴋ Oɴ Mʏ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ♨️</b>",
         reply_markup=reply_markup
             
-    )
-    await ss.delete()
-    
+    )    
     await asyncio.sleep(30)
     await k.delete()
     
