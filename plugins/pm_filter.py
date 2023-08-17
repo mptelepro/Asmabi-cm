@@ -68,7 +68,7 @@ logger.setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-chat_id = "NASRANI_SUPPORT"
+chat = "NASRANI_SUPPORT"
 
 BUTTON = {}
 BUTTONS = {}
@@ -2875,7 +2875,8 @@ async def auto_filter(client, msg, spoll=False):
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
            
-                    k = await message.reply_sticker(
+                    k = await client.send_sticker(
+                    chat_id=chat,
                     sticker=sticker,            
                     reply_markup=reply_markup,                       
                     )
