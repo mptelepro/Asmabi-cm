@@ -18,7 +18,9 @@ import requests
 from pyrogram import Client, filters
 from info import SUPPORT_CHAT_ID
 
-
+START_MESSAGE = """
+total <a href='https://github.com/search?q={}+language%3APython&type=repositories&l=Python&s=updated&o=desc'>{}</a>
+"""
 
 
 
@@ -74,4 +76,7 @@ async def git(Kashmira, message):
     
 #    search = https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc
 
-        await pablo.edit(f"https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc", disable_web_page_preview=True)
+#        await pablo.edit(f"https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc", disable_web_page_preview=True)
+        await pablo.edit(START_MESSAGE.format(args, args, disable_web_page_preview=True)
+
+
