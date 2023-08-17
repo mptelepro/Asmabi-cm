@@ -29,6 +29,8 @@ async def start(client, message):
     try:   
         if message.from_user.id == ADMIN: 
             await reply_text(client, message)
+        except Exception as e:
+            logger.exception(e)
             return
         if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             buttons = [[
@@ -61,8 +63,7 @@ async def start(client, message):
         )
         await asyncio.sleep(3000)
         await k.delete()
-    except Exception as e:
-        logger.exception(e)
+    
         return
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
