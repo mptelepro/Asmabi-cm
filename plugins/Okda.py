@@ -2602,7 +2602,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 @Client.on_message(filters.private & filters.text & filters.command("movie"))    
 async def auto_filterr(client, msg, spoll=False):
-    lgcd = message.text.split("/movie", 1)[1]
+    lgcd = msg.text.split("/movie", 1)[1]
 			
     search = lgcd[1].lower().replace(" ", "")
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
@@ -2615,16 +2615,15 @@ async def auto_filterr(client, msg, spoll=False):
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(message.text) < 100:
-#            lgcd = message.text.split("/movie", 1)[1]
-			
-#	    search = lgcd[1].lower().replace(" ", "")
-#            search = message.text
+            lgcd = message.text.split("/movie", 1)[1]
+	    search = lgcd[1].lower().replace(" ", "")
+            search = message.text
             
             m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
             
-        
-            search = search.lower()
+            search = lgcd[1].lower().replace(" ", "")
+#            search = search.lower()
             find = search.split(" ")
             search = ""
             removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
