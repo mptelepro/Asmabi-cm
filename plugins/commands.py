@@ -1233,7 +1233,7 @@ async def replay_media(client: Client, message):
         k = await client.copy_message(
             chat_id=int(reference_id),
             from_chat_id=message.chat.id,
-            message_id=message.message_id)
+            message_id=message.message.id)
 #        m = await client.send_message(
 #            chat_id=ADMIN,
 #            text=f"{reference_id} {info.first_name}",
