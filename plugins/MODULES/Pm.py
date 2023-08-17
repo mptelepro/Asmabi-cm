@@ -12,7 +12,6 @@ logger.setLevel(logging.INFO)
 
 @Client.on_message(filters.command("chat") & filters.text)
 async def pm_text(client: Client, message):
-    id = message.reply_to_message.document or message.reply_to_message.video
     content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
@@ -20,7 +19,7 @@ async def pm_text(client: Client, message):
     lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
-            await reply_textt(client, message)
+            await reply_text(client, message)
             return
 #        await message.reply_text(
 #        text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ <a href=https://telegram.me/+ps2An00KwZYwNTRl>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ</a> ᴏʀ ᴄʟɪᴄᴋ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ 👇</b>",   
@@ -28,9 +27,9 @@ async def pm_text(client: Client, message):
 #        )
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        k = await client.send_cached_media(
+        k = await client.send_photo(
             chat_id=int(reference_id),
-            file_id=id,
+            photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
             caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.from_user.mention),
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
@@ -45,7 +44,6 @@ async def pm_text(client: Client, message):
                         ]
                     )
                 )        
-
 	   
 
 
