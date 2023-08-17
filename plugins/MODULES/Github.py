@@ -70,4 +70,8 @@ async def git(Kashmira, message):
 
         if qw.get("archived") == True:
             txt += f"<b>This Project is Archived</b>"
-        await pablo.edit(txt, disable_web_page_preview=True)
+#        await pablo.edit(txt, disable_web_page_preview=True)
+    
+#    search = https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc
+
+        await pablo.edit(f"https://github.com/search?q={args}+language%3APython&type=repositories&l=Python&s=updated&o=desc", disable_web_page_preview=True)
