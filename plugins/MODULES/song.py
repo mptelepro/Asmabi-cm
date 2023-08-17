@@ -26,7 +26,8 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
 
 
-@Client.on_message(filters.command('song'))
+
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('song'))
 async def song(client, message):
 
     user_id = message.from_user.id 
@@ -153,7 +154,7 @@ def get_text(message: Message) -> [None,str]:
         return None
 
 
-@Client.on_message(filters.command(["video", "mp4"]))
+@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('video'))
 async def vsong(client, message: Message):
     args = message.text.split(None, 1)[1]
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
