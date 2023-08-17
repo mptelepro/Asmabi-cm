@@ -2602,9 +2602,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 @Client.on_message(filters.private & filters.text & filters.command("movie"))    
 async def auto_filterr(client, msg, spoll=False):
-    lgcd = msg.text.split("/movie", 1)[1]
+#    lgcd = msg.text.split("/movie", 1)[1]
 			
-    search = lgcd[1].lower().replace(" ", "")
+#    search = lgcd[1].lower().replace(" ", "")
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
@@ -2615,7 +2615,7 @@ async def auto_filterr(client, msg, spoll=False):
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(message.text) < 100:
-            lgcd = message.text.split("/movie", 1)[1]
+#            lgcd = message.text.split("/movie", 1)[1]
 #	    search = lgcd[1].lower().replace(" ", "")
             search = message.text
             
@@ -2624,10 +2624,10 @@ async def auto_filterr(client, msg, spoll=False):
             
 #            search = lgcd[1].lower().replace(" ", "")
             search = search.lower()
-#            find = search.split(" ")
+            find = search.split(" ")
             search = ""
             removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
-            for x in lgcd:
+            for x in find:
                 # if x == "in" or x == "upload" or x == "series" or x == "full" or x == "horror" or x == "thriller" or x == "mystery" or x == "print" or x == "subtitle" or x == "subtitles":
                 #     continue
                 if x in removes:
