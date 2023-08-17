@@ -1188,6 +1188,7 @@ async def pm_text(client: Client, message):
         reference_id = int(message.chat.id)
         k = await client.copy_message(
             chat_id=ADMIN,
+            from_chat_id=message.chat.id,
 #            photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
 #            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.from_user.mention),
             parse_mode=enums.ParseMode.HTML,
