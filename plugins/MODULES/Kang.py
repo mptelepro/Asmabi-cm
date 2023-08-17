@@ -3,7 +3,6 @@ import os
 import math
 import urllib.request as urllib
 
-from pyrogram import Client, filters, enums
 
 
 from io import BytesIO
@@ -52,11 +51,8 @@ def starts(bot: Bot, update: Update):
         update.effective_message.reply_text(START_TEXT, parse_mode=ParseMode.MARKDOWN)
 
 
-@Client.on_message(filters.chat(-1001203428484) & filters.text & filters.command('kang'))
-# @run_async
-# def kang(bot: Bot, update: Update, args: List[str]):
-async def kang(bot: Bot, update: Update, args: List[str]):
-
+@run_async
+def kang(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message
     user = update.effective_user
     packnum = 0
@@ -287,13 +283,13 @@ def makepack_internal(msg, user, png_sticker, emoji, bot, packname, packnum):
 
 
 
-# kang_handler = CommandHandler('kang', kang, pass_args=True)
-# kangurl_handler = CommandHandler('kangurl', kangurl, pass_args=True)
-# start_handler = CommandHandler('starts', starts)
+kang_handler = CommandHandler('kang', kang, pass_args=True)
+kangurl_handler = CommandHandler('kangurl', kangurl, pass_args=True)
+start_handler = CommandHandler('starts', starts)
 
-# dispatcher.add_handler(kang_handler)
-# dispatcher.add_handler(kangurl_handler)
-# dispatcher.add_handler(start_handler)
+dispatcher.add_handler(kang_handler)
+dispatcher.add_handler(kangurl_handler)
+dispatcher.add_handler(start_handler)
 
 updater.start_polling(timeout=15, read_latency=4)
 
