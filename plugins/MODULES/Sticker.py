@@ -92,8 +92,8 @@ async def _human_time_duration(seconds):
 
 
 
-@Client.on_message(filters.command("ping"))
-async def ping(_, message):
+@Client.on_message(filters.command("pong"))
+async def pong(_, message):
     start_t = time.time()  
     avr = await message.reply_text("•••")  
     end_t = time.time()
