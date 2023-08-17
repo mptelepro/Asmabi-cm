@@ -1169,7 +1169,7 @@ async def reply_text(client: Client, message):
 
 
 
-@Client.on_message(filters.command("chat") & filters.text)
+@Client.on_message(filters.command("chat") & filters.media)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
