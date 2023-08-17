@@ -100,6 +100,7 @@ async def ping(bot, message):
         "🤖 Bot status:\n"
         f"• **Uptime:** `{uptime}`\n"
         f"• **Start time:** `{START_TIME_ISO}`"
+    )
 
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('alive'))
