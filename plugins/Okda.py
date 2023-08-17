@@ -100,17 +100,17 @@ RUN_STRINGS = (
 
 
 
-# @Client.on_message(filters.private & filters.command("movie") & filters.reply)
+@Client.on_message(filters.private & filters.command("movie") & filters.reply)
 
 # async def give_filterr(client, message):
 #    k = await manual_filters(client, message)
 #    if k == False:
-#     await auto_filterr(client, message)
+    await auto_filterr(client, message)
     
 
 
 
-@Client.on_callback_query(filters.regex(r"^spoll"))
+# @Client.on_callback_query(filters.regex(r"^spoll"))
 async def advantage_spoll_chokerr(bot, query):
     _, user, movie_ = query.data.split('#')
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
