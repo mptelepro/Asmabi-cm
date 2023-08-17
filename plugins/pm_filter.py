@@ -124,71 +124,7 @@ async def pm_text(client, message):
 
 
 
-@Client.on_message(filters.chat(-1001203428484) & filters.private & filters.text & filters.command('movie'))
-async def give_filter(client, message):
-#    movie = message.reply_to_message.text
-    lgcd = message.text.split("/movie")
-    lg_cd = lgcd[1].lower().replace(" ", "")
-    userid = message.from_user.id
-    content = message.reply_to_message
-    search = message.text                                  
-#    imdb = await get_poster(content) if IMDB else None    
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))          
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            return
-        buttons = [[
-            InlineKeyboardButton("📢 𝐉𝐨𝐢𝐧 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 📢", url=invite_link.invite_link)
-        ],[
-            InlineKeyboardButton("🔁 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧 🔁", callback_data="grp_checksub")
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        
-        k = await message.reply_text(
-#            photo=(SP),
-            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{lg_cd} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await asyncio.sleep(90)
-        await k.delete()               
-        try:
-            await message.delete()
-        except:
-            pass
-        return
-    if message.chat.id != SUPPORT_CHAT_ID:
-        glob = await global_filters(client, message)
-        if glob == False:
-            manual = await manual_filters(client, message)
-            if manual == False:
-                settings = await get_settings(message.chat.id)
-                try:
-                    if settings['auto_ffilter']:
-                        await auto_filter(client, message)
-                    else:
-                        k = await message.reply_text(f"𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!! \n\n❌️𝐀𝐮𝐭𝐨 𝐅𝐢𝐥𝐭𝐞𝐫 𝐎𝐟𝐟..!!!❌️ \n𝐏𝐥𝐞𝐚𝐬𝐞 𝐖𝐚𝐢𝐭..")
-                        await asyncio.sleep(5)
-                        await k.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_ffilter', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_ffilter']:
-                        await auto_filter(client, message)
-                else:
-                    buttons = [[                    
-                    InlineKeyboardButton("⚠️ 𝐃𝐞𝐥𝐞𝐭𝐞 ⚠️", callback_data="check_delete")
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
-                    k = await message.reply_text(f"𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.mention} \n𝐔𝐬𝐞𝐫 𝐈𝐝:{userid} \n𝐂𝐨𝐧𝐭𝐞𝐧𝐭: {lg_cd} \n𝐈𝐟 𝐲𝐨𝐮 𝐠𝐨𝐭 𝐲𝐨𝐮𝐫 𝐦𝐨𝐯𝐢𝐞 𝐭𝐡𝐞𝐧 𝐝𝐞𝐥𝐞𝐭𝐞 𝐭𝐡𝐢𝐬 𝐩𝐨𝐬𝐭...⚠️",
-                    reply_markup=reply_markup,
-                    parse_mode=enums.ParseMode.HTML)
-                    await asyncio.sleep(300)
-                    await k.delete()  
-                    await message.delete()
+
 
 
 
