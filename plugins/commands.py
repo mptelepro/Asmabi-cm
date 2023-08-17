@@ -31,29 +31,23 @@ BATCH_FILES = {}
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
-    content = message.text
-    user = message.from_user.first_name
-    user_id = message.from_user.id
+#    content = message.text
+#    user = message.from_user.first_name
+#    user_id = message.from_user.id
 #    lgcd = message.text.split("/chat")
 #    lg_cd = lgcd[1].lower().replace(" ", "")
-    try:   
-        if message.from_user.id == ADMIN: 
-            info = await client.get_users(user_ids=message.from_user.id)
-            reference_id = int(message.chat.id)
-            await reply_text(client, message)
-        
+
+    if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+            await reply_text(client, message)       
             return
-        info = await client.get_users(user_ids=message.from_user.id)
-        reference_id = int(message.chat.id)
-        if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-            buttons = [[
-                InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+        buttons = [[
+            InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
         ]]
-#        reply_markup = InlineKeyboardMarkup(buttons)
+        reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
         await client.send_message(
             chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, message.from_user.mention, message.text),
+            text=f"{message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML
         )
         await asyncio.sleep(3000)
@@ -80,7 +74,7 @@ async def start(client, message):
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
         await client.send_message(
             chat_id=ADMIN,
-            text=script.PM_TXT_ATT.format(reference_id, message.from_user.mention, message.text),
+            text=f"{message.from_user.mention}",
             parse_mode=enums.ParseMode.HTML
         )
         await asyncio.sleep(3000)
