@@ -121,8 +121,12 @@ async def auto_filterr(client, msgg, spoll=False):
     # reqstr1 = msg.from_user.id if msg.from_user else 0
     # reqstr = await client.get_users(reqstr1)
     
-    if not spoll:
-        message = msgg
+    if len(message.text) < 100:
+            
+        search = message.text
+            
+        m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
+        await m.delete()
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
