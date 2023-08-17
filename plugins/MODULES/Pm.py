@@ -104,7 +104,7 @@ async def media(client: Client,  message):
 
 
 
-@Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.media & filters.command("ok"))
+@Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.command("ok"))
 async def reply_textt(client: Client, message):
     try:
         reference_id = True
@@ -139,7 +139,7 @@ async def reply_textt(client: Client, message):
         logger.exception(e)
 
 
-@Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
+@Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.text & filters.reply)
 async def replay_media(client: Client, message):
     try:
         reference_id = True
