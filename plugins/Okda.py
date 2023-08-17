@@ -102,10 +102,10 @@ RUN_STRINGS = (
 
 
 
-@Client.on_message(filters.private & filters.text & filters.incoming)
-async def give_filterr(client, message):
+# @Client.on_message(filters.private & filters.text & filters.incoming)
+# async def give_filterr(client, message):
 #    if k == False:
-        await auto_filterr(client, message)
+#        await auto_filterr(client, message)
                 
 
 
@@ -2662,7 +2662,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
 #    await query.answer(MSG_ALRT)
 
-    
+@Client.on_message(filters.private & filters.text & filters.command("movie"))    
 async def auto_filterr(client, msg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2674,8 +2674,10 @@ async def auto_filterr(client, msg, spoll=False):
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(message.text) < 100:
-            
-            search = message.text
+            lgcd = message.text.split("/movie", 1)[1]
+			
+			search = lgcd[1].lower().replace(" ", "")
+#            search = message.text
             
             m=await message.reply_text(f"<b><i>🌹𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 {search} 𝐌𝐨𝐯𝐢𝐞....🌹 </i></b>")
             await m.delete()
