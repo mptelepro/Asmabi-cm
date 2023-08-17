@@ -121,8 +121,14 @@ async def git(Kashmira, message):
 # <b>Open Issues :</b> <i>{qw.get("open_issues")}</i>
 # """
         txt = f"""
-<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("login")}</i>
-        
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("avatar_url")}</i>
+
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("followers")}</i>
+
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("following")}</i>
+
+<b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("bio")}</i>
+
 <b>𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("name")}</i>
 
 <b>𝐅𝐮𝐥𝐥 𝐍𝐚𝐦𝐞 : </b> <i>{qw.get("full_name")}</i>
