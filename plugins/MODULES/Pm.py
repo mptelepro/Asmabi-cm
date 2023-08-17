@@ -19,7 +19,7 @@ async def pm_text(client: Client, message):
     lg_cd = lgcd[1].lower().replace(" ", "")
     try:   
         if message.from_user.id == ADMIN: 
-            await reply_text(client, message)
+            await reply_textt(client, message)
             return
 #        await message.reply_text(
 #        text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ <a href=https://telegram.me/+ps2An00KwZYwNTRl>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ</a> ᴏʀ ᴄʟɪᴄᴋ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ 👇</b>",   
@@ -105,7 +105,7 @@ async def media(client: Client,  message):
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.media & filters.command("ok"))
-async def reply_text(client: Client, message):
+async def reply_textt(client: Client, message):
     try:
         reference_id = True
         if message.reply_to_message is not None:
