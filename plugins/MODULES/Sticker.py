@@ -139,7 +139,8 @@ async def find(bot, message):
 
 
 @Client.on_message(filters.chat(-1001203428484) & filters.command('doc'))
-async def document(bot, message):  
+async def document(bot, message):
+    videoid= message.reply_to_message.text
     documentid= message.reply_to_message.text
     chat_id = message.chat.id
 #    await txt.delete()
@@ -152,7 +153,7 @@ async def document(bot, message):
 #    await m.edit("**♻ 𝙲𝚘𝚗𝚟𝚎𝚛𝚝  𝙵𝚒𝚕𝚎... ♻**......\n\n[▇▇▇▇▇▇▇▇▇▇] 100%")
 #    await m.edit("📤Uploading....")
     await m.edit("📤Uploading.....")
-    k = await bot.send_document(chat_id,f"{documentid}")
+    k = await app.send_cached_media(chat_id, file_id=f"{documentid or videoid}")
     await asyncio.sleep(120)
     await k.delete()
 
