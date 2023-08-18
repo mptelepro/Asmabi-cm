@@ -115,7 +115,8 @@ login_channel = environ.get('LOGIN_CHANNEL' "-1001351202807")
 LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
 pm = environ.get('PM')
 PM = int(pm) if pm and id_pattern.search(pm) else None
-
+soon_channel = environ.get('SOON_CHANNEL' "-1001351202807")
+SOON_CHANNEL = int(soon_channel) if soon_channel and id_pattern.search(soon_channel) else None
 
 
 # heroku
