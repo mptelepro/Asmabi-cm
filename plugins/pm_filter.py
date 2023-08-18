@@ -1322,7 +1322,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("soon_checksub"):
         userid = query.message.reply_to_message.from_user.id
         if int(userid) not in [query.from_user.id, 0]:
-            return await query.answer("This Is Not For You!", show_alert=True)
+            return await query.answer("This Is Not For You!😭", show_alert=True)
         if SOON_CHANNEL and not await soon(client, query):
             await query.answer("𝐏𝐥𝐞𝐚𝐬𝐞 𝐣𝐨𝐢𝐧 𝐟𝐢𝐫𝐬𝐭 𝐦𝐲 𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥.", show_alert=True)
             return
