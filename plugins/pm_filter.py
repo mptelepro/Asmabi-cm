@@ -137,8 +137,7 @@ async def give_filter(client, message):
     userid = message.from_user.id
     content = message.reply_to_message
     search = message.text                                  
-#    imdb = await get_poster(content) if IMDB else None   
-#    imdb = await get_poster(search) if IMDB else None
+#    imdb = await get_poster(content) if IMDB else None    
     if SOON_CHANNEL and not await soon(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(SOON_CHANNEL))          
@@ -153,8 +152,8 @@ async def give_filter(client, message):
         reply_markup = InlineKeyboardMarkup(buttons)
         
         k = await message.reply_text(
-#            photo=SP,
-            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{search} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇 \n\n <b> <i>സഹോ, താഴെ കാണുന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ കാണുന്ന ചാനലിൽ ജോയിൻ ചെയ്തതിനു ശേഷം നിങ്ങൾക്ക് വെണ്ട മൂവി ചോദിക്കുക.. </i> </b>",
+#            photo=(SP),
+            text=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{search} 𝐅𝐢𝐥𝐦 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇 \n\n <b> <i>സഹോ, താഴെ കാണുന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ കാണുന്ന ചാനലിൽ ജോയിൻ ചെയ്തതിനു ശേഷം നിങ്ങൾക്ക് വെണ്ട മൂവി ചോദിക്കുക.. </i> </b>,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
