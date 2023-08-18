@@ -138,7 +138,7 @@ async def give_filter(client, message):
     content = message.reply_to_message
     search = message.text                                  
 #    imdb = await get_poster(content) if IMDB else None   
-    imdb = await get_poster(search) if IMDB else None
+#    imdb = await get_poster(search) if IMDB else None
     if SOON_CHANNEL and not await soon(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(SOON_CHANNEL))          
