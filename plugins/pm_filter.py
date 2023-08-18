@@ -1326,7 +1326,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if SOON_CHANNEL and not await soon(client, query):
             await query.answer("𝐏𝐥𝐞𝐚𝐬𝐞 𝐣𝐨𝐢𝐧 𝐟𝐢𝐫𝐬𝐭 𝐦𝐲 𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥.", show_alert=True)
             return
-        await client.unban_chat_member(query.message.chat.id, query.from_user.id)
+            await client.unban_chat_member(query.message.chat.id, query.from_user.id)
             await query.answer("𝐂𝐚𝐧 𝐘𝐨𝐮 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐍𝐨𝐰 !", show_alert=True)
             await query.message.delete()
             await query.message.reply_to_message.delete()
