@@ -131,7 +131,7 @@ async def pm_text(client, message):
 
 
 
-@Client.on_message(filters.group & filters.private & filters.text & filters.incoming)
+@Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
 #    movie = message.reply_to_message.text
     userid = message.from_user.id
