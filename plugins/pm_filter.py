@@ -396,7 +396,7 @@ async def advantage_spoll_choker(bot, query):
                 info = await bot.get_users(user_ids=query.message.from_user.id)
                 reference_id = int(query.message.chat.id)
                 buttons = [[
-                    InlineKeyboardButton("🔁 𝐀𝐝𝐦𝐢𝐧 𝐎𝐧𝐥𝐲 🔁", url = k.link)
+                    InlineKeyboardButton(f"🔁{imdb.get('title')} {imdb.get('year')}🔁", url = k.link)
                 ],[
                     InlineKeyboardButton("📢 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 📢", callback_data='close_data')
                 ]]
