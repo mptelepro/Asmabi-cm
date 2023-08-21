@@ -2910,6 +2910,7 @@ async def auto_filter(client, msg, spoll=False):
                     os.remove(image)
                     await asyncio.sleep(600)            
                     await k.delete()
+                    await message.delete()
             except KeyError:
                 await save_group_settings(message.chat.id, 'auto_delete', True)
                 await asyncio.sleep(180)
@@ -3004,6 +3005,7 @@ async def advantage_spell_chok(client, msg):
         )
         await asyncio.sleep(30)
         await k.delete()
+        await msg.delete()
         return
     regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
     gs = list(filter(regex.match, g_s))
@@ -3042,6 +3044,7 @@ async def advantage_spell_chok(client, msg):
         )
         await asyncio.sleep(60)
         await k.delete()
+        await msg.delete()
         return
 
     SPELL_CHECK[msg.id] = movielist
