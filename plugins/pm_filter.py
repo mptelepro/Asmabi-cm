@@ -1330,9 +1330,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("𝐂𝐚𝐧 𝐘𝐨𝐮 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐍𝐨𝐰 !", show_alert=True)
             await query.message.delete()
             await query.message.reply_to_message.delete()
-        else:
-            await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
-
+        
    
 
     elif query.data.startswith("check_delete"):
