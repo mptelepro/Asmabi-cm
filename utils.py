@@ -86,7 +86,7 @@ async def mute_login(bot, query):
    
 async def soon(bot, query):
     try:
-        user = await bot.get_chat_member(LOGIN_CHANNEL, query.from_user.id)
+        user = await bot.get_chat_member(SOON_CHANNEL, query.from_user.id)
     except UserNotParticipant:
         pass
     except Exception as e:
