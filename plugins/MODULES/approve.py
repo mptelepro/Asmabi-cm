@@ -40,15 +40,18 @@ async def start(client: pr0fess0r_99, message: Message):
 
 @Client.on_chat_join_request((filters.group | filters.channel) & filters.chat(AUTH_CHANNEL) if AUTH_CHANNEL else (filters.group | filters.channel))
 async def autoapprove(client: pr0fess0r_99, message: ChatJoinRequest):
+    from_user = None
+    from_user_id, _ = extract_user(message)
+    chat_photo = from_user.photo
+    local_user_photo = await client.download_media(
+        message=chat_photo.big_file_id
+    )
     chat=message.chat # Chat
     user=message.from_user # User
     print(f"{user.first_name} Joined 🤝") # Logs
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     if APPROVED == "on":
-        chat_photo = from_user.photo
-        local_user_photo = await client.download_media(
-            message=chat_photo.big_file_id
-        )
+        
         buttons = [[
             InlineKeyboardButton('🧩𝐉𝐎𝐈𝐍 𝐆𝐑𝐎𝐔𝐏🧩', url=f'https://t.me/nasrani_update')
             
