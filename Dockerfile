@@ -6,7 +6,7 @@ COPY requirements.txt /requirements.txt
 
 RUN cd /
 RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /Murali-Tamil-Pro
-WORKDIR /Murali-Tamil-Pro
+RUN mkdir /deleterobot
+WORKDIR /deleterobot
 COPY start.sh /start.sh
 CMD ["/bin/bash", "/start.sh"]
