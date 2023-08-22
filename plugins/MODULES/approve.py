@@ -45,6 +45,7 @@ async def autoapprove(client: pr0fess0r_99, message: ChatJoinRequest):
     print(f"{user.first_name} Joined 🤝") # Logs
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     if APPROVED == "on":
+        chat_photo = from_user.photo
         local_user_photo = await client.download_media(
             message=chat_photo.big_file_id
         )
