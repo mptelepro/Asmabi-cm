@@ -1778,7 +1778,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(from_user)
             reply_markup = InlineKeyboardMarkup(btn)
             await query.message.edit_reply_markup(reply_markup)
-            await query.message.delete()
+            
 
             await query.answer("Hᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴs !")
         else:
@@ -3067,9 +3067,10 @@ async def advantage_spell_chok(client, msg):
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn)
     )
+    await msg.delete()
     await asyncio.sleep(3600)
     await spell_check_del.delete()
-    await msg.delete()
+    
     
 #    except Exception as e:
 #        await m.edit(e)        
