@@ -109,15 +109,11 @@ async def start(client, message):
             )
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-	buttons = [[
-            InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
 	
 	k = await client.send_message(
             chat_id=ADMIN,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-	    reply_markup=reply_markup,
+	    
             parse_mode=enums.ParseMode.HTML
 	)
         
