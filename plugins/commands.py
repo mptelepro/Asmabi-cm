@@ -70,7 +70,7 @@ async def start(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAEBEDhkyBBP_ei4cBYN5vwYZ7Ca7W-oSgAC0gcAArwmiVSTwrq-v5Wohx4E") 
         await asyncio.sleep(1)
         await m.delete()
-        k = await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
+        k = await client.send_message(chat_id=ADMIN, text=script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
 #        await client.send_message(
 #            chat_id=ADMIN,
 #            text=f"{message.from_user.mention}",
