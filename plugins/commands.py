@@ -113,7 +113,7 @@ async def start(client, message):
 	k = await client.send_message(
             chat_id=ADMIN,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-	    
+	    disable_web_page_preview=True,
             parse_mode=enums.ParseMode.HTML
 	)
         
@@ -122,7 +122,7 @@ async def start(client, message):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
 	
-        await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
+        await message.reply(f"okda", reply_markup=reply_markup, disable_web_page_preview=True)
         return
     data = message.command[1]
     try:
