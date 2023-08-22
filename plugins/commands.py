@@ -110,8 +110,8 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
 	buttons = [[
-                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
-                  ]]
+            InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
 	
 	k = await client.send_message(
@@ -122,8 +122,8 @@ async def start(client, message):
 	)
         
         buttons = [[
-                    InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
-                  ]]
+            InlineKeyboardButton('ʟᴏᴄᴋᴇᴅ', url=CHNL_LNK)
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
 	
         await message.reply(script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
