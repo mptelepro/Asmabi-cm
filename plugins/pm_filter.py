@@ -1875,7 +1875,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
-            
+            await query.message.delete()
+            await query.message.reply_to_message.delete()
+
     
     elif query.data.startswith("uploaded"):
        
@@ -1992,7 +1994,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 done += 1
                 await asyncio.sleep(2)
                 if not done % 20:
-                
+                    await query.message.delete()
+                    await query.message.reply_to_message.delete()
+
                     sp = await sts.edit(f"Broadcast Completed:\nCompleted in  seconds.\n\nTotal Users {total_users}\nCompleted:")
                     await query.message.delete()
                     await m.delete()
@@ -2064,6 +2068,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_to_message_id=query.message.id
             )
             await query.message.delete()
+            await query.message.reply_to_message.text.delete()
+            await query.message.reply_to_message.delete()
+            await query.message.text.delete()
             await m.delete()
             await asyncio.sleep(600)
             await k.delete()
