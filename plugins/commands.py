@@ -70,7 +70,7 @@ async def start(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAEBEDhkyBBP_ei4cBYN5vwYZ7Ca7W-oSgAC0gcAArwmiVSTwrq-v5Wohx4E") 
         await asyncio.sleep(1)
         await m.delete()
-        k = await client.send_message(chat_id=ADMIN, text=script.UNLOCK_TXT, reply_markup=reply_markup, disable_web_page_preview=True)
+        k = await message.reply(script.UNLOCK_TXT, disable_web_page_preview=True)
 #        await client.send_message(
 #            chat_id=ADMIN,
 #            text=f"{message.from_user.mention}",
@@ -1134,39 +1134,39 @@ async def stop_button(bot, message):
 
 
 
-# @Client.on_message(filters.private & filters.text) # & filters.command('chat'))
-# async def pm_text(client: Client, message):
-#    content = message.text
-#    user = message.from_user.first_name
-#    user_id = message.from_user.id
-#    try:   
-#        if message.from_user.id == ADMIN: 
-#            await reply_text(client, message)
-#            return
-#        info = await client.get_users(user_ids=message.from_user.id)
-#        reference_id = int(message.chat.id)
+@Client.on_message(filters.private & filters.text & filters.command('start'))
+async def pm_text(client: Client, message):
+    content = message.text
+    user = message.from_user.first_name
+    user_id = message.from_user.id
+    try:   
+        if message.from_user.id == ADMIN: 
+            await reply_text(client, message)
+            return
+        info = await client.get_users(user_ids=message.from_user.id)
+        reference_id = int(message.chat.id)
         	        
-#        k = await client.send_message(
-#            chat_id=ADMIN,
-#            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-#            parse_mode=enums.ParseMode.HTML,
-#            reply_markup=InlineKeyboardMarkup(
-#                        [
-#                            [
-#                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
-#                            ],
-#                            [
-#                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/NasraniMovies"),
-#                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
-#                            ]                            
-#                        ]
-#                    )
-#                )
-#        await asyncio.sleep(3000)
-#        await k.delete()
+        k = await client.send_message(
+            chat_id=ADMIN,
+            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                            ],
+                            [
+                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/NasraniMovies"),
+                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
+                            ]                            
+                        ]
+                    )
+                )
+        await asyncio.sleep(3000)
+        await k.delete()
         
-#    except Exception as e:
-#        logger.exception(e)
+    except Exception as e:
+        logger.exception(e)
 
 
 
