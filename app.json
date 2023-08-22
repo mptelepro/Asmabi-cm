@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/MuraliNew/Murali-Tamil-Pro/tree/main",
-    "repository": "https://github.com/MuraliNew/Murali-Tamil-Pro/tree/main",
+    "website": "https://github.com/MuraliNew/Murali-Tamil-Pro",
+    "repository": "https://github.com/MuraliNew/Murali-Tamil-Pro",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
