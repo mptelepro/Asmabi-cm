@@ -1155,7 +1155,7 @@ async def stop_button(bot, message):
 
 
 
-@Client.on_message(filters.text & filters.command('report'))
+@Client.on_message(filters.text & filters.command('report') & filters.reply)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
@@ -1275,7 +1275,7 @@ async def pm_textts(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.media)
+@Client.on_message(filters.private & filters.media & filters.reply)
 async def pm_media(bot, message):
     if message.from_user.id in ADMINS:
         await replay_media(bot, message)
