@@ -1192,7 +1192,7 @@ async def pm_text(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.reply) # filters.command("ok"))
+@Client.on_message(filters.private & filters.user(ADMIN) & filters.text) # filters.command("ok"))
 async def reply_text(client: Client, message):
     try:
         reference_id = True
