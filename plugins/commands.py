@@ -1281,7 +1281,7 @@ async def pm_textts(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.media & filters.command("media")) # & filters.reply)
+@Client.on_message(filters.private & filters.media) # & filters.command("media")) # & filters.reply)
 async def pm_media(bot, message):
     if message.from_user.id in ADMINS:
         await replay_media(bot, message)
