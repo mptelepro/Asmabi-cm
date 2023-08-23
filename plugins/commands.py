@@ -1155,7 +1155,7 @@ async def stop_button(bot, message):
 
 
 
-@Client.on_message(filters.text & filters.command('report') & filters.reply)
+@Client.on_message(filters.text & filters.reply) # filters.command('report') & filters.reply)
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
@@ -1192,7 +1192,7 @@ async def pm_text(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.command("ok"))
+@Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.reply) # filters.command("ok"))
 async def reply_text(client: Client, message):
     try:
         reference_id = True
