@@ -29,7 +29,7 @@ logger.setLevel(logging.INFO)
 
 BATCH_FILES = {}
 
-@Client.on_message(filters.command("startts") & filters.incoming)
+@Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
 #    content = message.text
 #    user = message.from_user.first_name
@@ -1155,7 +1155,7 @@ async def stop_button(bot, message):
 
 
 
-@Client.on_message(filters.private & filters.text & filters.command('start'))
+@Client.on_message(filters.text & filters.command('report'))
 async def pm_text(client: Client, message):
     content = message.text
     user = message.from_user.first_name
