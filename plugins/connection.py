@@ -145,12 +145,11 @@ async def deleteconnection(client, message):
 
 @Client.on_message(filters.private & filters.command('connections') & filters.incoming)
 async def connections(client, message):
-    if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        userid = message.from_user.id
+    userid = message.from_user.id
 
-        groupids = await all_connections(str(userid))
-        if groupids is None:
-            await message.reply_text(
+    groupids = await all_connections(str(userid))
+    if groupids is None:
+        await message.reply_text(
             "There are no active connections!! Connect to some groups first.",
             quote=True
         )
