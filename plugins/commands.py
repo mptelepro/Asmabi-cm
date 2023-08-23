@@ -595,7 +595,7 @@ async def delete(bot, message):
                 await msg.edit('File not found in database')
 
 
-@Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
+@Client.on_message(filters.command('deleteall') & filters.user(ADMINS) & filters.incoming)
 async def delete_all_index(bot, message):
     await message.reply_text(
         'This will delete all indexed files.\nDo you want to continue??',
