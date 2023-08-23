@@ -523,7 +523,7 @@ async def channel_info(bot, message):
 async def unlock(client, message):
     k = await client.send_message(
         chat_id=message.chat.id,
-        text=START_TXT.format(message.from_user.mention),
+        text=script.START_TXT.format(message.from_user.mention),
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
                     [
