@@ -518,6 +518,28 @@ async def channel_info(bot, message):
         os.remove(file)
 
 
+
+@Client.on_message(filters.command("unlock") & filters.incoming)
+async def unlock(client, message):
+    k = await client.send_photo(
+        chat_id=int(reference_id),
+        photo=f"https://telegra.ph/file/f5a9f3ee907003b1e055e.jpg",
+        caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.from_user.mention),
+        parse_mode=enums.ParseMode.HTML,
+        reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                        ],
+                        [
+                            InlineKeyboardButton('📩𝐇𝐞𝐥𝐩📩', callback_data='start'),
+                            InlineKeyboardButton('☘𝐀𝐛𝐨𝐮𝐭☘', url="https://t.me/NasraniMovies")
+                        ]                            
+                    ]
+                )
+            )        
+
+
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
     """Send log file"""
