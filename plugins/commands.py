@@ -522,7 +522,7 @@ async def channel_info(bot, message):
 @Client.on_message(filters.command("unlock") & filters.incoming)
 async def unlock(client, message):
     k = await client.send_message(
-        chat_id=messsge.chat.id,
+        chat_id=message.chat.id,
         text=START_TXT.format(message.from_user.mention),
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
