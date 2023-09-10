@@ -13,10 +13,9 @@ pytz
 aiohttp
 wget
 
-youtube_search
+
 youtube-search-python==1.4.6
-yt-dlp
-youtube-dl
+
 aiofiles
 dnspython==2.3.0
 
@@ -28,5 +27,5 @@ heroku3
 googletrans==4.0.0-rc1
 gTTS
 
-speedtest-cli
+
 openai==0.27.8
